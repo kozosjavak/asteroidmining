@@ -1,7 +1,8 @@
 package classes;
 
 public class Asteroid {
-    int surfaceThickness;
-    boolean inSunZone;
+    private int surfaceThickness;
+    private boolean inSunZone;
+    private Material substance;
 
 }
