@@ -10,6 +10,7 @@ public class Skeleton{
                 //exit(cmd);
                 System.out.println("Ez az elso parancs.");
             } else if (num == 2) {
+                System.out.println("Ez a masodik parancs.");
                 //pwd(cmd);
             } else if (num == 3) {
                 //cd(cmd);
