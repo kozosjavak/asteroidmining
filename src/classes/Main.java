@@ -20,4 +20,21 @@ public class Main {
             ex.printStackTrace();
         }
     }
+
+    public void readFun(String line) {
+        try {
+            String[] cmd = line.split(" ");
+            if (cmd[0].equals("exit")) {
+                exit(cmd);
+            } else if (cmd[0].equals("pwd")) {
+                pwd(cmd);
+            } else if (cmd[0].equals("cd")) {
+                cd(cmd);
+            } else {
+                System.out.println("Invalid command");
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
