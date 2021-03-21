@@ -1,6 +1,4 @@
-package classes;
-
-import java.io.*;
+package com.github.kozosjavak.asteroidmining;
 
 public class Skeleton{
 

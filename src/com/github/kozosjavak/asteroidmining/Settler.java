@@ -1,4 +1,4 @@
-package classes;
+package com.github.kozosjavak.asteroidmining;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,25 +41,17 @@ public class Settler extends Spaceship implements Steppable {
         }*/
     }
 
-    ;
-
     public void BuildBase() {
     }
-
-    ;
 
     public void BuildRobot() {
 
     }
 
-    ;
-
     public void InsertMaterial(Material material) {
      /*   Asteroid::insertMaterial(material);
         RemoveMaterial(material);*/
     }
-
-    ;
 
     public void RemoveMaterial(Material material) {
         carriedMaterials.remove(material);
@@ -68,32 +60,22 @@ public class Settler extends Spaceship implements Steppable {
     public void DeployTeleport(Asteroid asteroid) {
     }
 
-    ;
-
     @Override
     public void Die() {
         //SetnumOfSettler(numOfSettler-1);
     }
 
-    ;
-
     @Override
     public void GetHitByExplosion() {
     }
-
-    ;
 
     @Override
     public void Drill() {
     }
 
-    ;
-
     @Override
     public void ExperienceSolarStorm() {
     }
-
-    ;
 
     @Override
     public String GetType() {

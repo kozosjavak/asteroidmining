@@ -1,4 +1,4 @@
-package classes;
+package com.github.kozosjavak.asteroidmining;
 
 import java.util.ArrayList;
 import java.util.List;

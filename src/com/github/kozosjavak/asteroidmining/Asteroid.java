@@ -1,6 +1,6 @@
-package classes;
+package com.github.kozosjavak.asteroidmining;
 
-import classes.materials.Material;
+import com.github.kozosjavak.asteroidmining.materials.Material;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Asteroid extends Orb {
     private final boolean inSunZone;
     private final int numberOfChildren;
     private final List<Material> materials = new ArrayList<>();
-    private final List<SpaceShip> residence = new ArrayList<>();
+    private final List<Spaceship> residence = new ArrayList<>();
     private int surfaceThickness;
     private Material substance;
 
@@ -21,11 +21,11 @@ public class Asteroid extends Orb {
         this.numberOfChildren = numberOfChildren;
     }
 
-    public void addSpaceShip(SpaceShip spaceShip) {
+    public void addSpaceShip(Spaceship spaceShip) {
         residence.add(spaceShip);
     }
 
-    public void removeSpaceship(SpaceShip spaceShip) {
+    public void removeSpaceship(Spaceship spaceShip) {
         residence.remove(spaceShip);
     }
 
