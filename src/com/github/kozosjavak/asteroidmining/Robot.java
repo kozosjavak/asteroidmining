@@ -1,6 +1,12 @@
 package com.github.kozosjavak.asteroidmining;
-
+/**
+ * Robot osztály
+ */
 public class Robot extends Spaceship implements Steppable {
+    /**
+     * Robot konstruktor
+     * @param asteroid aszteroida, amire a robot kerül
+     */
     public Robot(Asteroid asteroid) {
         super(asteroid);
     }
@@ -14,24 +20,39 @@ public class Robot extends Spaceship implements Steppable {
         setCurrentAsteroid(randomAsteroid);
 
     }
-
+    /**
+     * Napvihar elszenvedése
+     */
     @Override
     public void experienceSolarStorm() {
     }
 
+    /**
+     * Robbanás elszenvedése
+     */
     @Override
     public void getHitByExplosion() {
     }
 
+    /**
+     * Aszteroida fúrása
+     */
     @Override
     public void drill() {
     }
 
+    /**
+     * Űrhajó típusának lekérdezése
+     * @return az űrhajó típusa
+     */
     @Override
     public String getType() {
         return "robot";
     }
 
+    /**
+     * Lépés implementációja
+     */
     @Override
     public void step() {
 

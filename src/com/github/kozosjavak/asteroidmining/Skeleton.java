@@ -2,9 +2,15 @@ package com.github.kozosjavak.asteroidmining;
 
 import com.github.kozosjavak.asteroidmining.materials.Materials;
 
+/** Skeleton osztály */
 public class Skeleton {
 
 
+    /**
+     * Use case-ek futtatása
+     * @param line a kiválasztott use-case
+     * @throws Exception általános kivétel
+     */
     public void runUsecase(String line) throws Exception {
 
         System.out.println("Adja meg a parancs szamat:");
@@ -46,6 +52,9 @@ public class Skeleton {
         }
     }
 
+    /**
+     * DrillAsteroid use case
+     */
     public void usecaseDrillAsteroid() {
         Asteroid asteroid = new Asteroid(3, false, null, 0);
         Settler settler = new Settler(asteroid);
@@ -61,6 +70,9 @@ public class Skeleton {
         }
     }
 
+    /**
+     * LoseGame use case
+     */
     public void usecaseLoseGame() {
         Game.startGame();
 
@@ -73,6 +85,9 @@ public class Skeleton {
         Game.endGame();
     }
 
+    /**
+     * WinGame use case
+     */
     public void usecaseWinGame() {
 
         Game.startGame();
@@ -119,6 +134,9 @@ public class Skeleton {
 
     }
 
+    /**
+     * MineMaterial use case
+     */
     public void usecaseMineMaterial() {
         Game.startGame();
 
@@ -151,6 +169,9 @@ public class Skeleton {
 
     }
 
+    /**
+     * InsertMaterial use case
+     */
     public void usecaseInsertMaterial() {
         Game.startGame();
 
@@ -183,6 +204,9 @@ public class Skeleton {
 
     }
 
+    /**
+     * DrillRadioactiveAsteroid use case
+     */
     public void usecaseDrillRadioactiveAsteroid() {
         Game.startGame();
 
@@ -200,6 +224,9 @@ public class Skeleton {
 
     }
 
+    /**
+     * BuildRobot use case
+     */
     public void usecaseBuildRobot() {
         Game.startGame();
 
@@ -244,6 +271,9 @@ public class Skeleton {
         settler.buildBase();
     }
 
+    /**
+     * MoveSettler use case
+     */
     public void usecaseMoveSettler() {
         Asteroid asteroid1 = new Asteroid(3, false, null, 0);
         Asteroid asteroid2 = new Asteroid(3, false, null, 0);
@@ -252,6 +282,9 @@ public class Skeleton {
         settler.move(asteroid2);
     }
 
+    /**
+     * DeployTeleport use case
+     */
     public void usecaseDeployTeleport() {
         Asteroid asteroid1 = new Asteroid(3, false, null, 0);
         Asteroid asteroid2 = new Asteroid(3, false, null, 0);
@@ -265,10 +298,16 @@ public class Skeleton {
         settler.deployTeleport(asteroid2);
     }
 
+    /**
+     * BuildTeleport use case
+     */
     public void usecaseBuildTeleport() {
 
     }
 
+    /**
+     * RemoveMaterial use case
+     */
     public void usecaseRemoveMaterial() {
         Game.startGame();
 
@@ -291,6 +330,9 @@ public class Skeleton {
 
     }
 
+    /**
+     * BuildBase use case
+     */
     public void usecaseBuildBase() {
 
     }

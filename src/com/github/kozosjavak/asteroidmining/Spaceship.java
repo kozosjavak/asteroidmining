@@ -1,26 +1,43 @@
 package com.github.kozosjavak.asteroidmining;
 
+/**
+ * Űrhajó osztály
+ */
 public class Spaceship {
+
+        /** Aktuális aszteroida, melyen az űrhajó tartózkodik */
         private Asteroid currentAsteroid;
 
+        /**
+         * Spaceship konstruktor
+         * @param asteroid aszteroida, melyre a telepes kerül
+         */
         public Spaceship(Asteroid asteroid) {
                 asteroid.addSpaceShip(this);
                 currentAsteroid = asteroid;
         }
 
+        /**
+         * Napvihar elszenvedése
+         */
         public void experienceSolarStorm() {
         }
 
+        /**
+         * Robbanás elszenvedése
+         */
         public void getHitByExplosion() {
         }
 
+        /**
+         * Megsemmisülés
+         */
         public void die() {
         }
 
         /**
-         * Moves a spaceship one asteroid to the other
-         *
-         * @param destination the new asteroid
+         * Űrhajó mozgatása egy másik aszteroidára
+         * @param destination aszteroida, amelyre akarjuk mozgatni az űrhajót
          */
         public void move(Asteroid destination) {
                 currentAsteroid.removeSpaceship(this);
@@ -29,7 +46,8 @@ public class Spaceship {
         }
 
         /**
-         * calls the current asteroid's drill method, to remove a layer of crust
+         * Fúrás
+         * Az aktuális aszteroidán (amelyen tartózkodik) próbálja csökkenteni a köpenyvastagságot
          */
         public void drill() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
 
@@ -37,14 +55,26 @@ public class Spaceship {
 
         }
 
+        /**
+         * Űrhajó típusának lekérdezése
+         * @return az űrhajó típusa
+         */
         public String getType() {
                 return "Spaceship";
         }
 
+        /**
+         * Visszaadja az aszteroidát, amelyen tartózkodik az űrhajó
+         * @return az aszteroida, amelyen tartózkodik az űrhajó
+         */
         public Asteroid getCurrentAsteroid() {
                 return currentAsteroid;
         }
 
+        /**
+         * Beállítja, hogy a telepes melyik aszteroidán gondolja magát
+         * @param newAsteroidLocation az új aszteroida, melyen szeretnénk, hogy a telepes legyen
+         */
         public void setCurrentAsteroid(Asteroid newAsteroidLocation) {
                 this.currentAsteroid = newAsteroidLocation;
         }
