@@ -1,44 +1,32 @@
 package com.github.kozosjavak.asteroidmining;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.github.kozosjavak.asteroidmining.materials.Material;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Settler extends Spaceship implements Steppable {
-    private final List<Material> carriedMaterials = new ArrayList<>();
-    Collection<Bills> bills = new ArrayList<Bills>();
+    private final Map<Material, Integer> inventory = new HashMap<>();
     private TeleportPair teleportPair;
 
-    public Material GetCarriedMaterial() {
-        return carriedMaterials.get(0);
+    public Map<Material, Integer> getInventory() {
+        return inventory;
+    }
+
+    private int getInventoryWeight() {
+        return inventory.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     public void Mine() {
-        if (carriedMaterials.size() < 10) {
+        if (getInventoryWeight() < 10) {
             //    carriedMaterials.add(Asteroid::mine());
         }
     }
 
     public void BuildTeleportPair() {
-        //kettő cuccot keresni arraylistben nem vágom potosan hogy kell
-        //lényeg így nézem meg hint alapján, hogy van-e 2 vas:
-      /*  Iterator<Material> it = carriedMaterials.iterator();
-        int waterCounter=0;
-        while(it.hasNext()){
-            if(it.next().equals(Iron)){
-                waterCounter=waterCounter+1;
-            }
-        }
-        it.remove();
-        if(teleportPair==null&&waterCounter>=2&&
-                carriedMaterials.contains(Uranium)&&
-                carriedMaterials.contains("Waterice")
-        ){
-        //add teleport pair
-            carriedMaterials.remove("Uranium");
-            carriedMaterials.remove("Waterice");
-            carriedMaterials.remove("Iron");
-            carriedMaterials.remove("Iron");
-        }*/
+
     }
 
     public void BuildBase() {
@@ -53,8 +41,12 @@ public class Settler extends Spaceship implements Steppable {
         RemoveMaterial(material);*/
     }
 
-    public void RemoveMaterial(Material material) {
-        carriedMaterials.remove(material);
+    private void RemoveMaterial(Material materialToRemove) throws NotEnoughMaterialException {
+        if (inventory.getOrDefault(materialToRemove, 0) == 0) {
+            throw new NotEnoughMaterialException(materialToRemove);
+        }
+        inventory.computeIfPresent(materialToRemove, (material, old) -> old - 1);
+
     }
 
     public void DeployTeleport(Asteroid asteroid) {
