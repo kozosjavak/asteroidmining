@@ -19,29 +19,29 @@ public class Settler extends Spaceship implements Steppable {
                 .sum();
     }
 
-    public void Mine() {
+    public void mine() {
         if (getInventoryWeight() < 10) {
             //    carriedMaterials.add(Asteroid::mine());
         }
     }
 
-    public void BuildTeleportPair() {
+    public void buildTeleportPair() {
 
     }
 
-    public void BuildBase() {
+    public void buildBase() {
     }
 
-    public void BuildRobot() {
+    public void buildRobot() {
 
     }
 
-    public void InsertMaterial(Material material) {
+    public void insertMaterial(Material material) {
      /*   Asteroid::insertMaterial(material);
         RemoveMaterial(material);*/
     }
 
-    private void RemoveMaterial(Material materialToRemove) throws NotEnoughMaterialException {
+    private void removeMaterial(Material materialToRemove) throws NotEnoughMaterialException {
         if (inventory.getOrDefault(materialToRemove, 0) == 0) {
             throw new NotEnoughMaterialException(materialToRemove);
         }
@@ -49,28 +49,28 @@ public class Settler extends Spaceship implements Steppable {
 
     }
 
-    public void DeployTeleport(Asteroid asteroid) {
+    public void deployTeleport(Asteroid asteroid) {
     }
 
     @Override
-    public void Die() {
+    public void die() {
         //SetnumOfSettler(numOfSettler-1);
     }
 
     @Override
-    public void GetHitByExplosion() {
+    public void getHitByExplosion() {
     }
 
     @Override
-    public void Drill() {
+    public void drill() {
     }
 
     @Override
-    public void ExperienceSolarStorm() {
+    public void experienceSolarStorm() {
     }
 
     @Override
-    public String GetType() {
+    public String getType() {
         return "Settler";
     }
 

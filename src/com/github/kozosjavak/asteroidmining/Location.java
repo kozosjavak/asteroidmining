@@ -8,19 +8,23 @@ public class Location {
     List<Location> neighbors = new ArrayList<Location>();
     Random random = new Random();
 
-    public Location GetRandomNeighbor (Location location){
-        return neighbors.get(random.nextInt(neighbors.size()-1));
+    public Location getRandomNeighbor(Location location) {
+        return neighbors.get(random.nextInt(neighbors.size() - 1));
     }
-    public List<Location> GetNeighbors(){
+
+    public List<Location> getNeighbors() {
         return neighbors;
     }
-    public void AddNeighbor(Location location){
+
+    public void addNeighbor(Location location) {
         neighbors.add(location);
     }
-    public void RemoveNeighbor(Location location){
+
+    public void removeNeighbor(Location location) {
         neighbors.remove(location);
     }
-    public void AddChildern(int depth){
+
+    public void addChildern(int depth) {
         //Underconstraction
     }
 
