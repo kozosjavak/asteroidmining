@@ -3,13 +3,17 @@ package com.github.kozosjavak.asteroidmining;
 import com.github.kozosjavak.asteroidmining.materials.Material;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Asteroid extends Orb {
 
     private final boolean inSunZone;
     private final int numberOfChildren;
-    private final List<Material> materials = new ArrayList<>();
+
+
+    private final Map<Material, Integer> asteroidInventory = new HashMap<>();
     private final List<Spaceship> residence = new ArrayList<>();
     private int surfaceThickness;
     private Material substance;
@@ -19,6 +23,10 @@ public class Asteroid extends Orb {
         this.inSunZone = inSunZone;
         this.substance = substance;
         this.numberOfChildren = numberOfChildren;
+    }
+
+    public Map<Material, Integer> getAsteroidInventory() {
+        return asteroidInventory;
     }
 
     public void addSpaceShip(Spaceship spaceShip) {
@@ -39,25 +47,52 @@ public class Asteroid extends Orb {
         }
     }
 
-    public void drill() {
-        if (surfaceThickness > 0)
+    /**
+     * removes a layer of crust from the asteroid itself
+     *
+     * @throws SurfaceThicknessIsZeroException if its already removed to zero
+     */
+    public void drill() throws SurfaceThicknessIsZeroException {
+        if (surfaceThickness > 0) {
             surfaceThickness--;
+        } else {
+            new SurfaceThicknessIsZeroException();
+        }
     }
 
     public void explode() {
         //kesobb
     }
 
+    /**
+     * puts the given material into the map
+     *
+     * @param material the material
+     */
     public void insertMaterial(Material material) {
-        materials.add(material);
+        //if the material doesnt exist in the list, puIfAbsent create a key with value 0
+        asteroidInventory.putIfAbsent(material, 0);
+        //if the material already exist in map as key, just add 1 to the amount
+        asteroidInventory.computeIfPresent(material, (material1, amount) -> amount + 1);
     }
 
-    public void removeMaterial(Material material) {
-        materials.remove(material);
+    /**
+     * removes the given material from the map if it possible
+     *
+     * @param materialToRemove the material should removed
+     * @throws NotEnoughMaterialException if there is not enough material to remove
+     */
+    public void removeMaterial(Material materialToRemove) throws NotEnoughMaterialException {
+        if (asteroidInventory.getOrDefault(materialToRemove, 0) == 0) {
+            throw new NotEnoughMaterialException(materialToRemove);
+        }
+        asteroidInventory.computeIfPresent(materialToRemove, (material, old) -> old - 1);
+
     }
 
     public void buildBase() {
         //kesobb
+        System.out.println("Base builded!");
     }
 
     @Override

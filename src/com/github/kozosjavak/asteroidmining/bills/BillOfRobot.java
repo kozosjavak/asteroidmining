@@ -11,4 +11,9 @@ public class BillOfRobot implements BillOfMaterial {
     public Map<Material, Integer> getMaterialsNeeded() {
         return Map.of(Materials.IRON, 1, Materials.COAL, 1, Materials.URANIUM, 1);
     }
+
+    @Override
+    public String toString() {
+        return "Bill of Robot";
+    }
 }
