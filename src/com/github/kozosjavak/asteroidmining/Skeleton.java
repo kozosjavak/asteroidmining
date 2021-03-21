@@ -7,7 +7,7 @@ public class Skeleton {
 
     public void runUsecase(String line) throws Exception {
 
-
+        System.out.println("Adja meg a parancs szamat:");
         int num = 0;
         try {
             num = Integer.parseInt(line);
@@ -51,7 +51,11 @@ public class Skeleton {
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
         try {
-            settler.drill();
+            try {
+                settler.drill();
+            } catch (NotEnoughMaterialException e) {
+                e.printStackTrace();
+            }
         } catch (SurfaceThicknessIsZeroException e) {
             e.printStackTrace();
         }
@@ -73,7 +77,7 @@ public class Skeleton {
 
         Game.startGame();
 
-        Asteroid asteroid = new Asteroid(3, false, null, 0);
+        Asteroid asteroid = new Asteroid(3, false, Materials.COAL, 0);
         Game.getTheSun().addNeighbor(asteroid);
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
@@ -83,10 +87,12 @@ public class Skeleton {
             settler.drill();
         } catch (SurfaceThicknessIsZeroException e) {
             e.printStackTrace();
+        } catch (NotEnoughMaterialException e) {
+            e.printStackTrace();
         }
         try {
             settler.mine();
-        } catch (InventoryIsFullException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -121,9 +127,10 @@ public class Skeleton {
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
 
+
         try {
             settler.mine();
-        } catch (InventoryIsFullException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -131,11 +138,13 @@ public class Skeleton {
             settler.drill();
         } catch (SurfaceThicknessIsZeroException e) {
             e.printStackTrace();
+        } catch (NotEnoughMaterialException e) {
+            e.printStackTrace();
         }
 
         try {
             settler.mine();
-        } catch (InventoryIsFullException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -145,26 +154,24 @@ public class Skeleton {
     public void usecaseInsertMaterial() {
         Game.startGame();
 
-        Asteroid asteroid = new Asteroid(1, false, Materials.WATERICE, 0);
+        Asteroid asteroid = new Asteroid(1, false, Materials.IRON, 0);
         Game.getTheSun().addNeighbor(asteroid);
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
+        settler.getInventory().put(Materials.COAL, 1);
 
-        try {
-            settler.mine();
-        } catch (InventoryIsFullException e) {
-            e.printStackTrace();
-        }
 
         try {
             settler.drill();
         } catch (SurfaceThicknessIsZeroException e) {
             e.printStackTrace();
+        } catch (NotEnoughMaterialException e) {
+            e.printStackTrace();
         }
 
         try {
             settler.mine();
-        } catch (InventoryIsFullException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -183,10 +190,58 @@ public class Skeleton {
         Game.getTheSun().addNeighbor(asteroid);
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
+        try {
+            settler.drill();
+        } catch (SurfaceThicknessIsZeroException e) {
+            e.printStackTrace();
+        } catch (NotEnoughMaterialException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void usecaseBuildRobot() {
+        Game.startGame();
 
+        Asteroid asteroid = new Asteroid(3, false, null, 0);
+        Game.getTheSun().addNeighbor(asteroid);
+        Settler settler = new Settler(asteroid);
+        asteroid.addSpaceShip(settler);
+        try {
+            settler.drill();
+            settler.drill();
+            settler.drill();
+        } catch (SurfaceThicknessIsZeroException e) {
+            e.printStackTrace();
+        } catch (NotEnoughMaterialException e) {
+            e.printStackTrace();
+        }
+        try {
+            settler.mine();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            asteroid.insertMaterial(Materials.IRON);
+            asteroid.insertMaterial(Materials.IRON);
+            asteroid.insertMaterial(Materials.IRON);
+
+            asteroid.insertMaterial(Materials.WATERICE);
+            asteroid.insertMaterial(Materials.WATERICE);
+            asteroid.insertMaterial(Materials.WATERICE);
+
+            asteroid.insertMaterial(Materials.URANIUM);
+            asteroid.insertMaterial(Materials.URANIUM);
+            asteroid.insertMaterial(Materials.URANIUM);
+
+            asteroid.insertMaterial(Materials.COAL);
+            asteroid.insertMaterial(Materials.COAL);
+            asteroid.insertMaterial(Materials.COAL);
+        } catch (AsteroidNotMinedException e) {
+            e.printStackTrace();
+        }
+        settler.buildBase();
     }
 
     public void usecaseMoveSettler() {
@@ -194,7 +249,6 @@ public class Skeleton {
         Asteroid asteroid2 = new Asteroid(3, false, null, 0);
         Settler settler = new Settler(asteroid1);
         asteroid1.addSpaceShip(settler);
-
         settler.move(asteroid2);
     }
 
@@ -216,13 +270,25 @@ public class Skeleton {
     }
 
     public void usecaseRemoveMaterial() {
-        Asteroid asteroid = new Asteroid(3, false, null, 0);
+        Game.startGame();
+
+        Asteroid asteroid = new Asteroid(1, false, null, 0);
+        Game.getTheSun().addNeighbor(asteroid);
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
-        asteroid.insertMaterial();
+        try {
+            settler.drill();
+        } catch (SurfaceThicknessIsZeroException e) {
+            e.printStackTrace();
+        } catch (NotEnoughMaterialException e) {
+            e.printStackTrace();
+        }
+        try {
+            settler.mine();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        settler.removeMaterial();
-        //nincs kész
     }
 
     public void usecaseBuildBase() {

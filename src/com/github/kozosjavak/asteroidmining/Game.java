@@ -4,7 +4,7 @@ public class Game {
 
 
     private static Sun theSun;
-    private static int numberOfSettlers;
+    private static int numberOfSettlers = 0;
     private static int numberOfChildren;
 
     public static Sun getTheSun() {

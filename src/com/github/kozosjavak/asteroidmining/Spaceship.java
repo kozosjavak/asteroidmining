@@ -31,7 +31,7 @@ public class Spaceship {
         /**
          * calls the current asteroid's drill method, to remove a layer of crust
          */
-        public void drill() throws SurfaceThicknessIsZeroException {
+        public void drill() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
 
                 currentAsteroid.drill();
 

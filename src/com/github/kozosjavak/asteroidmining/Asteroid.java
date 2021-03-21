@@ -11,8 +11,6 @@ public class Asteroid extends Orb {
 
     private final boolean inSunZone;
     private final int numberOfChildren;
-
-
     private final Map<Material, Integer> asteroidInventory = new HashMap<>();
     private final List<Spaceship> residence = new ArrayList<>();
     private int surfaceThickness;
@@ -23,6 +21,10 @@ public class Asteroid extends Orb {
         this.inSunZone = inSunZone;
         this.substance = substance;
         this.numberOfChildren = numberOfChildren;
+    }
+
+    public boolean isInSunZone() {
+        return inSunZone;
     }
 
     public Map<Material, Integer> getAsteroidInventory() {
@@ -37,13 +39,13 @@ public class Asteroid extends Orb {
         residence.remove(spaceShip);
     }
 
-    public Material mine() {
-        if (surfaceThickness == 0 && substance != null) {
+    public Material mine() throws AsteroidIsNotMineable {
+        if (surfaceThickness <= 0 && substance != null) {
             Material temp = substance;
             substance = null;
             return temp;
         } else {
-            return null;
+            throw new AsteroidIsNotMineable();
         }
     }
 
@@ -52,15 +54,17 @@ public class Asteroid extends Orb {
      *
      * @throws SurfaceThicknessIsZeroException if its already removed to zero
      */
-    public void drill() throws SurfaceThicknessIsZeroException {
+    public void drill() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
         if (surfaceThickness == 1) {
+
             substance.experienceExtremeHeat(this);
+
         }
 
         if (surfaceThickness > 0) {
             surfaceThickness--;
         } else {
-            new SurfaceThicknessIsZeroException();
+            throw new SurfaceThicknessIsZeroException();
         }
     }
 
@@ -81,6 +85,8 @@ public class Asteroid extends Orb {
             asteroidInventory.putIfAbsent(material, 0);
             //if the material already exist in map as key, just add 1 to the amount
             asteroidInventory.computeIfPresent(material, (material1, amount) -> amount + 1);
+        } else {
+            throw new AsteroidNotMinedException();
         }
     }
 
