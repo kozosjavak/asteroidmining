@@ -6,9 +6,13 @@ package com.github.kozosjavak.asteroidmining;
 public class Game {
 
 
-
-    /** A játékban levő nap inicializálása */
+    /**
+     * A játékban levő nap inicializálása
+     */
     private static Sun theSun;
+    /**
+     * A játékban levő telepesek száma
+     */
     private static int numberOfSettlers = 0;
     private static int numberOfChildren;
 
@@ -43,8 +47,8 @@ public class Game {
         numberOfSettlers--;
     }
 
-    /** A játékban levő telepesek száma */
-    private static int numberOfSettlers;
+
+
 
     /** Játék indítása */
     public static void startGame() {
