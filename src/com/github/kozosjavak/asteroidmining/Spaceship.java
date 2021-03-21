@@ -1,22 +1,22 @@
 package com.github.kozosjavak.asteroidmining;
 
 public class Spaceship {
-        public void ExperienceSolarStorm() {
+        public void experienceSolarStorm() {
         }
 
-        public void GetHitByExplosion() {
+        public void getHitByExplosion() {
         }
 
-        public void Move(Asteroid destination) {
+        public void move(Asteroid destination) {
         }
 
-        public void Die() {
+        public void die() {
         }
 
-        public void Drill() {
+        public void drill() {
         }
 
-        public String GetType() {
+        public String getType() {
                 return "Spaceship";
         }
 }

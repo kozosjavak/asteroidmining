@@ -3,21 +3,22 @@ package com.github.kozosjavak.asteroidmining;
 public class Robot extends Spaceship implements Steppable{
 
     @Override
-    public void ExperienceSolarStorm() {
+    public void experienceSolarStorm() {
     }
 
     @Override
-    public void GetHitByExplosion() {
+    public void getHitByExplosion() {
     }
 
     @Override
-    public void Drill() {
+    public void drill() {
     }
 
     @Override
-    public String GetType(){
+    public String getType() {
         return "robot";
     }
+
     @Override
     public void step() {
 

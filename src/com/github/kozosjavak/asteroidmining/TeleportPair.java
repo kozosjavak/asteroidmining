@@ -15,7 +15,7 @@ public class TeleportPair {
     }
 
     public void activateTeleport() {
-        location1.AddNeighbor(location2);
-        location2.AddNeighbor(location1);
+        location1.addNeighbor(location2);
+        location2.addNeighbor(location1);
     }
 }

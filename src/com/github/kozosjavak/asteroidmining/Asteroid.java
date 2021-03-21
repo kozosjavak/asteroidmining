@@ -44,7 +44,7 @@ public class Asteroid extends Orb {
             surfaceThickness--;
     }
 
-    public void Explode() {
+    public void explode() {
         //kesobb
     }
 
@@ -61,12 +61,12 @@ public class Asteroid extends Orb {
     }
 
     @Override
-    public void ExperienceSolarStrom() {
-        super.ExperienceSolarStrom();
+    public void experienceSolarStrom() {
+        super.experienceSolarStrom();
     }
 
     @Override
-    public String GetType() {
+    public String getType() {
         return "Asteroid";
     }
 }

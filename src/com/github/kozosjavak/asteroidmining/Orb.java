@@ -1,10 +1,10 @@
 package com.github.kozosjavak.asteroidmining;
 
 public class Orb extends Location {
-    public void ExperienceSolarStrom() {
+    public void experienceSolarStrom() {
     }
 
-    public String GetType() {
+    public String getType() {
         return "Orb";
     }
 

@@ -8,11 +8,11 @@ public class Sun extends Orb implements Steppable {
     }
 
     @Override
-    public void ExperienceSolarStrom() {
+    public void experienceSolarStrom() {
     }
 
     @Override
-    public String GetType() {
+    public String getType() {
         return "Sun";
     }
 
