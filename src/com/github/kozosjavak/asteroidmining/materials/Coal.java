@@ -6,4 +6,9 @@ public class Coal implements Material {
     public void experienceExtremeHeat(Asteroid a) {
         return; // do nothing
     }
+
+    @Override
+    public String toString() {
+        return "Coal";
+    }
 }

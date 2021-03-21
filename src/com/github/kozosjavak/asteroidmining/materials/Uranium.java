@@ -6,4 +6,9 @@ public class Uranium implements Material {
     public void experienceExtremeHeat(Asteroid a) {
         a.explode(); // explodes
     }
+
+    @Override
+    public String toString() {
+        return "Uranium";
+    }
 }

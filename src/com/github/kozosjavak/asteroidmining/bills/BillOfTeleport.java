@@ -11,4 +11,9 @@ public class BillOfTeleport implements BillOfMaterial {
     public Map<Material, Integer> getMaterialsNeeded() {
         return Map.of(Materials.IRON, 2, Materials.WATERICE, 1, Materials.URANIUM, 1);
     }
+
+    @Override
+    public String toString() {
+        return "Bill of Material";
+    }
 }

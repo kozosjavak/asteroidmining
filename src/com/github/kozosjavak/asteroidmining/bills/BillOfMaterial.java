@@ -18,15 +18,15 @@ public interface BillOfMaterial {
         //creates a map from the needed materials, where you can remove materials what inventory have
         HashMap<Material, Integer> materialsLeft = new HashMap<>(getMaterialsNeeded());
         //iterate the inventory map, creates walletEntry
-        for (Map.Entry<Material, Integer> walletEntry : inventory.entrySet()) {
+        for (Map.Entry<Material, Integer> inventoryEntry : inventory.entrySet()) {
 
-            final Material material = walletEntry.getKey();
+            final Material material = inventoryEntry.getKey();
             //check if the the bill has the inventory materials
             if (materialsLeft.containsKey(material)) {
                 //remove the number of material which the inventory have from the materialsLeft
-                int value = materialsLeft.get(material) - walletEntry.getValue();
+                int value = materialsLeft.get(material) - inventoryEntry.getValue();
                 //replace the new Integer number for materials, can't be under zero
-                materialsLeft.replace(material, Math.max(value, 0));
+                materialsLeft.compute(material, (material1, amount) -> value <= 0 ? null : value);
             }
 
         }
