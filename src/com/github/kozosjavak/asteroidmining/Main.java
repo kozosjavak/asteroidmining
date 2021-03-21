@@ -32,7 +32,7 @@ public class Main {
     }
 
     public static void printOptions() {
-        System.out.println("Use-case:");
+        System.out.println("Menü:");
         System.out.println("1. Aszteroida fúrása");
         System.out.println("2. Játék elvesztése");
         System.out.println("3. Játék megnyerése");
@@ -45,6 +45,7 @@ public class Main {
         System.out.println("10. Teleportkapu-pár építése");
         System.out.println("11. Üreges aszteroidából nyersanyag felvétel");
         System.out.println("12. Űrbázis építése");
+        System.out.println("0. Kilépés");
         System.out.print("Melyik use-case-t szeretné futtatni? Adjon meg egy számot: ");
     }
 }
