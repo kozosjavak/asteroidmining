@@ -222,43 +222,14 @@ public class Skeleton {
     public void usecaseBuildRobot() {
         Game.startGame();
 
-        Asteroid asteroid = new Asteroid(3, false, null, 0);
+        Asteroid asteroid = new Asteroid(1, false, null, 0);
         Game.getTheSun().addNeighbor(asteroid);
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
-        try {
-            settler.drill();
-            settler.drill();
-            settler.drill();
-        } catch (SurfaceThicknessIsZeroException | NotEnoughMaterialException e) {
-            e.printStackTrace();
-        }
-        try {
-            settler.mine();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            asteroid.insertMaterial(Materials.IRON);
-            asteroid.insertMaterial(Materials.IRON);
-            asteroid.insertMaterial(Materials.IRON);
-
-            asteroid.insertMaterial(Materials.WATERICE);
-            asteroid.insertMaterial(Materials.WATERICE);
-            asteroid.insertMaterial(Materials.WATERICE);
-
-            asteroid.insertMaterial(Materials.URANIUM);
-            asteroid.insertMaterial(Materials.URANIUM);
-            asteroid.insertMaterial(Materials.URANIUM);
-
-            asteroid.insertMaterial(Materials.COAL);
-            asteroid.insertMaterial(Materials.COAL);
-            asteroid.insertMaterial(Materials.COAL);
-        } catch (AsteroidNotMinedException e) {
-            e.printStackTrace();
-        }
-        settler.buildBase();
+        settler.getInventory().put(Materials.IRON, 1);
+        settler.getInventory().put(Materials.COAL, 1);
+        settler.getInventory().put(Materials.URANIUM, 1);
+        settler.buildRobot();
     }
 
     /**
@@ -292,7 +263,16 @@ public class Skeleton {
      * BuildTeleport use case
      */
     public void usecaseBuildTeleport() {
+        Game.startGame();
 
+        Asteroid asteroid = new Asteroid(1, false, null, 0);
+        Game.getTheSun().addNeighbor(asteroid);
+        Settler settler = new Settler(asteroid);
+        asteroid.addSpaceShip(settler);
+        settler.getInventory().put(Materials.IRON, 2);
+        settler.getInventory().put(Materials.WATERICE, 1);
+        settler.getInventory().put(Materials.URANIUM, 1);
+        settler.buildTeleportPair();
     }
 
     /**
@@ -322,6 +302,46 @@ public class Skeleton {
      * BuildBase use case
      */
     public void usecaseBuildBase() {
+        Game.startGame();
 
+        Asteroid asteroid = new Asteroid(3, false, null, 0);
+        Game.getTheSun().addNeighbor(asteroid);
+        Settler settler = new Settler(asteroid);
+        asteroid.addSpaceShip(settler);
+        try {
+            settler.drill();
+            settler.drill();
+            settler.drill();
+        } catch (SurfaceThicknessIsZeroException e) {
+            e.printStackTrace();
+        } catch (NotEnoughMaterialException e) {
+            e.printStackTrace();
+        }
+        try {
+            settler.mine();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            asteroid.insertMaterial(Materials.IRON);
+            asteroid.insertMaterial(Materials.IRON);
+            asteroid.insertMaterial(Materials.IRON);
+
+            asteroid.insertMaterial(Materials.WATERICE);
+            asteroid.insertMaterial(Materials.WATERICE);
+            asteroid.insertMaterial(Materials.WATERICE);
+
+            asteroid.insertMaterial(Materials.URANIUM);
+            asteroid.insertMaterial(Materials.URANIUM);
+            asteroid.insertMaterial(Materials.URANIUM);
+
+            asteroid.insertMaterial(Materials.COAL);
+            asteroid.insertMaterial(Materials.COAL);
+            asteroid.insertMaterial(Materials.COAL);
+        } catch (AsteroidNotMinedException e) {
+            e.printStackTrace();
+        }
+        settler.buildBase();
     }
 }
