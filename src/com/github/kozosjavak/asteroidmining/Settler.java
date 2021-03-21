@@ -36,7 +36,7 @@ public class Settler extends Spaceship implements Steppable {
      *
      * @throws InventoryIsFullException if the inventory is full
      */
-    public void mine() throws InventoryIsFullException {
+    public void mine() throws InventoryIsFullException, AsteroidIsNotMineable {
         if (getInventoryWeight() < 10) {
             Material material = getCurrentAsteroid().mine();
             if (material != null) {
@@ -93,7 +93,7 @@ public class Settler extends Spaceship implements Steppable {
      * Forwarding the current Asteroid's inventory to buy()
      */
     public void buildBase() {
-        if (buy(Bills.TELEPORT, getCurrentAsteroid().getAsteroidInventory()))
+        if (buy(Bills.BASE, getCurrentAsteroid().getAsteroidInventory()))
             getCurrentAsteroid().buildBase();
     }
 
