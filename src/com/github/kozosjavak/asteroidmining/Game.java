@@ -1,4 +1,4 @@
-package classes;
+package com.github.kozosjavak.asteroidmining;
 
 public class Game {
     private static final Sun theSun = new Sun(5);

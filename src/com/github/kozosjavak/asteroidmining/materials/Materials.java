@@ -1,4 +1,4 @@
-package classes.materials;
+package com.github.kozosjavak.asteroidmining.materials;
 
 public class Materials {
     public static final Coal COAL = new Coal();

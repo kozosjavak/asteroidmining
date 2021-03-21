@@ -1,14 +1,16 @@
-package classes;
+package com.github.kozosjavak.asteroidmining;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Skeleton skeleton = new Skeleton();
         try {
-        InputStreamReader isr = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(isr);
+            InputStreamReader isr = new InputStreamReader(System.in);
+            BufferedReader br = new BufferedReader(isr);
 
             while (true) {
                 try {

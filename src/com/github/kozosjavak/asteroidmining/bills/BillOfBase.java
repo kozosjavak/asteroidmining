@@ -1,7 +1,7 @@
-package classes.bills;
+package com.github.kozosjavak.asteroidmining.bills;
 
-import classes.materials.Material;
-import classes.materials.Materials;
+import com.github.kozosjavak.asteroidmining.materials.Material;
+import com.github.kozosjavak.asteroidmining.materials.Materials;
 
 import java.util.Map;
 
