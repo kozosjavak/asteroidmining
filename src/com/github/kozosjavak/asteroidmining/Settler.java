@@ -13,6 +13,7 @@ public class Settler extends Spaceship implements Steppable {
 
     public Settler(Asteroid asteroid) {
         super(asteroid);
+        Game.addASettlerInNumberOfSettler();
     }
 
     public Map<Material, Integer> getInventory() {
@@ -113,7 +114,7 @@ public class Settler extends Spaceship implements Steppable {
      * @param material the material you want to pass to the Asteroid
      * @throws NotEnoughMaterialException if you want to put an invalid material down
      */
-    public void insertMaterial(Material material) throws NotEnoughMaterialException {
+    public void insertMaterial(Material material) throws Exception {
         getCurrentAsteroid().insertMaterial(material);
         removeMaterial(material);
     }
@@ -136,11 +137,13 @@ public class Settler extends Spaceship implements Steppable {
 
     @Override
     public void die() {
-        //SetnumOfSettler(numOfSettler-1);
+        Game.removeASettlerInNumberOfSettler();
+        getCurrentAsteroid().removeSpaceship(this);
     }
 
     @Override
     public void getHitByExplosion() {
+        this.die();
     }
 
     @Override

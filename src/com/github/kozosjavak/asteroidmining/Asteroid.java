@@ -53,6 +53,10 @@ public class Asteroid extends Orb {
      * @throws SurfaceThicknessIsZeroException if its already removed to zero
      */
     public void drill() throws SurfaceThicknessIsZeroException {
+        if (surfaceThickness == 1) {
+            substance.experienceExtremeHeat(this);
+        }
+
         if (surfaceThickness > 0) {
             surfaceThickness--;
         } else {
@@ -61,7 +65,9 @@ public class Asteroid extends Orb {
     }
 
     public void explode() {
-        //kesobb
+        for (Spaceship spaceShip : residence) {
+            spaceShip.getHitByExplosion();
+        }
     }
 
     /**
@@ -69,11 +75,13 @@ public class Asteroid extends Orb {
      *
      * @param material the material
      */
-    public void insertMaterial(Material material) {
-        //if the material doesnt exist in the list, puIfAbsent create a key with value 0
-        asteroidInventory.putIfAbsent(material, 0);
-        //if the material already exist in map as key, just add 1 to the amount
-        asteroidInventory.computeIfPresent(material, (material1, amount) -> amount + 1);
+    public void insertMaterial(Material material) throws AsteroidNotMinedException {
+        if (substance == null) {
+            //if the material doesnt exist in the list, puIfAbsent create a key with value 0
+            asteroidInventory.putIfAbsent(material, 0);
+            //if the material already exist in map as key, just add 1 to the amount
+            asteroidInventory.computeIfPresent(material, (material1, amount) -> amount + 1);
+        }
     }
 
     /**
@@ -91,8 +99,8 @@ public class Asteroid extends Orb {
     }
 
     public void buildBase() {
-        //kesobb
         System.out.println("Base builded!");
+        Game.Win();
     }
 
     @Override

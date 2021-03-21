@@ -1,8 +1,18 @@
 package com.github.kozosjavak.asteroidmining;
 
-public class Robot extends Spaceship implements Steppable{
+public class Robot extends Spaceship implements Steppable {
     public Robot(Asteroid asteroid) {
         super(asteroid);
+    }
+
+
+    @Override
+
+    public void move(Asteroid asteroid) {
+        Asteroid randomAsteroid = (Asteroid) asteroid.getRandomNeighbor();
+        randomAsteroid.addSpaceShip(this);
+        setCurrentAsteroid(randomAsteroid);
+
     }
 
     @Override

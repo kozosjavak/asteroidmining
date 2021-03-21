@@ -31,12 +31,10 @@ public class Spaceship {
         /**
          * calls the current asteroid's drill method, to remove a layer of crust
          */
-        public void drill() {
-                try {
-                        currentAsteroid.drill();
-                } catch (SurfaceThicknessIsZeroException e) {
-                        e.printStackTrace();
-                }
+        public void drill() throws SurfaceThicknessIsZeroException {
+
+                currentAsteroid.drill();
+
         }
 
         public String getType() {

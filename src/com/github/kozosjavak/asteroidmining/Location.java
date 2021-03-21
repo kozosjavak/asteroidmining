@@ -8,7 +8,7 @@ public class Location {
     List<Location> neighbors = new ArrayList<Location>();
     Random random = new Random();
 
-    public Location getRandomNeighbor(Location location) {
+    public Location getRandomNeighbor() {
         return neighbors.get(random.nextInt(neighbors.size() - 1));
     }
 

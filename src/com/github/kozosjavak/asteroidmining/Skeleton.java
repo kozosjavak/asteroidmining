@@ -1,11 +1,12 @@
 package com.github.kozosjavak.asteroidmining;
 
-import com.github.kozosjavak.asteroidmining.materials.Coal;
-import com.github.kozosjavak.asteroidmining.materials.Uranium;
+import com.github.kozosjavak.asteroidmining.materials.Materials;
 
 public class Skeleton {
 
+
     public void runUsecase(String line) throws Exception {
+
 
         int num = 0;
         try {
@@ -49,41 +50,139 @@ public class Skeleton {
         Asteroid asteroid = new Asteroid(3, false, null, 0);
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
-
-        settler.Drill();
+        try {
+            settler.drill();
+        } catch (SurfaceThicknessIsZeroException e) {
+            e.printStackTrace();
+        }
     }
 
     public void usecaseLoseGame() {
+        Game.startGame();
 
+        Asteroid asteroid = new Asteroid(3, false, null, 0);
+        Game.getTheSun().addNeighbor(asteroid);
+        Settler settler = new Settler(asteroid);
+        asteroid.addSpaceShip(settler);
+        Game.endGame();
+        settler.die();
+        Game.endGame();
     }
 
     public void usecaseWinGame() {
 
+        Game.startGame();
+
+        Asteroid asteroid = new Asteroid(3, false, null, 0);
+        Game.getTheSun().addNeighbor(asteroid);
+        Settler settler = new Settler(asteroid);
+        asteroid.addSpaceShip(settler);
+        try {
+            settler.drill();
+            settler.drill();
+            settler.drill();
+        } catch (SurfaceThicknessIsZeroException e) {
+            e.printStackTrace();
+        }
+        try {
+            settler.mine();
+        } catch (InventoryIsFullException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            asteroid.insertMaterial(Materials.IRON);
+            asteroid.insertMaterial(Materials.IRON);
+            asteroid.insertMaterial(Materials.IRON);
+
+            asteroid.insertMaterial(Materials.WATERICE);
+            asteroid.insertMaterial(Materials.WATERICE);
+            asteroid.insertMaterial(Materials.WATERICE);
+
+            asteroid.insertMaterial(Materials.URANIUM);
+            asteroid.insertMaterial(Materials.URANIUM);
+            asteroid.insertMaterial(Materials.URANIUM);
+
+            asteroid.insertMaterial(Materials.COAL);
+            asteroid.insertMaterial(Materials.COAL);
+            asteroid.insertMaterial(Materials.COAL);
+        } catch (AsteroidNotMinedException e) {
+            e.printStackTrace();
+        }
+        settler.buildBase();
+
     }
 
     public void usecaseMineMaterial() {
-        Asteroid asteroid = new Asteroid(3, false, new Coal(), 0);
+        Game.startGame();
+
+        Asteroid asteroid = new Asteroid(1, false, Materials.WATERICE, 0);
+        Game.getTheSun().addNeighbor(asteroid);
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
 
-        settler.Mine();
+        try {
+            settler.mine();
+        } catch (InventoryIsFullException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            settler.drill();
+        } catch (SurfaceThicknessIsZeroException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            settler.mine();
+        } catch (InventoryIsFullException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public void usecaseInsertMaterial() {
-        Asteroid asteroid = new Asteroid(3, false, null, 0);
+        Game.startGame();
+
+        Asteroid asteroid = new Asteroid(1, false, Materials.WATERICE, 0);
+        Game.getTheSun().addNeighbor(asteroid);
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
 
-        settler.insertMaterial();
-        //nincs kész
+        try {
+            settler.mine();
+        } catch (InventoryIsFullException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            settler.drill();
+        } catch (SurfaceThicknessIsZeroException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            settler.mine();
+        } catch (InventoryIsFullException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            settler.insertMaterial(Materials.IRON);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void usecaseDrillRadioactiveAsteroid() {
-        Asteroid asteroid = new Asteroid(3, false, new Uranium(), 0);
+        Game.startGame();
+
+        Asteroid asteroid = new Asteroid(1, true, Materials.URANIUM, 0);
+        Game.getTheSun().addNeighbor(asteroid);
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
-
-        settler.Drill();
     }
 
     public void usecaseBuildRobot() {
@@ -96,7 +195,7 @@ public class Skeleton {
         Settler settler = new Settler(asteroid1);
         asteroid1.addSpaceShip(settler);
 
-        settler.Move(asteroid2);
+        settler.move(asteroid2);
     }
 
     public void usecaseDeployTeleport() {
@@ -105,11 +204,11 @@ public class Skeleton {
         Settler settler = new Settler(asteroid1);
         asteroid1.addSpaceShip(settler);
 
-        settler.BuildTeleportPair(); //ezt hogy? vagy valahogy hozzá kell adni egy teleportpárt
+        settler.buildTeleportPair(); //ezt hogy? vagy valahogy hozzá kell adni egy teleportpárt
 
-        settler.DeployTeleport(asteroid1);
-        settler.Move(asteroid2);
-        settler.DeployTeleport(asteroid2);
+        settler.deployTeleport(asteroid1);
+        settler.move(asteroid2);
+        settler.deployTeleport(asteroid2);
     }
 
     public void usecaseBuildTeleport() {
