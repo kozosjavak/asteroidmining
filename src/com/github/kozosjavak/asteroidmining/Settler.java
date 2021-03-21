@@ -150,6 +150,7 @@ public class Settler extends Spaceship implements Steppable {
      * @param asteroid aszteroida, melyre a teleportot helyezzük
      */
     public void deployTeleport(Asteroid asteroid) {
+
     }
 
     /**
