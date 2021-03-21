@@ -1,5 +1,7 @@
 package classes;
 
+import classes.materials.Material;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class Asteroid extends Orb {
             surfaceThickness--;
     }
 
-    public void expode() {
+    public void Explode() {
         //kesobb
     }
 
