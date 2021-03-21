@@ -52,7 +52,6 @@ public class Spaceship {
         public void drill() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
 
                 currentAsteroid.drill();
-
         }
 
         /**

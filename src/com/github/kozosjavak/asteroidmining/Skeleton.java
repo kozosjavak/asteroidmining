@@ -100,9 +100,7 @@ public class Skeleton {
             settler.drill();
             settler.drill();
             settler.drill();
-        } catch (SurfaceThicknessIsZeroException e) {
-            e.printStackTrace();
-        } catch (NotEnoughMaterialException e) {
+        } catch (SurfaceThicknessIsZeroException | NotEnoughMaterialException e) {
             e.printStackTrace();
         }
         try {
@@ -154,9 +152,7 @@ public class Skeleton {
 
         try {
             settler.drill();
-        } catch (SurfaceThicknessIsZeroException e) {
-            e.printStackTrace();
-        } catch (NotEnoughMaterialException e) {
+        } catch (SurfaceThicknessIsZeroException | NotEnoughMaterialException e) {
             e.printStackTrace();
         }
 
@@ -184,9 +180,7 @@ public class Skeleton {
 
         try {
             settler.drill();
-        } catch (SurfaceThicknessIsZeroException e) {
-            e.printStackTrace();
-        } catch (NotEnoughMaterialException e) {
+        } catch (SurfaceThicknessIsZeroException | NotEnoughMaterialException e) {
             e.printStackTrace();
         }
 
@@ -216,9 +210,7 @@ public class Skeleton {
         asteroid.addSpaceShip(settler);
         try {
             settler.drill();
-        } catch (SurfaceThicknessIsZeroException e) {
-            e.printStackTrace();
-        } catch (NotEnoughMaterialException e) {
+        } catch (SurfaceThicknessIsZeroException | NotEnoughMaterialException e) {
             e.printStackTrace();
         }
 
@@ -238,9 +230,7 @@ public class Skeleton {
             settler.drill();
             settler.drill();
             settler.drill();
-        } catch (SurfaceThicknessIsZeroException e) {
-            e.printStackTrace();
-        } catch (NotEnoughMaterialException e) {
+        } catch (SurfaceThicknessIsZeroException | NotEnoughMaterialException e) {
             e.printStackTrace();
         }
         try {
@@ -317,9 +307,7 @@ public class Skeleton {
         asteroid.addSpaceShip(settler);
         try {
             settler.drill();
-        } catch (SurfaceThicknessIsZeroException e) {
-            e.printStackTrace();
-        } catch (NotEnoughMaterialException e) {
+        } catch (SurfaceThicknessIsZeroException | NotEnoughMaterialException e) {
             e.printStackTrace();
         }
         try {
