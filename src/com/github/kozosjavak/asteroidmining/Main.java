@@ -4,9 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Főprogram
+ */
 public class Main {
 
+    /**
+     * Belépési pont
+     * @param args az argumentumok
+     */
     public static void main(String[] args) {
+
+        // Skeleton inicializálása
         Skeleton skeleton = new Skeleton();
 
         try {
@@ -31,6 +40,9 @@ public class Main {
         }
     }
 
+    /**
+     * Menü megjelenítése
+     */
     public static void printOptions() {
         System.out.println("Menü:");
         System.out.println("1. Aszteroida fúrása");

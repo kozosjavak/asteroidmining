@@ -7,23 +7,37 @@ import com.github.kozosjavak.asteroidmining.materials.Material;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Telepes osztály
+ */
 public class Settler extends Spaceship implements Steppable {
+
+    /** A telepes inventory-ja */
     private final Map<Material, Integer> inventory = new HashMap<>();
+
+    /** Teleportpár a telepesnél */
     private TeleportPair teleportPair;
 
+    /**
+     * Telepes konstruktor
+     * @param asteroid aszteroida, melyre a telepes kerül
+     */
     public Settler(Asteroid asteroid) {
         super(asteroid);
         Game.addASettlerInNumberOfSettler();
     }
 
+    /**
+     * Telepes inventory getter
+     * @return a telepes inventory-ja
+     */
     public Map<Material, Integer> getInventory() {
         return inventory;
     }
 
     /**
-     * Calculate the overall number of materials the Settler carries
-     *
-     * @return number of materials
+     * Telepes által cipelt nyersanyagok darabszámának kalkulálása
+     * @return nyersanyagok száma
      */
     private int getInventoryWeight() {
         return getInventory().values().stream()
@@ -32,9 +46,9 @@ public class Settler extends Spaceship implements Steppable {
     }
 
     /**
-     * Calls the current Asteroid's mine method, if the material return isn't null then puts in the inventory
-     *
-     * @throws InventoryIsFullException if the inventory is full
+     * Bányászás
+     * Nyersanyag kibányászása azon az aszteroidán, amelyen a telepes épp tartózkodik
+     * @throws InventoryIsFullException az inventory tele van kivétel
      */
     public void mine() throws InventoryIsFullException, AsteroidIsNotMineable {
         if (getInventoryWeight() < 10) {
@@ -51,7 +65,7 @@ public class Settler extends Spaceship implements Steppable {
     }
 
     /**
-     * Build teleport
+     * Teleportpár építése
      */
     public void buildTeleportPair() {
         //Map of materials needed to build
@@ -60,13 +74,14 @@ public class Settler extends Spaceship implements Steppable {
     }
 
     /**
-     * Procedure of buying, checking if the inventory param has the correct amount of materials
-     * if so it returns true and removes needed materials to build from the given inventory
-     * if not it write out the materials that needed.
+     * Buy implementálása
+     * Ha elegendő nyersanyag van a kiválasztott elem létrehozásához,
+     * akkor eltávolítja azokat az inventoryból és true-val tér vissza,
+     * ha nincs elegendő nyersanyag akkor a szükséges nyersanyagok listájával tér vissza
      *
-     * @param billOfMaterial Bill of the current buying
-     * @param inventory      Inventory where the transaction started
-     * @return
+     * @param billOfMaterial    a kiválasztott elem nyersanyagszükséglete
+     * @param inventory         inventory, amiből a nyersanyagok meglétét ellenőrzi
+     * @return                  true ha van elegendő nyersanyag az elem létrehozásához, false ha nincs elegendő
      */
     private boolean buy(BillOfMaterial billOfMaterial, Map<Material, Integer> inventory) {
         Map<Material, Integer> currentNeed = billOfMaterial.isNeeded(inventory);
@@ -89,8 +104,8 @@ public class Settler extends Spaceship implements Steppable {
     }
 
     /**
-     * Build Base
-     * Forwarding the current Asteroid's inventory to buy()
+     * Bázis építése
+     * Aktuális aszteroida inventorijából buy segítségével
      */
     public void buildBase() {
         if (buy(Bills.BASE, getCurrentAsteroid().getAsteroidInventory()))
@@ -98,8 +113,8 @@ public class Settler extends Spaceship implements Steppable {
     }
 
     /**
-     * Build robot
-     * put the fresh robot to the current Asteroid
+     * Robot építése
+     * A robotot arra az aszteroidára helyezi le, amelyen maga a telepes is tartózkodik
      */
     public void buildRobot() {
         if (buy(Bills.ROBOT, getInventory())) {
@@ -109,10 +124,9 @@ public class Settler extends Spaceship implements Steppable {
     }
 
     /**
-     * calls the current Asteroid insertMaterial method, to put a material into the Asteroid's inventory, and remmoves it from the inventory
-     *
-     * @param material the material you want to pass to the Asteroid
-     * @throws NotEnoughMaterialException if you want to put an invalid material down
+     * Nyersanyag behelyezése a telepes inventory-jából aszteroidába, amelyen tartózkodik
+     * @param material a behelyezendő nyersanyag
+     * @throws NotEnoughMaterialException nem lehet a nyersanyagot eltávolítani, mert nincs elég belőle kivétel
      */
     public void insertMaterial(Material material) throws Exception {
         getCurrentAsteroid().insertMaterial(material);
@@ -120,10 +134,9 @@ public class Settler extends Spaceship implements Steppable {
     }
 
     /**
-     * Removes a single material from the inventory map
-     *
-     * @param materialToRemove the material you want to remove
-     * @throws NotEnoughMaterialException
+     * Eltávolítja a megadott nyersanyagot az inventoryból
+     * @param materialToRemove az eltávolítandó nyersanyag
+     * @throws NotEnoughMaterialException nem lehet a nyersanyagot eltávolítani, mert nincs elég belőle kivétel
      */
     private void removeMaterial(Material materialToRemove) throws NotEnoughMaterialException {
         if (getInventory().getOrDefault(materialToRemove, 0) == 0) {
@@ -132,29 +145,49 @@ public class Settler extends Spaceship implements Steppable {
         getInventory().computeIfPresent(materialToRemove, (material, old) -> old - 1);
     }
 
+    /**
+     * Teleportkaput helyez a megadott aszteroidára
+     * @param asteroid aszteroida, melyre a teleportot helyezzük
+     */
     public void deployTeleport(Asteroid asteroid) {
     }
 
+    /**
+     * Telepes megsemmisülése
+     */
     @Override
     public void die() {
         Game.removeASettlerInNumberOfSettler();
         getCurrentAsteroid().removeSpaceship(this);
     }
 
+    /**
+     * Robbanás elszenvedése
+     */
     @Override
     public void getHitByExplosion() {
         this.die();
     }
 
+    /**
+     * Napvihar elszenvedése
+     */
     @Override
     public void experienceSolarStorm() {
     }
 
+    /**
+     * Űrhajó típusának lekérdezése
+     * @return az űrhajó típusa
+     */
     @Override
     public String getType() {
         return "Settler";
     }
 
+    /**
+     * Lépés implementációja
+     */
     @Override
     public void step() {
 

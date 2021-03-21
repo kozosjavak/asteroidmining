@@ -1,11 +1,17 @@
 package com.github.kozosjavak.asteroidmining;
 
+/**
+ * Játék osztály
+ */
 public class Game {
 
 
+
+    /** A játékban levő nap inicializálása */
     private static Sun theSun;
     private static int numberOfSettlers = 0;
     private static int numberOfChildren;
+
 
     public static Sun getTheSun() {
         return theSun;
@@ -37,6 +43,10 @@ public class Game {
         numberOfSettlers--;
     }
 
+    /** A játékban levő telepesek száma */
+    private static int numberOfSettlers;
+
+    /** Játék indítása */
     public static void startGame() {
         theSun = new Sun(numberOfChildren);
     }
@@ -47,6 +57,7 @@ public class Game {
         System.gc();
     }
 
+    /** Játék állapotának ellenőrzése. Ha teljesül a játék végét jelentő feltétel akkor végetér a játék. */
     public static void endGame() {
         if (numberOfSettlers == 0) {
             System.out.println("Loose");
