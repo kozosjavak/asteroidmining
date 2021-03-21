@@ -251,8 +251,10 @@ public class Skeleton {
         Asteroid asteroid2 = new Asteroid(3, false, null, 0);
         Settler settler = new Settler(asteroid1);
         asteroid1.addSpaceShip(settler);
-
-        settler.buildTeleportPair(); //ezt hogy? vagy valahogy hozzá kell adni egy teleportpárt
+        settler.getInventory().put(Materials.IRON, 2);
+        settler.getInventory().put(Materials.WATERICE, 1);
+        settler.getInventory().put(Materials.URANIUM, 1);
+        settler.buildTeleportPair();
 
         settler.deployTeleport(asteroid1);
         settler.move(asteroid2);
@@ -286,13 +288,13 @@ public class Skeleton {
         Settler settler = new Settler(asteroid);
         asteroid.addSpaceShip(settler);
         try {
-            settler.drill();
-        } catch (SurfaceThicknessIsZeroException | NotEnoughMaterialException e) {
+            asteroid.insertMaterial(Materials.COAL);
+        } catch (AsteroidNotMinedException e) {
             e.printStackTrace();
         }
         try {
-            settler.mine();
-        } catch (Exception e) {
+            asteroid.removeMaterial(Materials.COAL);
+        } catch (NotEnoughMaterialException e) {
             e.printStackTrace();
         }
 
