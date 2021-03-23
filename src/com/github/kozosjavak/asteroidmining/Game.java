@@ -17,6 +17,7 @@ public class Game {
     private static int numberOfChildren;
 
 
+
     public static Sun getTheSun() {
         return theSun;
     }

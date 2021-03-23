@@ -31,4 +31,14 @@ public class TeleportPair {
         location1.addNeighbor(location2);
         location2.addNeighbor(location1);
     }
+
+    @Override
+    public String toString() {
+        return "TeleportPair{" +
+                (
+                        "\nlocation1=" + location1 +
+                                "\nlocation2=" + location2
+                ).indent(4) +
+                '}';
+    }
 }
