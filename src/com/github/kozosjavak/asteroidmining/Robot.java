@@ -57,4 +57,9 @@ public class Robot extends Spaceship implements Steppable {
     public void step() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Robot @" + Integer.toHexString(hashCode());
+    }
 }

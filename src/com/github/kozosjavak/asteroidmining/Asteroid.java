@@ -38,6 +38,7 @@ public class Asteroid extends Orb {
      * @param numberOfChildren inicializálandó szomszédos aszteroidák száma
      */
     public Asteroid(int surfaceThickness, boolean inSunZone, Material substance, int numberOfChildren) {
+        super();
         this.surfaceThickness = surfaceThickness;
         this.inSunZone = inSunZone;
         this.substance = substance;
@@ -168,15 +169,20 @@ public class Asteroid extends Orb {
 
     @Override
     public String toString() {
-        return "Asteroid@"+ Integer.toHexString(hashCode()) +  "{" +
-                (       "\n"+ "inSunZone=" + inSunZone +
-                        "\n"+ "numberOfChildren=" + numberOfChildren +
-                        "\n"+ "asteroidInventory=" + asteroidInventory +
-                        "\n"+ "surfaceThickness=" + surfaceThickness +
-                        "\n"+ "substance=" + substance +
-                        "\n"+ "neighbors=\n" + neighbors +
-                        "\n"+ "residence=\n" + residence
+        return "Asteroid @" + Integer.toHexString(hashCode()) + "{" +
+                ("\n" + "inSunZone=" + inSunZone +
+                        "\n" + "numberOfChildren=" + numberOfChildren +
+                        "\n" + "asteroidInventory=" + asteroidInventory +
+                        "\n" + "surfaceThickness=" + surfaceThickness +
+                        "\n" + "substance=" + substance +
+                        "\n" + "neighbors=\n" + neighbors +
+                        "\n" + "residence=\n" + residence
                 ).indent(4) +
                 '}';
+    }
+
+    @Override
+    public String toStringOnlyName() {
+        return "Asteroid @" + Integer.toHexString(hashCode());
     }
 }

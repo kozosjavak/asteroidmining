@@ -10,12 +10,16 @@ public class Game {
      * A játékban levő nap inicializálása
      */
     private static Sun theSun;
+
+    public static int getNumberOfSettlers() {
+        return numberOfSettlers;
+    }
+
     /**
      * A játékban levő telepesek száma
      */
     private static int numberOfSettlers = 0;
     private static int numberOfChildren;
-
 
 
     public static Sun getTheSun() {

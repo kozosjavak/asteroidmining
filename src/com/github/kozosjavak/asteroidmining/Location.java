@@ -4,16 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/** Location osztály */
+/**
+ * Location osztály
+ */
 public class Location {
 
-    /** Szomszédok listája */
-    List<Location> neighbors = new ArrayList<Location>();
+    /**
+     * Szomszédok listája
+     */
+    List<Location> neighbors;
+    Random random;
 
-    Random random = new Random();
+    public Location() {
+        neighbors = new ArrayList<Location>();
+        random = new Random();
+    }
 
     /**
      * Véletlenszerűen választott szomszéd lekérése
+     *
      * @return a véletlenszerűen választott szomszédot
      */
     public Location getRandomNeighbor() {
@@ -46,10 +55,23 @@ public class Location {
 
     /**
      * A fastruktúrában alárendelt új szomszéd(ok) létrehozásakor a fa alárendelt részének a mélysége
+     *
      * @param depth a fa alárendelt részének a mélysége
      */
     public void addChildern(int depth) {
         //Underconstraction
+    }
+
+    public String toString() {
+        return "Sun @" + Integer.toHexString(hashCode()) + "{" +
+                (
+                        "\n" + "neighbors=\n" + neighbors
+                ).indent(4) +
+                '}';
+    }
+
+    public String toStringOnlyName() {
+        return "Location";
     }
 
 }
