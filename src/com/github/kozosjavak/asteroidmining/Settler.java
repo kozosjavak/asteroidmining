@@ -12,19 +12,23 @@ import java.util.Map;
  */
 public class Settler extends Spaceship implements Steppable {
 
-    /** A telepes inventory-ja */
+    /**
+     * A telepes inventory-ja
+     */
     private final Map<Material, Integer> inventory = new HashMap<>();
 
-    /** Teleportpár a telepesnél */
-    private TeleportPair teleportPair;
+    /**
+     * Teleportpár a telepesnél
+     */
+    private TeleportPair teleportPair = null;
 
     @Override
     public String toString() {
-        return "Settler@" +  Integer.toHexString(hashCode() )+   "{" +
-                ("\n"+ "inventory=\n" + inventory +
-                "\n"+ "teleportPair=\n" + teleportPair
+        return "Settler@" + Integer.toHexString(hashCode()) + "{" +
+                ("\n" + "inventory=\n" + inventory
                 ).indent(4) +
-         "}";
+                "teleportPair=\n" + teleportPair +
+                "}";
     }
 
     /**
@@ -128,7 +132,7 @@ public class Settler extends Spaceship implements Steppable {
     public void buildRobot() {
         if (buy(Bills.ROBOT, getInventory())) {
             Robot robot = new Robot(getCurrentAsteroid());
-            getCurrentAsteroid().addSpaceShip(robot);
+
         }
     }
 
@@ -159,7 +163,8 @@ public class Settler extends Spaceship implements Steppable {
      * @param asteroid aszteroida, melyre a teleportot helyezzük
      */
     public void deployTeleport(Asteroid asteroid) {
-
+        //if(teleportPair != null)
+        teleportPair.deployTeleport(asteroid);
     }
 
     /**
@@ -176,7 +181,7 @@ public class Settler extends Spaceship implements Steppable {
      */
     @Override
     public void getHitByExplosion() {
-        this.die();
+        die();
     }
 
     /**

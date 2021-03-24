@@ -5,14 +5,24 @@ package com.github.kozosjavak.asteroidmining;
  */
 public class TeleportPair {
 
-    /** Teleport egyik vége */
-    private Location location1 = null;
+    /**
+     * Teleport egyik vége
+     */
+    private Location location1;
 
-    /** Teleport másik vége */
-    private Location location2 = null;
+    /**
+     * Teleport másik vége
+     */
+    private Location location2;
+
+    public TeleportPair() {
+        location1 = null;
+        location2 = null;
+    }
 
     /**
      * Teleportkapu társítása a megadott lokációhoz
+     *
      * @param location lokáció, amihez társítani szeretnénk
      */
     public void deployTeleport(Location location) {
@@ -35,10 +45,9 @@ public class TeleportPair {
     @Override
     public String toString() {
         return "TeleportPair{" +
-                (
-                        "\nlocation1=" + location1 +
-                                "\nlocation2=" + location2
-                ).indent(4) +
-                '}';
+
+                "\nlocation1=" + location1.toStringOnlyName() +
+                "\nlocation2=" + location2.toStringOnlyName()
+                ;
     }
 }
