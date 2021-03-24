@@ -18,6 +18,15 @@ public class Settler extends Spaceship implements Steppable {
     /** Teleportpár a telepesnél */
     private TeleportPair teleportPair;
 
+    @Override
+    public String toString() {
+        return "Settler@" +  Integer.toHexString(hashCode() )+   "{" +
+                ("\n"+ "inventory=\n" + inventory +
+                "\n"+ "teleportPair=\n" + teleportPair
+                ).indent(4) +
+         "}";
+    }
+
     /**
      * Telepes konstruktor
      * @param asteroid aszteroida, melyre a telepes kerül

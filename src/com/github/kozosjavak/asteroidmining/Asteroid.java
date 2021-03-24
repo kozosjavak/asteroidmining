@@ -165,4 +165,18 @@ public class Asteroid extends Orb {
     public String getType() {
         return "Asteroid";
     }
+
+    @Override
+    public String toString() {
+        return "Asteroid@"+ Integer.toHexString(hashCode()) +  "{" +
+                (       "\n"+ "inSunZone=" + inSunZone +
+                        "\n"+ "numberOfChildren=" + numberOfChildren +
+                        "\n"+ "asteroidInventory=" + asteroidInventory +
+                        "\n"+ "surfaceThickness=" + surfaceThickness +
+                        "\n"+ "substance=" + substance +
+                        "\n"+ "neighbors=\n" + neighbors +
+                        "\n"+ "residence=\n" + residence
+                ).indent(4) +
+                '}';
+    }
 }
