@@ -1,11 +1,15 @@
 package com.github.kozosjavak.asteroidmining;
 
+import com.github.kozosjavak.asteroidmining.materials.NotEnoughMaterialException;
+
 /**
  * Űrhajó osztály
  */
 public class Spaceship {
 
-        /** Aktuális aszteroida, melyen az űrhajó tartózkodik */
+        /**
+         * Aktuális aszteroida, melyen az űrhajó tartózkodik
+         */
         private Asteroid currentAsteroid;
 
         /**
