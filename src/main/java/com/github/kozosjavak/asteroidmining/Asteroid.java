@@ -1,11 +1,12 @@
 package com.github.kozosjavak.asteroidmining;
 
+import com.github.kozosjavak.asteroidmining.materials.Inventory;
+import com.github.kozosjavak.asteroidmining.materials.InventoryIsFullException;
 import com.github.kozosjavak.asteroidmining.materials.Material;
+import com.github.kozosjavak.asteroidmining.materials.NotEnoughMaterialException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Aszteroida osztály
@@ -18,8 +19,10 @@ public class Asteroid extends Orb {
     /** Inicializálandó szomszédos aszteroidák száma */
     private final int numberOfChildren;
 
-    /** Aszteroidában a kibányászása után tárolt nyersanyaglista */
-    private final Map<Material, Integer> asteroidInventory = new HashMap<>();
+    /**
+     * Aszteroidában a kibányászása után tárolt nyersanyaglista
+     */
+    private final Inventory asteroidInventory = new Inventory(0);
 
     /** Aszteroidán levő űrhajók listája */
     private final List<Spaceship> residence = new ArrayList<>();
@@ -53,9 +56,9 @@ public class Asteroid extends Orb {
      * Aszteroidában a kibányászása után tárolt nyersanyaglista lekérése
      * @return az aszteroidában tárolt nyersanyagok
      */
-    public Map<Material, Integer> getAsteroidInventory() {
+    /*public Map<Material, Integer> getAsteroidInventory() {
         return asteroidInventory;
-    }
+    }*/
 
     /**
      * Űrhajó lehelyezése az aszteroidára
@@ -116,14 +119,12 @@ public class Asteroid extends Orb {
 
     /**
      * Berakja a megadott nyersanyagot a map-ba
+     *
      * @param material a berakandó nyersanyag
      */
-    public void insertMaterial(Material material) throws AsteroidNotMinedException {
+    public void insertMaterial(Material material) throws AsteroidNotMinedException, InventoryIsFullException {
         if (substance == null) {
-            //if the material doesnt exist in the list, puIfAbsent create a key with value 0
-            asteroidInventory.putIfAbsent(material, 0);
-            //if the material already exist in map as key, just add 1 to the amount
-            asteroidInventory.computeIfPresent(material, (material1, amount) -> amount + 1);
+            asteroidInventory.add(material);
         } else {
             throw new AsteroidNotMinedException();
         }
@@ -135,10 +136,7 @@ public class Asteroid extends Orb {
      * @throws NotEnoughMaterialException ha nincs elég nyersanyag, amiből el lehetne távolítani
      */
     public void removeMaterial(Material materialToRemove) throws NotEnoughMaterialException {
-        if (asteroidInventory.getOrDefault(materialToRemove, 0) == 0) {
-            throw new NotEnoughMaterialException(materialToRemove);
-        }
-        asteroidInventory.computeIfPresent(materialToRemove, (material, old) -> old - 1);
+        asteroidInventory.remove(materialToRemove.getClass(),1);
 
     }
 
