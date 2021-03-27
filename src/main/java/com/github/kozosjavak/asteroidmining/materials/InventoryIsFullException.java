@@ -1,4 +1,4 @@
-package com.github.kozosjavak.asteroidmining;
+package com.github.kozosjavak.asteroidmining.materials;
 
 /** Tele levő inventory kivétel */
 public class InventoryIsFullException extends Exception {

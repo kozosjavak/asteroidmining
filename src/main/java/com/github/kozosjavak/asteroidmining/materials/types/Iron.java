@@ -1,6 +1,7 @@
-package com.github.kozosjavak.asteroidmining.materials;
+package com.github.kozosjavak.asteroidmining.materials.types;
 
 import com.github.kozosjavak.asteroidmining.Asteroid;
+import com.github.kozosjavak.asteroidmining.materials.Material;
 
 public class Iron implements Material {
     public void experienceExtremeHeat(Asteroid a) {

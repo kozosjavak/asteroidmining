@@ -1,8 +1,5 @@
 package com.github.kozosjavak.asteroidmining;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Map;
 
 /**
@@ -17,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Skeleton inicializálása
-        Skeleton skeleton = new Skeleton();
+        /*Skeleton skeleton = new Skeleton();
         skeleton.fillMap(12);
         Map<Integer, Integer> useCaseUsageCounter = skeleton.getUseCaseUsageCounter();
 
@@ -44,6 +41,8 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+         */
     }
 
 
@@ -68,4 +67,5 @@ public class Main {
         System.out.println("0.\tKilépés");
         System.out.print("Melyik use-case-t szeretné futtatni? Adjon meg egy számot: ");
     }
+
 }
