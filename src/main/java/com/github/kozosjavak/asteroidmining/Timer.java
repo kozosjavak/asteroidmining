@@ -1,5 +1,7 @@
 package com.github.kozosjavak.asteroidmining;
 
+import com.github.kozosjavak.asteroidmining.core.Steppable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 

@@ -1,9 +1,9 @@
 package com.github.kozosjavak.asteroidmining;
 
-import com.github.kozosjavak.asteroidmining.materials.*;
-import com.github.kozosjavak.asteroidmining.materials.types.Iron;
-import com.github.kozosjavak.asteroidmining.materials.types.Uranium;
-import com.github.kozosjavak.asteroidmining.materials.types.Waterice;
+import com.github.kozosjavak.asteroidmining.core.materials.*;
+import com.github.kozosjavak.asteroidmining.core.materials.types.Iron;
+import com.github.kozosjavak.asteroidmining.core.materials.types.Uranium;
+import com.github.kozosjavak.asteroidmining.core.materials.types.Waterice;
 import org.junit.Test;
 
 import java.util.Map;
