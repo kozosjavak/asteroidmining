@@ -1,5 +1,8 @@
 package com.github.kozosjavak.asteroidmining;
 
+import com.github.kozosjavak.asteroidmining.console.ConsoleCommandExecutor;
+import com.github.kozosjavak.asteroidmining.core.Game;
+
 import java.util.Map;
 
 /**
@@ -12,6 +15,10 @@ public class Main {
      * @param args az argumentumok
      */
     public static void main(String[] args) {
+        Game game = new Game();
+        ConsoleCommandExecutor cce = new ConsoleCommandExecutor(game);
+        cce.attachToConsole();
+
 
         // Skeleton inicializálása
         /*Skeleton skeleton = new Skeleton();
