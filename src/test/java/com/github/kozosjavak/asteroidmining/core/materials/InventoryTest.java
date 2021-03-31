@@ -1,6 +1,5 @@
-package com.github.kozosjavak.asteroidmining;
+package com.github.kozosjavak.asteroidmining.core.materials;
 
-import com.github.kozosjavak.asteroidmining.core.materials.*;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Iron;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Uranium;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Waterice;
