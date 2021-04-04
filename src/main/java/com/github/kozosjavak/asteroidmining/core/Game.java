@@ -57,7 +57,7 @@ public class Game {
 
     /** Játék indítása */
     public static void startGame() {
-        theSun = new Sun(new Location(), numberOfChildren);
+        //theSun = new Sun(new Location(), numberOfChildren);
     }
 
     public static void Win() {
