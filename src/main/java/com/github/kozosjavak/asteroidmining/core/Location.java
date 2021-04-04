@@ -42,6 +42,7 @@ public class Location {
 
     public void setTeleport(Teleport teleport) {
         this.teleport = teleport;
+        getTeleport().setLocation(this);
     }
 
     public void fullClearByExplosion() {
