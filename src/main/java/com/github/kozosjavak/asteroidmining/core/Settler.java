@@ -99,6 +99,7 @@ public class Settler extends Spaceship implements Steppable {
     public void die() {
         Game.removeASettlerInNumberOfSettler();
         getCurrentAsteroid().removeSpaceship(this);
+        setCurrentAsteroid(null);
     }
 
 

@@ -6,6 +6,7 @@ import com.github.kozosjavak.asteroidmining.core.materials.Material;
 import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,17 +28,14 @@ public class Asteroid extends Orb implements Explodeable {
      * Aszteroidában a kibányászása után tárolt nyersanyaglista
      */
     private final Inventory asteroidInventory = new Inventory(0);
-
     /**
      * Aszteroidán levő űrhajók listája
      */
     private final List<Spaceship> residence = new ArrayList<>();
-
     /**
      * Aszteroida kéregvastagsága
      */
     private int surfaceThickness;
-
     /**
      * Aszteroida magjában levő nyersanyag
      */
@@ -57,6 +55,10 @@ public class Asteroid extends Orb implements Explodeable {
         this.inSunZone = inSunZone;
         this.substance = substance;
         this.numberOfChildren = numberOfChildren;
+    }
+
+    public List<Spaceship> getResidence() {
+        return Collections.unmodifiableList(residence);
     }
 
     public boolean isInSunZone() {
