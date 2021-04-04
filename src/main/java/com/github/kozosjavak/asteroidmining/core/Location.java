@@ -9,17 +9,23 @@ import java.util.Random;
  */
 public class Location {
 
+    final Coordinate coordinate;
     /**
      * Szomszédok listája
      */
-    List<Location> neighbors;
+    final List<Location> neighbors;
     Random random;
     Orb celestialBody;
     Teleport teleport;
 
-    public Location() {
+    public Location(Double X, Double Y) {
         neighbors = new ArrayList<Location>();
         random = new Random();
+        coordinate = new Coordinate(X, Y);
+    }
+
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 
     public Orb getCelestialBody() {
@@ -89,10 +95,6 @@ public class Location {
                         "\n" + "neighbors=\n" + neighbors
                 ).indent(4) +
                 '}';
-    }
-
-    public String toStringOnlyName() {
-        return "Location";
     }
 
 }

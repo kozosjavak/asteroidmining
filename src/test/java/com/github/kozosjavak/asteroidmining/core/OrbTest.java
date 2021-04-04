@@ -8,11 +8,11 @@ import static org.junit.Assert.assertEquals;
 public class OrbTest {
 
     // Init test locations
-    private Location testLocation1 = new Location();
-    private Location testLocation2 = new Location();
+    private final Location testLocation1 = new Location(1.0, 3.0);
+    private final Location testLocation2 = new Location(2.0, 5.0);
 
     @Test
-    public void it_should_return_the_set_location_and_change_to_the_other()  {
+    public void it_should_return_the_set_location_and_change_to_the_other() {
         Orb testOrb = new Orb(testLocation1);
         assertEquals(testLocation1, testOrb.getLocation());
 
@@ -21,7 +21,7 @@ public class OrbTest {
     }
 
     @Test
-    public void exprerience_solar_storm_test()  {
+    public void exprerience_solar_storm_test() {
         /**
          * Orb.experienceSolarStrom() is not implemented yet
          */
