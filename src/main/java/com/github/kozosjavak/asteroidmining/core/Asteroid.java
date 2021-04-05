@@ -158,14 +158,14 @@ public class Asteroid extends Orb implements Explodeable {
      */
     public void buildBase() {
         System.out.println("Base builded!");
-        Game.Win();
+        getLocation().game.endGame();
     }
 
     /**
      * Napvihar átélése
      */
     @Override
-    public void experienceSolarStrom() {
+    public void experienceSolarStorm() {
 
     }
 

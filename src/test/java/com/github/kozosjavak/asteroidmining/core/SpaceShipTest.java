@@ -16,7 +16,12 @@ public class SpaceShipTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     private final PrintStream originalOut = System.out;
+    private Game game;
 
+    @Before
+    public void setUp() throws Exception {
+        game = new Game();
+    }
 
     @Before
     public void setUpStreams() {
@@ -30,7 +35,7 @@ public class SpaceShipTest {
 
     @Test
     public void it_should_be_on_the_asteroid() {
-        Location location1 = new Location(1.1, 2.2);
+        Location location1 = new Location(game, 1.1, 2.2);
         Asteroid asteroid1 = new Asteroid(location1, 3, false, new Coal(), 1);
         Settler settler = new Settler(asteroid1);
         assertEquals(asteroid1.getLocation(), settler.getCurrentAsteroid().getLocation());
@@ -38,10 +43,10 @@ public class SpaceShipTest {
 
     @Test
     public void it_should_move_to_an_other_Asteroid() {
-        Location location1 = new Location(1.1, 2.2);
+        Location location1 = new Location(game, 1.1, 2.2);
         Asteroid asteroid1 = new Asteroid(location1, 3, false, new Coal(), 1);
         Spaceship sp = new Spaceship(asteroid1);
-        Location location2 = new Location(1.2, 2.3);
+        Location location2 = new Location(game, 1.2, 2.3);
         Asteroid asteroid2 = new Asteroid(location2, 4, false, new Waterice(), 1);
         sp.move(asteroid2.getLocation());
         assertEquals(asteroid2.getLocation(), sp.getCurrentAsteroid().getLocation());
@@ -49,11 +54,11 @@ public class SpaceShipTest {
 
     @Test
     public void it_shouldnt_move_to_the_sun() {
-        Location location1 = new Location(1.1, 2.2);
+        Location location1 = new Location(game, 1.1, 2.2);
         Asteroid asteroid1 = new Asteroid(location1, 3, false, new Coal(), 1);
         Spaceship sp = new Spaceship(asteroid1);
-        Location location2 = new Location(1.3, 2.4);
-        Sun thesun = new Sun(location2, 1);
+        Location location2 = new Location(game, 1.3, 2.4);
+        Sun thesun = new Sun(location2);
 
         sp.move(thesun.getLocation());
         assertEquals(asteroid1.getLocation(), sp.getCurrentAsteroid().getLocation());
@@ -62,10 +67,10 @@ public class SpaceShipTest {
 
     @Test
     public void it_shouldnt_move_to_empty_location() {
-        Location location1 = new Location(1.1, 2.2);
+        Location location1 = new Location(game, 1.1, 2.2);
         Asteroid asteroid1 = new Asteroid(location1, 3, false, new Coal(), 1);
         Spaceship sp = new Spaceship(asteroid1);
-        Location location2 = new Location(1.3, 2.4);
+        Location location2 = new Location(game, 1.3, 2.4);
 
         sp.move(location2);
         assertEquals(asteroid1.getLocation(), sp.getCurrentAsteroid().getLocation());
@@ -74,7 +79,7 @@ public class SpaceShipTest {
 
     @Test
     public void it_should_be_removed_from_asteroid_by_dying() {
-        Location location1 = new Location(1.1, 2.2);
+        Location location1 = new Location(game, 1.1, 2.2);
         Asteroid asteroid1 = new Asteroid(location1, 3, false, new Coal(), 1);
         Spaceship sp = new Spaceship(asteroid1);
         assertEquals(sp, asteroid1.getResidence().get(0));
@@ -85,7 +90,7 @@ public class SpaceShipTest {
 
     @Test
     public void it_should_return_current_asteroid() {
-        Location location1 = new Location(1.1, 2.2);
+        Location location1 = new Location(game, 1.1, 2.2);
         Asteroid asteroid1 = new Asteroid(location1, 3, false, new Coal(), 1);
         Spaceship sp = new Spaceship(asteroid1);
         assertEquals(asteroid1, sp.getCurrentAsteroid());
@@ -93,8 +98,8 @@ public class SpaceShipTest {
 
     @Test
     public void it_should_set_new_current_asteroid() {
-        Location location1 = new Location(1.1, 2.2);
-        Location location2 = new Location(1.6, 2.8);
+        Location location1 = new Location(game, 1.1, 2.2);
+        Location location2 = new Location(game, 1.6, 2.8);
         Asteroid asteroid1 = new Asteroid(location1, 3, false, new Coal(), 1);
         Asteroid asteroid2 = new Asteroid(location2, 4, false, new Coal(), 1);
         Spaceship sp = new Spaceship(asteroid1);
@@ -104,8 +109,8 @@ public class SpaceShipTest {
 
     @Test
     public void it_should_teleport_to_new_asteroid() {
-        Location location1 = new Location(1.1, 2.2);
-        Location location2 = new Location(1.6, 2.8);
+        Location location1 = new Location(game, 1.1, 2.2);
+        Location location2 = new Location(game, 1.6, 2.8);
         Asteroid asteroid1 = new Asteroid(location1, 3, false, new Coal(), 1);
         Asteroid asteroid2 = new Asteroid(location2, 4, false, new Coal(), 1);
         Spaceship sp = new Spaceship(asteroid1);
@@ -121,7 +126,7 @@ public class SpaceShipTest {
 
     @Test
     public void it_shouldnt_teleport_because_teleport_pair_is_not_available() {
-        Location location1 = new Location(1.1, 2.2);
+        Location location1 = new Location(game, 1.1, 2.2);
         Asteroid asteroid1 = new Asteroid(location1, 3, false, new Coal(), 1);
 
         Spaceship sp = new Spaceship(asteroid1);

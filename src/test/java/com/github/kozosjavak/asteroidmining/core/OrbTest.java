@@ -6,10 +6,10 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class OrbTest {
-
+    Game game = new Game();
     // Init test locations
-    private final Location testLocation1 = new Location(1.0, 3.0);
-    private final Location testLocation2 = new Location(2.0, 5.0);
+    private final Location testLocation1 = new Location(game, 1.0, 3.0);
+    private final Location testLocation2 = new Location(game, 2.0, 5.0);
 
     @Test
     public void it_should_return_the_set_location_and_change_to_the_other() {

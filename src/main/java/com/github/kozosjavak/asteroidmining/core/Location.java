@@ -8,7 +8,7 @@ import java.util.Random;
  * Location osztály
  */
 public class Location {
-
+    final Game game;
     final Coordinate coordinate;
     /**
      * Szomszédok listája
@@ -18,7 +18,8 @@ public class Location {
     Orb celestialBody;
     Teleport teleport;
 
-    public Location(Double X, Double Y) {
+    public Location(Game game, Double X, Double Y) {
+        this.game = game;
         neighbors = new ArrayList<Location>();
         random = new Random();
         coordinate = new Coordinate(X, Y);
@@ -53,6 +54,18 @@ public class Location {
         System.gc();
     }
 
+
+    public void refreshNeighborsList(double distance) {
+        if (distance > 1) {
+            neighbors.clear();
+            for (Location newNeighbor : game.getLocationList()) {
+                if (newNeighbor.getCoordinate().getDistance(getCoordinate()) <= distance && newNeighbor != this) {
+                    addNeighbor(newNeighbor);
+                }
+            }
+        }
+    }
+
     /**
      * Véletlenszerűen választott szomszéd lekérése
      *
@@ -62,8 +75,7 @@ public class Location {
         int randomNext;
         if (neighbors.size() == 1) {
             randomNext = 1;
-        }
-        else {
+        } else {
             randomNext = neighbors.size() - 1;
         }
 
@@ -97,6 +109,10 @@ public class Location {
         neighbors.remove(location);
     }
 
+    public void experienceSolarStorm() {
+        getCelestialBody().experienceSolarStorm();
+        //getTeleport().experienceSolarStorm();
+    }
 
     public String toString() {
         return "Sun @" + Integer.toHexString(hashCode()) + "{" +

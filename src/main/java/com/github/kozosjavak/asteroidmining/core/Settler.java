@@ -25,7 +25,7 @@ public class Settler extends Spaceship implements Steppable {
      */
     public Settler(Asteroid asteroid) {
         super(asteroid);
-        Game.addASettlerInNumberOfSettler();
+        getCurrentAsteroid().getLocation().game.addASettlerInNumberOfSettler();
     }
 
     @Override
@@ -97,7 +97,7 @@ public class Settler extends Spaceship implements Steppable {
      */
     @Override
     public void die() {
-        Game.removeASettlerInNumberOfSettler();
+        getCurrentAsteroid().getLocation().game.removeASettlerInNumberOfSettler();
         getCurrentAsteroid().removeSpaceship(this);
         setCurrentAsteroid(null);
     }
