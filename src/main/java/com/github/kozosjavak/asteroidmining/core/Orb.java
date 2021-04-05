@@ -24,12 +24,10 @@ public class Orb {
     /**
      * Napvihar elszenvedése
      */
-    public void experienceSolarStrom() {
-
+    public void experienceSolarStorm() {
     }
 
     public void experienceExtremeHeat() throws NotEnoughMaterialException {
-
     }
 
 

@@ -5,33 +5,28 @@ package com.github.kozosjavak.asteroidmining.core;
  */
 public class Sun extends Orb implements Steppable {
 
-    /**
-     * Elsődleges szomszédok száma
-     */
-    protected int numberOfChildren;
-
-    /**
-     * Nap konstruktor
-     * Beállítja az elsődleges szomszédok számát
-     *
-     * @param numberOfChildren az elsődleges szomszédok száma
-     */
-    public Sun(Location location, int numberOfChildren) {
+    public Sun(Location location) {
         super(location);
-        this.numberOfChildren = numberOfChildren;
     }
 
-    public void getLoco() {
-        //a nap megorul;
-        //random hogy most megorule
-        //ha megorul helyet valtoztat
+    public void sunMoving(double newX, double newY) throws CantMoveToTheSpecificLocationException {
+        double x = getLocation().getCoordinate().getX();
+        double y = getLocation().getCoordinate().getY();
+        getLocation().getCoordinate().updateCoordinates(newX, newY);
+        if (getLocation().game.checkIfLocationCollide(getLocation())) {
+            getLocation().getCoordinate().updateCoordinates(x, y);
+            throw new CantMoveToTheSpecificLocationException(new Coordinate(newX, newY));
+        }
     }
 
     /**
      * Napvihar átvészelése
      */
     @Override
-    public void experienceSolarStrom() {
+    public void experienceSolarStorm() {
+        for (Location location : getLocation().getNeighbors()) {
+            location.experienceSolarStorm();
+        }
     }
 
 
@@ -40,7 +35,7 @@ public class Sun extends Orb implements Steppable {
      */
     @Override
     public void step() {
-        getLoco();
+
 
     }
 }

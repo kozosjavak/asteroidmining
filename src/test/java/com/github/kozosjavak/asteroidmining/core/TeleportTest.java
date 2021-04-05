@@ -1,11 +1,21 @@
 package com.github.kozosjavak.asteroidmining.core;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+
 public class TeleportTest {
+
+    private Game game;
+
+    @Before
+    public void setUp() throws Exception {
+        game = new Game();
+    }
+
     @Test
     public void it_should_link_two_teleport_into_pair() {
         Teleport teleport1 = new Teleport();
@@ -20,7 +30,7 @@ public class TeleportTest {
     public void it_should_return_the_linked_teleport_location() {
         Teleport teleport1 = new Teleport();
         Teleport teleport2 = new Teleport(teleport1);
-        Location location = new Location(1.1, 1.1);
+        Location location = new Location(game, 1.1, 1.1);
         teleport2.setLocation(location);
         teleport1.setPair(teleport2);
 
@@ -47,11 +57,11 @@ public class TeleportTest {
         Teleport teleport1 = new Teleport();
         Teleport teleport2 = new Teleport(teleport1);
         teleport1.setPair(teleport2);
-        Location location = new Location(1.1, 1.1);
+        Location location = new Location(game, 1.1, 1.1);
         teleport2.setLocation(location);
 
         assertEquals(location, teleport1.getPair().getLocation());
-        Location location2 = new Location(1.2, 1.2);
+        Location location2 = new Location(game, 1.2, 1.2);
         teleport2.setLocation(location2);
         assertEquals(location2, teleport1.getPair().getLocation());
     }
