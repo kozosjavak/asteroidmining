@@ -123,7 +123,7 @@ public class Asteroid extends Orb implements Explodeable {
      */
     public void explode() {
         for (Spaceship spaceShip : residence) {
-            spaceShip.die();
+            spaceShip.explode();
         }
         residence.clear();
         getLocation().fullClearByExplosion();
@@ -166,7 +166,9 @@ public class Asteroid extends Orb implements Explodeable {
      */
     @Override
     public void experienceSolarStorm() {
-
+        for (Spaceship spaceShip : residence) {
+            spaceShip.experienceSolarStorm();
+        }
     }
 
     @Override
@@ -182,5 +184,7 @@ public class Asteroid extends Orb implements Explodeable {
 
     }
 
-
+    public int getSurfaceThickness() {
+        return surfaceThickness;
+    }
 }

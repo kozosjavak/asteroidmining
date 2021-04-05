@@ -11,17 +11,6 @@ public class Robot extends Spaceship implements Steppable {
         super(asteroid);
     }
 
-
-    /**
-     * Napvihar elszenvedése
-     */
-    @Override
-    public void experienceSolarStorm() {
-    }
-
-
-
-
     /**
      * Lépés implementációja
      */
@@ -37,6 +26,6 @@ public class Robot extends Spaceship implements Steppable {
 
     @Override
     public void explode() {
-
+        move(getCurrentAsteroid().getLocation().getRandomNeighbor());
     }
 }
