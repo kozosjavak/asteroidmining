@@ -59,7 +59,15 @@ public class Location {
      * @return a véletlenszerűen választott szomszédot
      */
     public Location getRandomNeighbor() {
-        return neighbors.get(random.nextInt(neighbors.size() - 1));
+        int randomNext;
+        if (neighbors.size() == 1) {
+            randomNext = 1;
+        }
+        else {
+            randomNext = neighbors.size() - 1;
+        }
+
+        return neighbors.get(random.nextInt(randomNext));
     }
 
     /**
