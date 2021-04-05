@@ -104,32 +104,12 @@ public class Settler extends Spaceship implements Steppable {
 
 
     /**
-     * Napvihar elszenvedése
-     */
-    @Override
-    public void experienceSolarStorm() {
-    }
-
-    /**
-     * Űrhajó típusának lekérdezése
-     *
-     * @return az űrhajó típusa
-     */
-
-
-    /**
      * Lépés implementációja
      */
     @Override
     public void step() {
         //itt kontrollalsz
         //hivd meg a drill().
-    }
-
-    @Override
-    public void explode() {
-
-        getCurrentAsteroid().explode();
     }
 
     @Override

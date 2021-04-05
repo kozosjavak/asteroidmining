@@ -26,6 +26,9 @@ public class Spaceship implements Explodeable {
      * Napvihar elszenvedése
      */
     public void experienceSolarStorm() {
+        if (getCurrentAsteroid().getSurfaceThickness() != 0) {
+            die();
+        }
     }
 
     public void experienceExtremeHeat() throws NotEnoughMaterialException {
@@ -36,10 +39,8 @@ public class Spaceship implements Explodeable {
      * Megsemmisülés
      */
     public void die() {
-        Asteroid tempAsteroid = getCurrentAsteroid();
+        getCurrentAsteroid().removeSpaceship(this);
         setCurrentAsteroid(null);
-        tempAsteroid.removeSpaceship(this);
-
     }
 
 
@@ -85,6 +86,6 @@ public class Spaceship implements Explodeable {
 
     @Override
     public void explode() {
-
+        die();
     }
 }
