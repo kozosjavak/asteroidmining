@@ -31,7 +31,7 @@ public class TeleportTest {
         Teleport teleport1 = new Teleport();
         Teleport teleport2 = new Teleport(teleport1);
         Location location = new Location(game, 1.1, 1.1);
-        teleport2.setLocation(location);
+        teleport2.deployTeleport(location);
         teleport1.setPair(teleport2);
 
         assertEquals(location, teleport1.getPair().getLocation());
@@ -58,11 +58,36 @@ public class TeleportTest {
         Teleport teleport2 = new Teleport(teleport1);
         teleport1.setPair(teleport2);
         Location location = new Location(game, 1.1, 1.1);
-        teleport2.setLocation(location);
+        teleport2.deployTeleport(location);
 
         assertEquals(location, teleport1.getPair().getLocation());
         Location location2 = new Location(game, 1.2, 1.2);
-        teleport2.setLocation(location2);
+        teleport2.deployTeleport(location2);
         assertEquals(location2, teleport1.getPair().getLocation());
+    }
+
+    @Test
+    public void it_should_get_loco() {
+        Location loc1 = new Location(game, 2.0, 0.0);
+        Location loc2 = new Location(game, 1.0, 0.1);
+        Teleport teleport = new Teleport();
+
+
+        game.addLocation(loc1);
+        game.addLocation(loc2);
+
+
+        loc2.refreshNeighborsList(3);
+        loc1.refreshNeighborsList(3);
+        teleport.deployTeleport(loc2);
+        teleport.experienceSolarStorm();
+
+        teleport.step();
+        assertNull(loc2.getTeleport());
+        assertEquals(teleport, loc1.getTeleport());
+
+        teleport.step();
+        assertNull(loc1.getTeleport());
+        assertEquals(teleport, loc2.getTeleport());
     }
 }
