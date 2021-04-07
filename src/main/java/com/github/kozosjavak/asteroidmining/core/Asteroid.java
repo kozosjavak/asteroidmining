@@ -113,9 +113,12 @@ public class Asteroid extends Orb implements Explodeable {
      */
     public void drill() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
         if (surfaceThickness == 1) {
-
-            substance.experienceExtremeHeat(this);
-
+            List<Location> locations = getLocation().getNeighbors();
+            for (Location location : locations) {
+                if (location.getOrb().getClass() == Sun.class) {
+                    substance.experienceExtremeHeat(this);
+                }
+            }
         }
 
         if (surfaceThickness > 0) {

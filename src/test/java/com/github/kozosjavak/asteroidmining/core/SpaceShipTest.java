@@ -162,4 +162,26 @@ public class SpaceShipTest {
         }
     }
 
+    @Test
+    public void it_should_hide_or_die_because_of_solarstrom() {
+        Location location1 = new Location(game, 1.1, 2.2);
+        Asteroid asteroid1 = new Asteroid(location1, 1, false, null, 1);
+
+        Spaceship sp1 = new Spaceship(asteroid1);
+        assertEquals(sp1, asteroid1.getResidence().get(0));
+        asteroid1.experienceSolarStorm();
+        assertEquals(0, asteroid1.getResidence().size());
+        assertNull(sp1.getCurrentAsteroid());
+
+        Spaceship sp2 = new Spaceship(asteroid1);
+        assertEquals(sp2, asteroid1.getResidence().get(0));
+        try {
+            asteroid1.drill();
+        } catch (SurfaceThicknessIsZeroException | NotEnoughMaterialException e) {
+            e.printStackTrace();
+        }
+        asteroid1.experienceSolarStorm();
+        assertEquals(1, asteroid1.getResidence().size());
+        assertEquals(sp2, asteroid1.getResidence().get(0));
+    }
 }
