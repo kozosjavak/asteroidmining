@@ -91,8 +91,6 @@ public class InventoryTest {
         location.experienceExtremeHeat();
         assertNotNull(location.getCelestialBody());
         location.experienceExtremeHeat();
-        assertNotNull(location.getCelestialBody());
-        location.experienceExtremeHeat();
         assertNull(location.getCelestialBody());
     }
 

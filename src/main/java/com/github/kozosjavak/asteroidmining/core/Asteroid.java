@@ -5,9 +5,9 @@ import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullExcept
 import com.github.kozosjavak.asteroidmining.core.materials.Material;
 import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Aszteroida osztály
@@ -31,7 +31,7 @@ public class Asteroid extends Orb implements Explodeable {
     /**
      * Aszteroidán levő űrhajók listája
      */
-    private final List<Spaceship> residence = new ArrayList<>();
+    private final List<Spaceship> residence = new CopyOnWriteArrayList<>();
     /**
      * Aszteroida kéregvastagsága
      */
@@ -122,8 +122,8 @@ public class Asteroid extends Orb implements Explodeable {
      * Aszteroida felrobbanása
      */
     public void explode() {
-        for (Spaceship spaceShip : residence) {
-            spaceShip.explode();
+        for (Spaceship spaceship : residence) {
+            spaceship.explode();
         }
         residence.clear();
         getLocation().fullClearByExplosion();
