@@ -35,18 +35,22 @@ public class Settler extends Spaceship implements Steppable {
     public Inventory getInventory() {
         return inventory;
     }
+
     public Teleport[] getTeleportInventory(){
         return teleportInventory;
     }
+
     /**
      * Bányászás
      * Nyersanyag kibányászása azon az aszteroidán, amelyen a telepes épp tartózkodik
      *
      * @throws InventoryIsFullException az inventory tele van kivétel
+     * @throws AsteroidIsNotMineable    az asteroida nem bányászható állapotban van
      */
     public void mine() throws InventoryIsFullException, AsteroidIsNotMineable {
         inventory.add(getCurrentAsteroid().mine());
     }
+
     public void drill() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
         getCurrentAsteroid().drill();
     }
