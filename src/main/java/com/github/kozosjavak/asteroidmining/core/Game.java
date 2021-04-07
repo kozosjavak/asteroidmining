@@ -73,7 +73,7 @@ public class Game {
     }
 
     public void Win() {
-        System.out.println("Win, Congrat commrad!");
+       // System.out.println("Win, Congrat commrad!");
         theSun = null;
         System.gc();
     }
