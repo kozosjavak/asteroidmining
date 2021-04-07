@@ -6,6 +6,8 @@ import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullExcept
 import com.github.kozosjavak.asteroidmining.core.materials.Material;
 import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 
+import java.util.List;
+
 /**
  * Telepes osztály
  */
@@ -30,7 +32,7 @@ public class Settler extends Spaceship implements Steppable {
 
     @Override
     public String toString() {
-        return "bla";
+        return "Settler";
     }
 
     public Inventory getInventory() {
@@ -46,17 +48,36 @@ public class Settler extends Spaceship implements Steppable {
     public void mine() throws InventoryIsFullException, AsteroidIsNotMineable {
         inventory.add(getCurrentAsteroid().mine());
     }
-
+    public void drill() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
+        getCurrentAsteroid().drill();
+    }
     /**
      * Teleportpár építése
      */
     public void buildTeleportPair() throws NotEnoughMaterialException {
+        int numberOfEmptyElement;
 
+        numberOfEmptyElement = 0;
+        for(int i = 0; i < teleportInventory.length; i++) {
+            if (teleportInventory[i] == null) {
+                numberOfEmptyElement += 1;
+            }
+        }
         if (Bills.TELEPORT.buy(inventory)) {
-            Teleport t1 = new Teleport();
-            Teleport t2 = new Teleport(t1);
-            t1.setPair(t2);
-            //elkene vhogy menteni
+            if(numberOfEmptyElement>1){
+                Teleport t1 = new Teleport();
+                Teleport t2 = new Teleport(t1);
+                t1.setPair(t2);
+                for(int i = 0; i < teleportInventory.length; i++) {
+                    if(teleportInventory[i] == null) { teleportInventory[i]=t1;}
+                }
+                for(int i = 0; i < teleportInventory.length; i++) {
+                    if(teleportInventory[i] == null) { teleportInventory[i]=t2; }
+                }
+            }
+            else{
+                System.out.println("Not enough space in teleport inventory");
+            }
         }
 
     }
@@ -67,6 +88,7 @@ public class Settler extends Spaceship implements Steppable {
      * Aktuális aszteroida inventorijából buy segítségével
      */
     public void buildBase() throws NotEnoughMaterialException {
+
         if (Bills.BASE.buy(inventory))
             getCurrentAsteroid().buildBase();
     }
@@ -78,7 +100,6 @@ public class Settler extends Spaceship implements Steppable {
     public void buildRobot() throws NotEnoughMaterialException {
         if (Bills.ROBOT.buy(inventory)) {
             Robot robot = new Robot(getCurrentAsteroid());
-
         }
     }
 
@@ -89,7 +110,13 @@ public class Settler extends Spaceship implements Steppable {
      * @param asteroid aszteroida, melyre a teleportot helyezzük
      */
     public void deployTeleport(Asteroid asteroid) {
-
+        for(int i = 0; i < teleportInventory.length; i++) {
+            if (teleportInventory[i] != null) {
+                teleportInventory[i].deployTeleport(getCurrentAsteroid().getLocation());
+                teleportInventory[i]=null;
+                break;
+            }
+        }
     }
 
     /**
@@ -104,12 +131,29 @@ public class Settler extends Spaceship implements Steppable {
 
 
     /**
+     * Napvihar elszenvedése
+     */
+    @Override
+    public void experienceSolarStorm() {
+    }
+
+    public void insertMaterial() throws AsteroidNotMinedException, InventoryIsFullException {
+        getCurrentAsteroid().insertMaterial(inventory.getList().get(0));
+    }
+
+
+    /**
      * Lépés implementációja
      */
     @Override
     public void step() {
         //itt kontrollalsz
         //hivd meg a drill().
+    }
+
+    @Override
+    public void explode() {
+        getCurrentAsteroid().explode();
     }
 
     @Override
