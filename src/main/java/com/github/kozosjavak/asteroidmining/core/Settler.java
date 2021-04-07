@@ -24,7 +24,7 @@ public class Settler extends Spaceship implements Steppable {
      */
     public Settler(Asteroid asteroid) {
         super(asteroid);
-        getCurrentAsteroid().getLocation().game.addASettlerInNumberOfSettler();
+        getCurrentAsteroid().getLocation().game.addASettlerInGame(this);
     }
 
     @Override
@@ -51,9 +51,10 @@ public class Settler extends Spaceship implements Steppable {
         inventory.add(getCurrentAsteroid().mine());
     }
 
-    public void drill() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
+    public void drill() throws Exception {
         getCurrentAsteroid().drill();
     }
+
     /**
      * Teleportpár építése
      */
@@ -136,7 +137,7 @@ public class Settler extends Spaceship implements Steppable {
      */
     @Override
     public void die() {
-        getCurrentAsteroid().getLocation().game.removeASettlerInNumberOfSettler();
+        getCurrentAsteroid().getLocation().game.removeSettlerFromGame(this);
         getCurrentAsteroid().removeSpaceship(this);
         setCurrentAsteroid(null);
     }
@@ -157,9 +158,8 @@ public class Settler extends Spaceship implements Steppable {
     }
 
 
-
     @Override
-    public void experienceExtremeHeat() throws NotEnoughMaterialException {
+    public void experienceExtremeHeat() throws Exception {
         if (inventory.getSize() != 0) {
             inventory.experienceExtremeHeat(this);
         }

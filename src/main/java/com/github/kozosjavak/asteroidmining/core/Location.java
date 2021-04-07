@@ -1,7 +1,5 @@
 package com.github.kozosjavak.asteroidmining.core;
 
-import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -75,8 +73,11 @@ public class Location {
      *
      * @return a véletlenszerűen választott szomszédot
      */
-    public Location getRandomNeighbor() {
+    public Location getRandomNeighbor() throws Exception {
         int randomNext;
+        if (neighbors.size() == 0) {
+            throw new NoNeighborException(this);
+        }
         if (neighbors.size() == 1) {
             return neighbors.get(0);
         } else {
@@ -118,7 +119,7 @@ public class Location {
         getTeleport().experienceSolarStorm();
     }
 
-    public void experienceExtremeHeat() throws NotEnoughMaterialException {
+    public void experienceExtremeHeat() throws Exception {
         getCelestialBody().experienceExtremeHeat();
     }
 
@@ -132,5 +133,11 @@ public class Location {
 
     public Orb getOrb() {
         return celestialBody;
+    }
+
+    public void step(double distanceOfNeighbors) throws Exception {
+        refreshNeighborsList(distanceOfNeighbors);
+        getCelestialBody().step();
+        getTeleport().step();
     }
 }

@@ -11,7 +11,7 @@ public class SunTest {
 
     @Before
     public void setUp() throws Exception {
-        game = new Game();
+        game = new Game(100, 100);
         Location sunLocation = new Location(game, 0.0, 0.0);
         game.addLocation(sunLocation);
         sun = new Sun(sunLocation);

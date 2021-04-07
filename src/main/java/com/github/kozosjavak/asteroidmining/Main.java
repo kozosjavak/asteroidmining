@@ -15,7 +15,7 @@ public class Main {
      * @param args az argumentumok
      */
     public static void main(String[] args) {
-        Game game = new Game();
+        Game game = new Game(100, 100);
         ConsoleCommandExecutor cce = new ConsoleCommandExecutor(game);
         cce.attachToConsole();
 

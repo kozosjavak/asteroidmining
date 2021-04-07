@@ -6,7 +6,7 @@ import com.github.kozosjavak.asteroidmining.core.materials.Material;
 public class Uranium implements Material {
     private int experienceExtremeHeatCounter = 3;
 
-    public void experienceExtremeHeat(Explodeable explodeableHolder) {
+    public void experienceExtremeHeat(Explodeable explodeableHolder) throws Exception {
         if (experienceExtremeHeatCounter > 1) {
             experienceExtremeHeatCounter--;
         } else {

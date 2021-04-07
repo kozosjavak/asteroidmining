@@ -19,12 +19,12 @@ public abstract class CommandExecutor {
         return game;
     }
 
-    public void execute(Command command) {
+    public void execute(Command command) throws Exception {
         command.apply(game);
         executedCommands.add(command);
     }
 
-    public void executeAll(Collection<Command> commands) {
+    public void executeAll(Collection<Command> commands) throws Exception {
         for (Command command : commands) {
             execute(command);
         }

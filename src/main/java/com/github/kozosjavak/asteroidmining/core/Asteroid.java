@@ -57,6 +57,10 @@ public class Asteroid extends Orb implements Explodeable {
         this.numberOfChildren = numberOfChildren;
     }
 
+    public Material getSubstance() {
+        return substance;
+    }
+
     public List<Spaceship> getResidence() {
         return Collections.unmodifiableList(residence);
     }
@@ -111,7 +115,7 @@ public class Asteroid extends Orb implements Explodeable {
      *
      * @throws SurfaceThicknessIsZeroException if its already removed to zero
      */
-    public void drill() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
+    public void drill() throws Exception {
         if (surfaceThickness == 1) {
             List<Location> locations = getLocation().getNeighbors();
             for (Location location : locations) {
@@ -136,7 +140,7 @@ public class Asteroid extends Orb implements Explodeable {
     /**
      * Aszteroida felrobbanása
      */
-    public void explode() {
+    public void explode() throws Exception {
         for (Spaceship spaceship : residence) {
             spaceship.explode();
         }
@@ -192,7 +196,7 @@ public class Asteroid extends Orb implements Explodeable {
     }
 
     @Override
-    public void experienceExtremeHeat() throws NotEnoughMaterialException {
+    public void experienceExtremeHeat() throws Exception {
         if (surfaceThickness == 0 && substance != null) {
             substance.experienceExtremeHeat(this);
         } else {
@@ -207,4 +211,5 @@ public class Asteroid extends Orb implements Explodeable {
     public int getSurfaceThickness() {
         return surfaceThickness;
     }
+
 }

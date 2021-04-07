@@ -1,4 +1,5 @@
 package com.github.kozosjavak.asteroidmining.core;
+
 /**
  * Robot osztály
  */
@@ -25,8 +26,12 @@ public class Robot extends Spaceship implements Steppable {
      * Lépés implementációja
      */
     @Override
-    public void step() {
-
+    public void step() throws Exception {
+        if (getCurrentAsteroid().getSurfaceThickness() > 0) {
+            getCurrentAsteroid().drill();
+        } else {
+            move(getCurrentAsteroid().getLocation().getRandomNeighbor());
+        }
     }
 
     @Override
@@ -35,7 +40,7 @@ public class Robot extends Spaceship implements Steppable {
     }
 
     @Override
-    public void explode() {
+    public void explode() throws Exception {
         move(getCurrentAsteroid().getLocation().getRandomNeighbor());
     }
 }

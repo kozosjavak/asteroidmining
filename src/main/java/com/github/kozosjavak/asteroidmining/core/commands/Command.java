@@ -6,5 +6,5 @@ import java.io.Serializable;
 
 
 public interface Command extends Serializable {
-    void apply(Game game);
+    void apply(Game game) throws Exception;
 }

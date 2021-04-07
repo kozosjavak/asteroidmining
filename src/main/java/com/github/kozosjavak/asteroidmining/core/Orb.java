@@ -1,11 +1,9 @@
 package com.github.kozosjavak.asteroidmining.core;
 
-import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
-
 /**
  * Égitest osztály
  */
-public class Orb {
+public class Orb implements Steppable {
     private Location location;
 
     public Orb(Location location) {
@@ -27,8 +25,11 @@ public class Orb {
     public void experienceSolarStorm() {
     }
 
-    public void experienceExtremeHeat() throws NotEnoughMaterialException {
+    public void experienceExtremeHeat() throws Exception {
     }
 
 
+    @Override
+    public void step() throws CantMoveToTheSpecificLocationException {
+    }
 }

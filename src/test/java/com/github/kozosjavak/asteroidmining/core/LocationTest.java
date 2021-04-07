@@ -1,6 +1,5 @@
 package com.github.kozosjavak.asteroidmining.core;
 
-import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Uranium;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +14,7 @@ public class LocationTest {
 
     @Before
     public void setUp() throws Exception {
-        game = new Game();
+        game = new Game(100, 100);
     }
 
     @Test
@@ -54,7 +53,7 @@ public class LocationTest {
     }
 
     @Test
-    public void getneighbor_and_getrandomneighbor_should_return_with_one_of_added_with_addneighbor() {
+    public void getneighbor_and_getrandomneighbor_should_return_with_one_of_added_with_addneighbor() throws Exception {
         Location testLocation1 = new Location(game, 1.1, 1.1);
         Location testLocation2 = new Location(game, 2.2, 2.2);
         Location testLocation3 = new Location(game, 3.3, 3.3);
@@ -96,7 +95,7 @@ public class LocationTest {
     }
 
     @Test
-    public void it_should_apply_solarstorm_to_orb_and_teleport() throws NotEnoughMaterialException {
+    public void it_should_apply_solarstorm_to_orb_and_teleport() throws Exception {
         Location testLocation = new Location(game, 0.1, 0.1);
         Location testLocation2 = new Location(game, 0.3, 0.4);
         testLocation.addNeighbor(testLocation2);
