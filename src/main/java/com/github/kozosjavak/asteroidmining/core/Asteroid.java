@@ -126,6 +126,11 @@ public class Asteroid extends Orb implements Explodeable {
         } else {
             throw new SurfaceThicknessIsZeroException();
         }
+        if (surfaceThickness == 0) {
+            if (substance != null) {
+                substance.experienceExtremeHeat(this);
+            }
+        }
     }
 
     /**
@@ -145,7 +150,7 @@ public class Asteroid extends Orb implements Explodeable {
      * @param material a berakandó nyersanyag
      */
     public void insertMaterial(Material material) throws AsteroidNotMinedException, InventoryIsFullException {
-        if (substance == null) {
+        if (substance == null && surfaceThickness == 0) {
             asteroidInventory.add(material);
         } else {
             throw new AsteroidNotMinedException();
