@@ -1,5 +1,9 @@
 package com.github.kozosjavak.asteroidmining.core.materials;
 
+import com.github.kozosjavak.asteroidmining.core.Asteroid;
+import com.github.kozosjavak.asteroidmining.core.AsteroidNotMinedException;
+import com.github.kozosjavak.asteroidmining.core.Game;
+import com.github.kozosjavak.asteroidmining.core.Location;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Iron;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Uranium;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Waterice;
@@ -8,8 +12,7 @@ import org.junit.Test;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class InventoryTest {
     final Material iron1 = new Iron();
@@ -74,6 +77,23 @@ public class InventoryTest {
         Map<Class<? extends Material>, Integer> map = inventory.toMap();
         assertEquals(3, map.size());
         assertThat(map, is(expected));
+    }
+
+    @Test
+    public void it_should_explode_the_explodable() throws NotEnoughMaterialException, AsteroidNotMinedException, InventoryIsFullException {
+        Game game = new Game();
+        Location location = new Location(game, 0.0, 0.0);
+        Uranium uranium = new Uranium();
+        Asteroid asteroid = new Asteroid(location, 0, true, null, 0);
+        asteroid.insertMaterial(uranium);
+        location.experienceExtremeHeat();
+        assertNotNull(location.getCelestialBody());
+        location.experienceExtremeHeat();
+        assertNotNull(location.getCelestialBody());
+        location.experienceExtremeHeat();
+        assertNotNull(location.getCelestialBody());
+        location.experienceExtremeHeat();
+        assertNull(location.getCelestialBody());
     }
 
 }

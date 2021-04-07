@@ -1,5 +1,7 @@
 package com.github.kozosjavak.asteroidmining.core;
 
+import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -112,6 +114,10 @@ public class Location {
     public void experienceSolarStorm() {
         getCelestialBody().experienceSolarStorm();
         //getTeleport().experienceSolarStorm();
+    }
+
+    public void experienceExtremeHeat() throws NotEnoughMaterialException {
+        getCelestialBody().experienceExtremeHeat();
     }
 
     public String toString() {
