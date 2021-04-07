@@ -22,7 +22,7 @@ public class Location {
 
     public Location(Game game, Double X, Double Y) {
         this.game = game;
-        neighbors = new ArrayList<Location>();
+        neighbors = new ArrayList<>();
         random = new Random();
         coordinate = new Coordinate(X, Y);
     }
@@ -130,4 +130,7 @@ public class Location {
                 '}';
     }
 
+    public Orb getOrb() {
+        return celestialBody;
+    }
 }
