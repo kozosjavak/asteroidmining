@@ -32,7 +32,7 @@ public class Timer {
     /**
      * Léptethető elemek léptetése
      */
-    public void tick() {
+    public void tick() throws Exception {
         for (Steppable steppable : steppables) {
             steppable.step();
         }

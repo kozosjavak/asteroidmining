@@ -1,12 +1,17 @@
 package com.github.kozosjavak.asteroidmining.core;
 
+import java.util.Random;
+
 /**
  * Nap osztály
  */
-public class Sun extends Orb implements Steppable {
+public class Sun extends Orb {
+
+    Random random;
 
     public Sun(Location location) {
         super(location);
+        random = new Random();
     }
 
     public void sunMoving(double newX, double newY) throws CantMoveToTheSpecificLocationException {
@@ -34,8 +39,13 @@ public class Sun extends Orb implements Steppable {
      * Lépés implementációja
      */
     @Override
-    public void step() {
-
+    public void step() throws CantMoveToTheSpecificLocationException {
+        if (getLocation().game.randomGenerator(20)) {
+            sunMoving(random.nextDouble() * getLocation().game.getMaxX(), random.nextDouble() * getLocation().game.getMaxY());
+        }
+        if (getLocation().game.randomGenerator(30)) {
+            experienceSolarStorm();
+        }
 
     }
 }

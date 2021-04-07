@@ -1,7 +1,5 @@
 package com.github.kozosjavak.asteroidmining.core;
 
-import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
-
 /**
  * Űrhajó osztály
  */
@@ -31,7 +29,7 @@ public class Spaceship implements Explodeable {
         }
     }
 
-    public void experienceExtremeHeat() throws NotEnoughMaterialException {
+    public void experienceExtremeHeat() throws Exception {
     }
 
 
@@ -87,7 +85,7 @@ public class Spaceship implements Explodeable {
     }
 
     @Override
-    public void explode() {
+    public void explode() throws Exception {
         die();
     }
 

@@ -38,6 +38,9 @@ public class ConsoleCommandExecutor extends CommandExecutor {
                     System.out.println("Wrong command");
                 }
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

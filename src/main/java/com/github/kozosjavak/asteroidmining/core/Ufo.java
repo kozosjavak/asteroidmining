@@ -2,7 +2,6 @@ package com.github.kozosjavak.asteroidmining.core;
 
 import com.github.kozosjavak.asteroidmining.core.materials.Inventory;
 import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullException;
-import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 
 public class Ufo extends Spaceship implements Steppable {
 
@@ -24,7 +23,19 @@ public class Ufo extends Spaceship implements Steppable {
      * Lépés implementációja
      */
     @Override
-    public void step() {
+    public void step() throws AsteroidIsNotMineable, InventoryIsFullException {
+        if (getCurrentAsteroid().getSurfaceThickness() == 0 && getCurrentAsteroid().getSubstance() != null) {
+            mine();
+        } else if (getCurrentAsteroid().getAsteroidInventory().getSize() > 0 && getCurrentAsteroid().getLocation().game.randomGenerator(80)) {
+            //lopas
+        } else if (getCurrentAsteroid().getLocation().game.randomGenerator(30)) {
+            try {
+                move(getCurrentAsteroid().getLocation().getRandomNeighbor());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+
+        }
 
     }
 
@@ -40,7 +51,7 @@ public class Ufo extends Spaceship implements Steppable {
     }
 
     @Override
-    public void experienceExtremeHeat() throws NotEnoughMaterialException {
+    public void experienceExtremeHeat() throws Exception {
         if (inventory.getSize() != 0) {
             inventory.experienceExtremeHeat(this);
         }

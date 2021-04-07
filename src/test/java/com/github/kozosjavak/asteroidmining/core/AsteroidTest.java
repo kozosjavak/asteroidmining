@@ -22,7 +22,7 @@ public class AsteroidTest {
 
     @Before
     public void setUp() throws Exception {
-        game = new Game();
+        game = new Game(100, 100);
         testLocation1 = new Location(game, 1.0, 3.0);
     }
 
@@ -50,7 +50,7 @@ public class AsteroidTest {
     }
 
     @Test
-    public void should_mine_only_if_fully_drilled() throws AsteroidIsNotMineable, SurfaceThicknessIsZeroException, NotEnoughMaterialException {
+    public void should_mine_only_if_fully_drilled() throws Exception {
         Location testLocation = new Location(game, 2.2, 2.5);
         Material testMaterial = new Iron();
         Asteroid testAsteroid = new Asteroid(testLocation, 1, false, testMaterial, 0);
@@ -79,7 +79,7 @@ public class AsteroidTest {
     }
 
     @Test(expected = SurfaceThicknessIsZeroException.class)
-    public void surfacethickness_should_be_return_the_proper_value() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
+    public void surfacethickness_should_be_return_the_proper_value() throws Exception {
         Asteroid testAsteroid = new Asteroid(new Location(game, 2.2, 2.5), 6, true, null, 0);
 
         testAsteroid.drill(); // 6->5
@@ -95,7 +95,7 @@ public class AsteroidTest {
     }
 
     @Test
-    public void explosion_should_clear_location_also() {
+    public void explosion_should_clear_location_also() throws Exception {
         Location testLocation = new Location(game, 2.2, 2.5);
         Teleport testTeleport = new Teleport();
         testLocation.setTeleport(testTeleport);
@@ -143,7 +143,7 @@ public class AsteroidTest {
      */
 
     @Test(expected = AsteroidIsNotMineable.class)
-    public void waterice_should_disappear() throws NotEnoughMaterialException, AsteroidIsNotMineable {
+    public void waterice_should_disappear() throws Exception {
         Location testLocation = new Location(game, 2.2, 2.5);
         Material testMaterial = new Waterice();
         Asteroid testAsteroid = new Asteroid(testLocation, 0, true, testMaterial, 0);
@@ -154,7 +154,7 @@ public class AsteroidTest {
     }
 
     @Test
-    public void uranium_should_explode() throws NotEnoughMaterialException, InterruptedException {
+    public void uranium_should_explode() throws Exception {
         Location testLocation = new Location(game, 2.2, 2.5);
         Material testMaterial = new Uranium();
         Asteroid testAsteroid = new Asteroid(testLocation, 0, true, testMaterial, 0);

@@ -1,7 +1,7 @@
 package com.github.kozosjavak.asteroidmining.core;
 
 public interface Explodeable {
-    void explode();
+    void explode() throws Exception;
 
     void removeSubstance();
 }

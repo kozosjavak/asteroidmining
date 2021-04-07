@@ -1,7 +1,6 @@
 package com.github.kozosjavak.asteroidmining.core.materials;
 
 import com.github.kozosjavak.asteroidmining.core.Asteroid;
-import com.github.kozosjavak.asteroidmining.core.AsteroidNotMinedException;
 import com.github.kozosjavak.asteroidmining.core.Game;
 import com.github.kozosjavak.asteroidmining.core.Location;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Iron;
@@ -80,8 +79,8 @@ public class InventoryTest {
     }
 
     @Test
-    public void it_should_explode_the_explodable() throws NotEnoughMaterialException, AsteroidNotMinedException, InventoryIsFullException {
-        Game game = new Game();
+    public void it_should_explode_the_explodable() throws Exception {
+        Game game = new Game(100, 100);
         Location location = new Location(game, 0.0, 0.0);
         Uranium uranium = new Uranium();
         Asteroid asteroid = new Asteroid(location, 0, true, null, 0);

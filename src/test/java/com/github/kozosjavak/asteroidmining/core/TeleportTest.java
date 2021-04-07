@@ -13,7 +13,7 @@ public class TeleportTest {
 
     @Before
     public void setUp() throws Exception {
-        game = new Game();
+        game = new Game(100, 100);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class TeleportTest {
     }
 
     @Test
-    public void it_should_get_loco() {
+    public void it_should_get_loco() throws Exception {
         Location loc1 = new Location(game, 2.0, 0.0);
         Location loc2 = new Location(game, 1.0, 0.1);
         Teleport teleport = new Teleport();

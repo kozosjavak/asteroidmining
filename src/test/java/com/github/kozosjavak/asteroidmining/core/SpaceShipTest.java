@@ -1,6 +1,5 @@
 package com.github.kozosjavak.asteroidmining.core;
 
-import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Coal;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Uranium;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Waterice;
@@ -21,7 +20,7 @@ public class SpaceShipTest {
 
     @Before
     public void setUp() {
-        game = new Game();
+        game = new Game(100, 100);
     }
 
     @Before
@@ -140,30 +139,28 @@ public class SpaceShipTest {
     }
 
     @Test
-    public void it_should_explode_and_die() {
+    public void it_should_explode_and_die() throws Exception {
         Location location1 = new Location(game, 1.1, 2.2);
         Asteroid asteroid1 = new Asteroid(location1, 0, false, new Uranium(), 1);
         Spaceship sp = new Spaceship(asteroid1);
 
-        try {
-            asteroid1.experienceExtremeHeat();
-            asteroid1.experienceExtremeHeat();
 
-            assertEquals(1, asteroid1.getResidence().size());
-            assertEquals(asteroid1, sp.getCurrentAsteroid());
+        asteroid1.experienceExtremeHeat();
+        asteroid1.experienceExtremeHeat();
 
-            asteroid1.experienceExtremeHeat();
+        assertEquals(1, asteroid1.getResidence().size());
+        assertEquals(asteroid1, sp.getCurrentAsteroid());
 
-            assertEquals(0, asteroid1.getResidence().size());
-            assertNull(sp.getCurrentAsteroid());
+        asteroid1.experienceExtremeHeat();
 
-        } catch (NotEnoughMaterialException e) {
-            e.printStackTrace();
-        }
+        assertEquals(0, asteroid1.getResidence().size());
+        assertNull(sp.getCurrentAsteroid());
+
+
     }
 
     @Test
-    public void it_should_hide_or_die_because_of_solarstrom() {
+    public void it_should_hide_or_die_because_of_solarstrom() throws Exception {
         Location location1 = new Location(game, 1.1, 2.2);
         Asteroid asteroid1 = new Asteroid(location1, 1, false, null, 1);
 
@@ -175,11 +172,9 @@ public class SpaceShipTest {
 
         Spaceship sp2 = new Spaceship(asteroid1);
         assertEquals(sp2, asteroid1.getResidence().get(0));
-        try {
-            asteroid1.drill();
-        } catch (SurfaceThicknessIsZeroException | NotEnoughMaterialException e) {
-            e.printStackTrace();
-        }
+
+        asteroid1.drill();
+
         asteroid1.experienceSolarStorm();
         assertEquals(1, asteroid1.getResidence().size());
         assertEquals(sp2, asteroid1.getResidence().get(0));

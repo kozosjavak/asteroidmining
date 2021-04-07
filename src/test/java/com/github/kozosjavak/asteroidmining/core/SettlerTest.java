@@ -10,13 +10,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Objects;
-import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class SettlerTest {
 
@@ -26,7 +24,7 @@ public class SettlerTest {
 
     @Before
     public void setUp() {
-        game = new Game();
+        game = new Game(100, 100);
     }
 
     @Before
@@ -44,7 +42,7 @@ public class SettlerTest {
         Location location1 = new Location(game, 5.4, 3.2);
         Asteroid asteroid1 = new Asteroid(location1, 0, false, new Coal(), 1);
         Settler settler = new Settler(asteroid1);
-        System.out.println(settler.toString());
+        System.out.println(settler);
         assertEquals("Settler", outContent.toString().trim());
     }
 
@@ -58,7 +56,7 @@ public class SettlerTest {
     }
 
     @Test
-    public void setteler_drill_in_current_asteroid_decrease_surfacethickness() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException, AsteroidIsNotMineable, InventoryIsFullException {
+    public void setteler_drill_in_current_asteroid_decrease_surfacethickness() throws Exception {
         Location location1 = new Location(game, 5.4, 3.2);
         Asteroid asteroid1 = new Asteroid(location1, 1, false, new Coal(), 1);
         Settler settler = new Settler(asteroid1);
@@ -163,11 +161,12 @@ public class SettlerTest {
         settler.getInventory().add(new Iron());
         settler.buildTeleportPair();
         settler.deployTeleport(0);
-        assertEquals(location1.getTeleport().getPair(),settler.getTeleportInventory()[1]);
+        assertEquals(location1.getTeleport().getPair(), settler.getTeleportInventory()[1]);
         //deploy teleport módosítva!
     }
+
     @Test
-    public void settler_get_experience_extreme_heat() throws InventoryIsFullException, NotEnoughMaterialException {
+    public void settler_get_experience_extreme_heat() throws Exception {
         Location location1 = new Location(game, 5.4, 3.2);
         Asteroid asteroid1 = new Asteroid(location1, 0, false, new Coal(), 1);
         Settler settler = new Settler(asteroid1);

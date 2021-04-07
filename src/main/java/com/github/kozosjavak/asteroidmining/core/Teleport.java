@@ -66,7 +66,7 @@ public class Teleport implements Steppable {
         solarized = true;
     }
 
-    public void step() {
+    public void step() throws Exception {
         if (solarized) {
             reDeployTeleport(getLocation().getRandomNeighbor());
         }

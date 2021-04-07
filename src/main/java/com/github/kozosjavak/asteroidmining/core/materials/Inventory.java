@@ -87,7 +87,7 @@ public class Inventory {
         return Collections.unmodifiableMap(result);
     }
 
-    public void experienceExtremeHeat(Explodeable carrier) throws NotEnoughMaterialException {
+    public void experienceExtremeHeat(Explodeable carrier) throws Exception {
         for (Material material : materials) {
             material.experienceExtremeHeat(carrier);
         }
