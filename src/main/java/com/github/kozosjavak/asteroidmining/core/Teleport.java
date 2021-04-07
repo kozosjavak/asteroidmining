@@ -52,5 +52,5 @@ public class Teleport {
     public void deployTeleport(Location location) {
         this.location = location;
     }
-
+//ugyan az mint a setLocation?
 }
