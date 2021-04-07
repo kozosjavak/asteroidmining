@@ -35,7 +35,9 @@ public class Settler extends Spaceship implements Steppable {
     public Inventory getInventory() {
         return inventory;
     }
-
+    public Teleport[] getTeleportInventory(){
+        return teleportInventory;
+    }
     /**
      * Bányászás
      * Nyersanyag kibányászása azon az aszteroidán, amelyen a telepes épp tartózkodik
@@ -55,8 +57,8 @@ public class Settler extends Spaceship implements Steppable {
         int numberOfEmptyElement;
 
         numberOfEmptyElement = 0;
-        for(int i = 0; i < teleportInventory.length; i++) {
-            if (teleportInventory[i] == null) {
+        for (Teleport teleport : teleportInventory) {
+            if (teleport == null) {
                 numberOfEmptyElement += 1;
             }
         }
@@ -66,10 +68,16 @@ public class Settler extends Spaceship implements Steppable {
                 Teleport t2 = new Teleport(t1);
                 t1.setPair(t2);
                 for(int i = 0; i < teleportInventory.length; i++) {
-                    if(teleportInventory[i] == null) { teleportInventory[i]=t1;}
+                    if(teleportInventory[i] == null) {
+                        teleportInventory[i]=t1;
+                    break;}
+
                 }
                 for(int i = 0; i < teleportInventory.length; i++) {
-                    if(teleportInventory[i] == null) { teleportInventory[i]=t2; }
+                    if(teleportInventory[i] == null) {
+                        teleportInventory[i]=t2;
+                        break; }
+
                 }
             }
             else{
@@ -84,8 +92,15 @@ public class Settler extends Spaceship implements Steppable {
      * Bázis építése
      * Aktuális aszteroida inventorijából buy segítségével
      */
-    public void buildBase() throws NotEnoughMaterialException {
-        if (Bills.BASE.buy(inventory))
+    public void buildBase() throws NotEnoughMaterialException, InventoryIsFullException {
+        Inventory inventoryFromAsteroidAndSettler = new Inventory(0);
+        for(int i=0;i< getCurrentAsteroid().getAsteroidInventory().getSize();i++) {
+            inventoryFromAsteroidAndSettler.add(getCurrentAsteroid().getAsteroidInventory().getList().get(i));
+        }
+        for(int i=0;i< getInventory().getSize();i++) {
+            inventoryFromAsteroidAndSettler.add(getInventory().getList().get(i));
+        }
+        if (Bills.BASE.buy(inventoryFromAsteroidAndSettler))
             getCurrentAsteroid().buildBase();
     }
 
@@ -103,15 +118,12 @@ public class Settler extends Spaceship implements Steppable {
     /**
      * Teleportkaput helyez a megadott aszteroidára
      *
-     * @param asteroid aszteroida, melyre a teleportot helyezzük
+     * @param number aszteroida, melyre a teleportot helyezzük
      */
-    public void deployTeleport(Asteroid asteroid) {
-        for(int i = 0; i < teleportInventory.length; i++) {
-            if (teleportInventory[i] != null) {
-                teleportInventory[i].deployTeleport(getCurrentAsteroid().getLocation());
-                teleportInventory[i]=null;
-                break;
-            }
+    public void deployTeleport(int number) {
+        if( teleportInventory[number] != null) {
+            teleportInventory[number].deployTeleport(getCurrentAsteroid().getLocation());
+            teleportInventory[number]=null;
         }
     }
 

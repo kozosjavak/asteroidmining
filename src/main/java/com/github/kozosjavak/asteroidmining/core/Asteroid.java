@@ -64,7 +64,7 @@ public class Asteroid extends Orb implements Explodeable {
     public boolean isInSunZone() {
         return inSunZone;
     }
-
+    public Inventory getAsteroidInventory(){return  asteroidInventory;}
 
     /**
      * Űrhajó lehelyezése az aszteroidára
@@ -158,7 +158,7 @@ public class Asteroid extends Orb implements Explodeable {
      */
     public void buildBase() {
         System.out.println("Base builded!");
-        getLocation().game.endGame();
+        getLocation().game.Win();
     }
 
     /**
