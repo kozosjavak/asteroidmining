@@ -1,6 +1,8 @@
 package com.github.kozosjavak.asteroidmining.core;
 
+import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Coal;
+import com.github.kozosjavak.asteroidmining.core.materials.types.Uranium;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Waterice;
 import org.junit.After;
 import org.junit.Before;
@@ -14,12 +16,11 @@ import static org.junit.Assert.assertNull;
 
 public class SpaceShipTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
     private final PrintStream originalOut = System.out;
     private Game game;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         game = new Game();
     }
 
@@ -139,8 +140,26 @@ public class SpaceShipTest {
     }
 
     @Test
-    public void it_should_explode() {
-        //empty
+    public void it_should_explode_and_die() {
+        Location location1 = new Location(game, 1.1, 2.2);
+        Asteroid asteroid1 = new Asteroid(location1, 0, false, new Uranium(), 1);
+        Spaceship sp = new Spaceship(asteroid1);
+
+        try {
+            asteroid1.experienceExtremeHeat();
+            asteroid1.experienceExtremeHeat();
+
+            assertEquals(1, asteroid1.getResidence().size());
+            assertEquals(asteroid1, sp.getCurrentAsteroid());
+
+            asteroid1.experienceExtremeHeat();
+
+            assertEquals(0, asteroid1.getResidence().size());
+            assertNull(sp.getCurrentAsteroid());
+
+        } catch (NotEnoughMaterialException e) {
+            e.printStackTrace();
+        }
     }
 
 }
