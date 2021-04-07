@@ -88,7 +88,6 @@ public class Settler extends Spaceship implements Steppable {
      * Aktuális aszteroida inventorijából buy segítségével
      */
     public void buildBase() throws NotEnoughMaterialException {
-
         if (Bills.BASE.buy(inventory))
             getCurrentAsteroid().buildBase();
     }
@@ -130,13 +129,6 @@ public class Settler extends Spaceship implements Steppable {
     }
 
 
-    /**
-     * Napvihar elszenvedése
-     */
-    @Override
-    public void experienceSolarStorm() {
-    }
-
     public void insertMaterial() throws AsteroidNotMinedException, InventoryIsFullException {
         getCurrentAsteroid().insertMaterial(inventory.getList().get(0));
     }
@@ -151,10 +143,7 @@ public class Settler extends Spaceship implements Steppable {
         //hivd meg a drill().
     }
 
-    @Override
-    public void explode() {
-        getCurrentAsteroid().explode();
-    }
+
 
     @Override
     public void experienceExtremeHeat() throws NotEnoughMaterialException {
