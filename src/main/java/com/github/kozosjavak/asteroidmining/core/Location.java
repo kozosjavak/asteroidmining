@@ -54,6 +54,7 @@ public class Location {
         if (teleport != null) {
             teleport.getHitByExplosion();
         }
+        teleport = null;
         System.gc();
     }
 

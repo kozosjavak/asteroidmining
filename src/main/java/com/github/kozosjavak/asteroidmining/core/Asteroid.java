@@ -61,10 +61,17 @@ public class Asteroid extends Orb implements Explodeable {
         return Collections.unmodifiableList(residence);
     }
 
+    public List<Material> getMaterials() {
+        return asteroidInventory.getList();
+    }
+
     public boolean isInSunZone() {
         return inSunZone;
     }
-    public Inventory getAsteroidInventory(){return  asteroidInventory;}
+
+    public Inventory getAsteroidInventory() {
+        return asteroidInventory;
+    }
 
     /**
      * Űrhajó lehelyezése az aszteroidára
@@ -151,6 +158,11 @@ public class Asteroid extends Orb implements Explodeable {
     public void removeMaterial(Material materialToRemove) throws NotEnoughMaterialException {
         asteroidInventory.remove(materialToRemove.getClass(), 1);
 
+    }
+
+    @Override
+    public void removeSubstance() {
+        substance = null;
     }
 
     /**

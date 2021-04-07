@@ -23,9 +23,11 @@ public class Teleport implements Steppable {
     }
 
     public void getHitByExplosion() {
-        getPair().location = null;
+        if (getPair() != null) {
+            getPair().location = null;
+            getPair().pair = null;
+        }
         this.location = null;
-        getPair().pair = null;
         pair = null;
     }
 

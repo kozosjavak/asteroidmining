@@ -39,8 +39,10 @@ public class Spaceship implements Explodeable {
      * Megsemmisülés
      */
     public void die() {
-        getCurrentAsteroid().removeSpaceship(this);
+        Asteroid tempAsteroid = getCurrentAsteroid();
         setCurrentAsteroid(null);
+        tempAsteroid.removeSpaceship(this);
+
     }
 
 
@@ -88,4 +90,12 @@ public class Spaceship implements Explodeable {
     public void explode() {
         die();
     }
+
+    @Override
+    public void removeSubstance() {
+        /**
+         * HAVE TO BE EMPTY
+         */
+    }
+
 }

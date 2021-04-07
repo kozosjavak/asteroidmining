@@ -19,6 +19,6 @@ public class Waterice implements Material {
 
     @Override
     public void experienceExtremeHeat(Explodeable explodeableHolder) throws NotEnoughMaterialException {
-        //itt majd elkene olvadnia
+        explodeableHolder.removeSubstance(); // Sublimate substance
     }
 }
