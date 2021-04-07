@@ -1,5 +1,7 @@
 package com.github.kozosjavak.asteroidmining.core;
 
+import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
+import com.github.kozosjavak.asteroidmining.core.materials.types.Uranium;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -63,6 +65,7 @@ public class LocationTest {
         testLocation1.addNeighbor(testLocation3);
         List<Location> neighborList = testLocation1.getNeighbors();
         assertEquals(testLocation2, neighborList.get(0));
+        assertTrue(testLocation2 == testLocation1.getRandomNeighbor() || testLocation3 == testLocation1.getRandomNeighbor());
 
         testLocation1.removeNeighbor(testLocation2);
 
@@ -90,6 +93,25 @@ public class LocationTest {
         assertTrue(testLocation2.getNeighbors().contains(testLocation1));
         assertFalse(testLocation2.getNeighbors().contains(testLocation3));
         assertFalse(testLocation2.getNeighbors().contains(testLocation2));
+    }
+
+    @Test
+    public void it_should_apply_solarstorm_to_orb_and_teleport() throws NotEnoughMaterialException {
+        Location testLocation = new Location(game, 0.1, 0.1);
+        Location testLocation2 = new Location(game, 0.3, 0.4);
+        testLocation.addNeighbor(testLocation2);
+        testLocation2.addNeighbor(testLocation);
+
+        Teleport testTeleport = new Teleport();
+
+        testLocation.setTeleport(testTeleport);
+
+        Asteroid testAsteroid = new Asteroid(testLocation, 0, true, new Uranium(), 0);
+
+        testLocation.experienceSolarStorm(); // testTeleport is solarized
+        testTeleport.step();
+
+        assertEquals(testLocation2, testTeleport.getLocation());
     }
 
 
