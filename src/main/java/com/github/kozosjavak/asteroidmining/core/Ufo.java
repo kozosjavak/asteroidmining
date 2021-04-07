@@ -1,7 +1,6 @@
 package com.github.kozosjavak.asteroidmining.core;
 
 import com.github.kozosjavak.asteroidmining.core.materials.Inventory;
-import com.github.kozosjavak.asteroidmining.core.materials.Material;
 import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 
 public class Ufo extends Spaceship implements Steppable {
@@ -31,9 +30,7 @@ public class Ufo extends Spaceship implements Steppable {
     @Override
     public void experienceExtremeHeat() throws NotEnoughMaterialException {
         if (inventory.getSize() != 0) {
-            for (Material material : inventory.getList()) {
-                material.experienceExtremeHeat(this);
-            }
+            inventory.experienceExtremeHeat(this);
         }
     }
 }

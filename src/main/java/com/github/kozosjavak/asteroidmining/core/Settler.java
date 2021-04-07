@@ -3,10 +3,7 @@ package com.github.kozosjavak.asteroidmining.core;
 import com.github.kozosjavak.asteroidmining.core.bills.Bills;
 import com.github.kozosjavak.asteroidmining.core.materials.Inventory;
 import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullException;
-import com.github.kozosjavak.asteroidmining.core.materials.Material;
 import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
-
-import java.util.List;
 
 /**
  * Telepes osztály
@@ -148,9 +145,7 @@ public class Settler extends Spaceship implements Steppable {
     @Override
     public void experienceExtremeHeat() throws NotEnoughMaterialException {
         if (inventory.getSize() != 0) {
-            for (Material material : inventory.getList()) {
-                material.experienceExtremeHeat(this);
-            }
+            inventory.experienceExtremeHeat(this);
         }
     }
 }

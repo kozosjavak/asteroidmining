@@ -176,10 +176,10 @@ public class Asteroid extends Orb implements Explodeable {
         if (surfaceThickness == 0 && substance != null) {
             substance.experienceExtremeHeat(this);
         } else {
-            for (Material material : asteroidInventory.getList()) {
-                material.experienceExtremeHeat(this);
-            }
-
+            asteroidInventory.experienceExtremeHeat(this);
+        }
+        for (Spaceship spaceship : residence) {
+            spaceship.experienceExtremeHeat();
         }
 
     }

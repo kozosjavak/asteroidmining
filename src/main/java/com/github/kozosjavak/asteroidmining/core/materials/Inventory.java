@@ -1,5 +1,7 @@
 package com.github.kozosjavak.asteroidmining.core.materials;
 
+import com.github.kozosjavak.asteroidmining.core.Explodeable;
+
 import java.util.*;
 
 public class Inventory {
@@ -83,6 +85,12 @@ public class Inventory {
             result.put(material.getClass(), result.get(material.getClass()) + 1);
         }
         return Collections.unmodifiableMap(result);
+    }
+
+    public void experienceExtremeHeat(Explodeable carrier) throws NotEnoughMaterialException {
+        for (Material material : materials) {
+            material.experienceExtremeHeat(carrier);
+        }
     }
 
 }
