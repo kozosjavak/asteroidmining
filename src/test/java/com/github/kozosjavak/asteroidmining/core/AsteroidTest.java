@@ -62,6 +62,39 @@ public class AsteroidTest {
     }
 
     @Test
+    public void should_be_in_sunzone() {
+        Asteroid testAsteroid = new Asteroid(new Location(game, 2.2, 2.5), 1, true, null, 0);
+
+        assertEquals(true, testAsteroid.isInSunZone());
+    }
+
+    @Test
+    public void spaceships_should_experience_solarstorm() {
+        Asteroid testAsteroid = new Asteroid(new Location(game, 2.2, 2.5), 1, true, null, 0);
+        Settler testSpaceship = new Settler(testAsteroid);
+
+        testAsteroid.experienceSolarStorm();
+
+        assertEquals(new ArrayList<Spaceship>(), testAsteroid.getResidence()); // empty residence list
+    }
+
+    @Test(expected = SurfaceThicknessIsZeroException.class)
+    public void surfacethickness_should_be_return_the_proper_value() throws SurfaceThicknessIsZeroException, NotEnoughMaterialException {
+        Asteroid testAsteroid = new Asteroid(new Location(game, 2.2, 2.5), 6, true, null, 0);
+
+        testAsteroid.drill(); // 6->5
+
+        assertEquals(5, testAsteroid.getSurfaceThickness());
+
+        testAsteroid.drill(); // 5->4
+        testAsteroid.drill(); // 4->3
+        testAsteroid.drill(); // 3->2
+        testAsteroid.drill(); // 2->1
+        testAsteroid.drill(); // 1->0
+        testAsteroid.drill(); // throws SurfaceThicknessIsZeroException
+    }
+
+    @Test
     public void explosion_should_clear_location_also() {
         Location testLocation = new Location(game, 2.2, 2.5);
         Teleport testTeleport = new Teleport();
@@ -90,6 +123,15 @@ public class AsteroidTest {
         testAsteroid.removeMaterial(testMaterial1);
         comparatorList.remove(testMaterial1);
         assertEquals(comparatorList, testAsteroid.getMaterials());
+    }
+
+    @Test(expected = AsteroidNotMinedException.class)
+    public void should_not_be_able_to_insert_material() throws AsteroidNotMinedException, InventoryIsFullException {
+        Location testLocation = new Location(game, 2.2, 2.5);
+        Material testMaterial = new Iron();
+        Asteroid testAsteroid = new Asteroid(testLocation, 5, false, null, 0);
+
+        testAsteroid.insertMaterial(testMaterial);
     }
 
     /**
