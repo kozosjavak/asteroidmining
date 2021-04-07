@@ -3,7 +3,8 @@ package com.github.kozosjavak.asteroidmining.core;
 /**
  * Teleportpár osztály
  */
-public class Teleport {
+public class Teleport implements Steppable {
+    private boolean solarized = false;
 
     /**
      * Teleport egyik vége
@@ -50,7 +51,22 @@ public class Teleport {
      * @param location lokáció, amihez társítani szeretnénk
      */
     public void deployTeleport(Location location) {
-        this.location = location;
         location.setTeleport(this);
+    }
+
+    public void reDeployTeleport(Location location) {
+        Location tempLocation = this.location;
+        deployTeleport(location);
+        tempLocation.setTeleport(null);
+    }
+
+    public void experienceSolarStorm() {
+        solarized = true;
+    }
+
+    public void step() {
+        if (solarized) {
+            reDeployTeleport(getLocation().getRandomNeighbor());
+        }
     }
 }

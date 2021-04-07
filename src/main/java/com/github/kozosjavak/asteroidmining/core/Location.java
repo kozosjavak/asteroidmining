@@ -45,7 +45,8 @@ public class Location {
 
     public void setTeleport(Teleport teleport) {
         this.teleport = teleport;
-        getTeleport().setLocation(this);
+        if (teleport != null)
+            getTeleport().setLocation(this);
     }
 
     public void fullClearByExplosion() {
@@ -76,7 +77,7 @@ public class Location {
     public Location getRandomNeighbor() {
         int randomNext;
         if (neighbors.size() == 1) {
-            randomNext = 1;
+            return neighbors.get(0);
         } else {
             randomNext = neighbors.size() - 1;
         }
@@ -113,7 +114,7 @@ public class Location {
 
     public void experienceSolarStorm() {
         getCelestialBody().experienceSolarStorm();
-        //getTeleport().experienceSolarStorm();
+        getTeleport().experienceSolarStorm();
     }
 
     public void experienceExtremeHeat() throws NotEnoughMaterialException {
