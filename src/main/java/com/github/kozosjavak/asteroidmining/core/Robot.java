@@ -5,11 +5,21 @@ package com.github.kozosjavak.asteroidmining.core;
 public class Robot extends Spaceship implements Steppable {
     /**
      * Robot konstruktor
+     *
      * @param asteroid aszteroida, amire a robot kerül
      */
     public Robot(Asteroid asteroid) {
         super(asteroid);
     }
+
+
+    /**
+     * Napvihar elszenvedése
+     */
+    @Override
+    public void experienceSolarStorm() {
+    }
+
 
     /**
      * Lépés implementációja
