@@ -38,4 +38,5 @@ public abstract class CommandExecutor {
     public List<Command> getExecutedCommands() {
         return Collections.unmodifiableList(executedCommands);
     }
+
 }

@@ -21,10 +21,13 @@ public class CreateAsteroidCommand implements Command {
     @Override
     public void apply(Game game) {
         Location loc = new Location(game, 0.0, 0.0);
-
         //Itt kene az id listan atmenni es leelenorizni hogy az substance-e es ha igen berakni ide: Most a pelda miatt egy sima coalt rakok be de erre figyleni kell
         Asteroid asteroid = new Asteroid(loc, surfaceThickness, false, new Coal()/*Itt kene az idban meghatarozott Subtance Objektumor berakni*/, 0);
         //es legvegso soron hozzadjuk az uj lokaciot az uj aszteroidaval egyetembe a jatekhoz
         game.addLocation(loc);
+
+        //Barmit letrehozol aminek kell ID akkor ez a 2 sor.
+        game.putInIdList(asteroid);
+        System.out.printf("ID: " + game.getId(asteroid) + "\n");
     }
 }
