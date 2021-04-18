@@ -15,6 +15,29 @@ public class Game {
     private final double minY = 0;
     private final Random random = new Random();
     private final List<Location> locationList = new ArrayList<>();
+
+    ///////
+    //Id implementation, not stationary
+    //////
+    private final List<Object> idList = new ArrayList<>();
+
+    public void putInIdList(Object object) {
+        idList.add(object);
+    }
+
+    public int getId(Object object) {
+        if (idList.contains(object)) {
+            return idList.indexOf(object);
+        }
+        return -1;
+    }
+
+    public void getallid() {
+        for (Object object : idList) {
+            System.out.println(getId(object));
+        }
+    }
+    ///////
     /**
      * A játékban levő telepesek száma
      */

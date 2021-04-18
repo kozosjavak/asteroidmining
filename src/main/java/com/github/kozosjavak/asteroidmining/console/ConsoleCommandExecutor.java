@@ -32,12 +32,13 @@ public class ConsoleCommandExecutor extends CommandExecutor {
         try (Scanner scanner = new Scanner(System.in)) {
 
             while (scanner.hasNextLine()) {
+                final String line = scanner.nextLine();
                 Optional<Command> optionalCommand = adapterCommandList.stream()
-                        .map(stringCommandAdapter -> stringCommandAdapter.parse(scanner.nextLine()))
+                        .map(stringCommandAdapter -> stringCommandAdapter.parse(line))
                         .filter(Objects::nonNull)
-                        .findAny();
+                        .findFirst();
                 if (optionalCommand.isPresent()) {
-                    optionalCommand.get().apply(getGame());
+                    execute(optionalCommand.get());
                 } else {
                     System.out.println("Wrong command");
                 }
