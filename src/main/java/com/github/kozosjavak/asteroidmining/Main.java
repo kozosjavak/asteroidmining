@@ -16,7 +16,6 @@ public class Main {
         Game game = new Game(20, 20);
         ConsoleCommandExecutor cce = new ConsoleCommandExecutor(game);
         cce.attachToConsole();
-
     }
 
 }
