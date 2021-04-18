@@ -15,7 +15,7 @@ public class SpaceshipMoveCommand implements Command {
 
     @Override
     public void apply(Game game) throws Exception {
-        if (game.getObjectFromID(spaceshipId).getClass() == Spaceship.class && game.getObjectFromID(asteroidId).getClass() == Asteroid.class) {
+        if (game.getObjectFromID(spaceshipId).getClass().getSuperclass() == Spaceship.class && game.getObjectFromID(asteroidId).getClass() == Asteroid.class) {
             Asteroid asteroid = (Asteroid) game.getObjectFromID(asteroidId);
             Spaceship spaceship = (Spaceship) game.getObjectFromID(spaceshipId);
             spaceship.move(asteroid.getLocation());
