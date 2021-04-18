@@ -23,6 +23,7 @@ public class Game {
 
     public void putInIdList(Object object) {
         idList.add(object);
+        System.out.println("ID: " + getId(object));
     }
 
     public int getId(Object object) {
@@ -32,7 +33,7 @@ public class Game {
         return -1;
     }
 
-    public void getallid() {
+    public void writeOutALlID() {
         for (Object object : idList) {
             System.out.println(getId(object));
         }
