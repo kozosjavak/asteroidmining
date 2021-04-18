@@ -1,9 +1,6 @@
 package com.github.kozosjavak.asteroidmining.console;
 
-import com.github.kozosjavak.asteroidmining.console.adapter.CreateAsteroidAdapter;
-import com.github.kozosjavak.asteroidmining.console.adapter.CreateMaterialAdapter;
-import com.github.kozosjavak.asteroidmining.console.adapter.StartCommandAdapter;
-import com.github.kozosjavak.asteroidmining.console.adapter.StringCommandAdapter;
+import com.github.kozosjavak.asteroidmining.console.adapter.*;
 import com.github.kozosjavak.asteroidmining.core.Game;
 import com.github.kozosjavak.asteroidmining.core.commands.Command;
 import com.github.kozosjavak.asteroidmining.core.commands.CommandExecutor;
@@ -21,7 +18,8 @@ public class ConsoleCommandExecutor extends CommandExecutor {
     private static final List<StringCommandAdapter> adapterCommandList = List.of(
             new StartCommandAdapter(),
             new CreateAsteroidAdapter(),
-            new CreateMaterialAdapter()
+            new CreateMaterialAdapter(),
+            new SpaceshipMoveAdapter()
     );
 
     public ConsoleCommandExecutor(Game game) {

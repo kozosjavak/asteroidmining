@@ -26,6 +26,12 @@ public class Game {
         System.out.println("ID: " + getId(object));
     }
 
+    public Object getObjectFromID(int id) {
+        if (id <= idList.size() - 1 && id >= 0)
+            return idList.get(id);
+        return null;
+    }
+
     public int getId(Object object) {
         if (idList.contains(object)) {
             return idList.indexOf(object);
