@@ -2,6 +2,11 @@ package com.github.kozosjavak.asteroidmining.core;
 
 import com.github.kozosjavak.asteroidmining.core.materials.Inventory;
 import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullException;
+import com.github.kozosjavak.asteroidmining.core.materials.Material;
+import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
+
+import java.util.List;
+import java.util.Random;
 
 public class Ufo extends Spaceship implements Steppable {
 
@@ -27,7 +32,7 @@ public class Ufo extends Spaceship implements Steppable {
         if (getCurrentAsteroid().getSurfaceThickness() == 0 && getCurrentAsteroid().getSubstance() != null) {
             mine();
         } else if (getCurrentAsteroid().getAsteroidInventory().getSize() > 0 && getCurrentAsteroid().getLocation().game.randomGenerator(80)) {
-            //lopas
+            steal();
         } else if (getCurrentAsteroid().getLocation().game.randomGenerator(30)) {
             try {
                 move(getCurrentAsteroid().getLocation().getRandomNeighbor());
@@ -37,6 +42,18 @@ public class Ufo extends Spaceship implements Steppable {
 
         }
 
+    }
+
+    public void steal() {
+        Random rand = new Random();
+        List<Material> materials = getCurrentAsteroid().getMaterials();
+        Material material = materials.get(rand.nextInt(materials.size()) - 1);
+        try {
+            getCurrentAsteroid().removeMaterial(material);
+            inventory.add(material);
+        } catch (NotEnoughMaterialException | InventoryIsFullException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
