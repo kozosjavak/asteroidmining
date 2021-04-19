@@ -56,7 +56,6 @@ public class Location {
         System.gc();
     }
 
-
     public void refreshNeighborsList(double distance) {
         if (distance > 1) {
             neighbors.clear();
