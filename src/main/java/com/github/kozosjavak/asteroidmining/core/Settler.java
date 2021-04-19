@@ -116,10 +116,12 @@ public class Settler extends Spaceship implements Steppable {
      * Robot építése
      * A robotot arra az aszteroidára helyezi le, amelyen maga a telepes is tartózkodik
      */
-    public void buildRobot() throws NotEnoughMaterialException {
+    public Robot buildRobot() throws NotEnoughMaterialException {
         if (Bills.ROBOT.buy(inventory)) {
             Robot robot = new Robot(getCurrentAsteroid());
+            return robot;
         }
+        return null;
     }
 
 

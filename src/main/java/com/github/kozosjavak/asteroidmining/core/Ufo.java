@@ -77,4 +77,16 @@ public class Ufo extends Spaceship implements Steppable {
     public Inventory getInventory() {
         return inventory;
     }
+
+    @Override
+    public String toString(int depth, Game game) {
+        String tab = "";
+        for (int i = 0; i < depth; i++) tab += "\t";
+        String out = tab + "Ufo {\n";
+        out += tab + "\tID = " + game.getId(this) + ",\n";
+        out += tab + "\tInventory = {\n" + inventory.toString(depth + 2, game);
+        out += tab + "\t}\n";
+        out += tab + "}";
+        return out;
+    }
 }
