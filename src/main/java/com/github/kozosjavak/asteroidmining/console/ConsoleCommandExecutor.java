@@ -32,7 +32,10 @@ public class ConsoleCommandExecutor extends CommandExecutor {
             new CreateSunAdapter(),
             new SettlerAddMaterialAdapter(),
             new StartSolarStormAdapter(),
-            new SettlerRemoveMaterialAdapter()
+            new SettlerRemoveMaterialAdapter(),
+            new ShowGameStateAdapter(),
+            new CreateSunAdapter(),
+            new SettlerAddMaterialAdapter()
     );
 
     public ConsoleCommandExecutor(Game game) {

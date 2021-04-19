@@ -50,4 +50,12 @@ public class Sun extends Orb {
         }
 
     }
+
+    @Override
+    public String toString(int depth, Game game) {
+        String tab = "";
+        for (int i = 0; i < depth; i++) tab += "\t";
+
+        return tab + "Sun {ID = " + game.getId(this) + "}\n";
+    }
 }

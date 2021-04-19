@@ -71,4 +71,11 @@ public class Teleport implements Steppable {
             reDeployTeleport(getLocation().getRandomNeighbor());
         }
     }
+
+    public String toString(int depth, Game game) {
+        String tab = "";
+        for (int i = 0; i < depth; i++) tab += "\t";
+
+        return tab + "Teleport {ID = " + game.getId(this) + ", PairID = " + game.getId(pair) + "}\n";
+    }
 }

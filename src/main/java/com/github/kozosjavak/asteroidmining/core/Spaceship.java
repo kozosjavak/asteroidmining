@@ -100,4 +100,7 @@ public class Spaceship implements Explodeable {
          */
     }
 
+    public String toString(int depth, Game game) {
+        return null;
+    }
 }

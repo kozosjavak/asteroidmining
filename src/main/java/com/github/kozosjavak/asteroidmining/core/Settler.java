@@ -167,5 +167,23 @@ public class Settler extends Spaceship implements Steppable {
             inventory.experienceExtremeHeat(this);
         }
     }
+
+    @Override
+    public String toString(int depth, Game game) {
+        String tab = "";
+        for (int i = 0; i < depth; i++) tab += "\t";
+
+        String out = tab + "Settler {\n" +
+                tab + "\tID = " + game.getId(this) + ",\n";
+        out += tab + "\tInentory = {\n" + inventory.toString(depth + 2, game);
+        out += tab + "\t},\n";
+        out += tab + "\tTeleportInventory = {\n";
+        for (int i = 0; i < 3; i++) {
+            if (teleportInventory[i] != null) out += tab + "\t\t" + teleportInventory[i].toString(depth + 3, game);
+        }
+        out += tab + "\t}\n";
+        out += tab + "}";
+        return out;
+    }
 }
 

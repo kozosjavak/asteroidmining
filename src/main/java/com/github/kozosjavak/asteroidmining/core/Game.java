@@ -138,4 +138,14 @@ public class Game {
         running = false;
     }
 
+    public String toString(int depth) {
+        String out = "";
+        for (Object obj : idList) {
+            if (obj.getClass().getSuperclass() == Orb.class) {
+                Orb orb = (Orb) obj;
+                out += orb.getLocation().toString(depth + 1);
+            }
+        }
+        return out;
+    }
 }
