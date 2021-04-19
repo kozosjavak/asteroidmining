@@ -31,6 +31,8 @@ public class ConsoleCommandExecutor extends CommandExecutor {
             new CreateSettlerAdapter(),
             new CreateSunAdapter(),
             new SettlerAddMaterialAdapter(),
+            new SettlerBuildBaseAdapter(),
+            new SettlerAddMaterialAdapter(),
             new StartSolarStormAdapter(),
             new SettlerRemoveMaterialAdapter(),
             new ShowGameStateAdapter(),
