@@ -34,7 +34,9 @@ public class Sun extends Orb {
         }
     }
 
-
+    public void generateDirectSolarStorm(){
+        experienceSolarStorm();
+    }
     /**
      * Lépés implementációja
      */
