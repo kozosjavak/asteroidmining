@@ -25,7 +25,13 @@ public class SettlerDrillCommand implements Command {
      */
     @Override
     public void apply(Game game) throws Exception {
-        Settler settler = (Settler) game.getObjectFromID(settlerID);
-        settler.drill();
+        if (game.getObjectFromID(settlerID).getClass() == Settler.class) {
+            Settler settler = (Settler) game.getObjectFromID(settlerID);
+            settler.drill();
+        }
+        else {
+            System.out.println("Invalid Settler ID!\n");
+        }
+
     }
 }
