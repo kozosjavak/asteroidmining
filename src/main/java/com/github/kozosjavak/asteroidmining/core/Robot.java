@@ -40,6 +40,13 @@ public class Robot extends Spaceship implements Steppable {
     }
 
     @Override
+    public String toString(int depth, Game game) {
+        String tab = "";
+        for (int i = 0; i < depth; i++) tab += "\t";
+        return tab + "Robot {ID = " + game.getId(this) + "}";
+    }
+
+    @Override
     public void getHitByExplosion() {
         try {
             move(getCurrentAsteroid().getLocation().getRandomNeighbor());

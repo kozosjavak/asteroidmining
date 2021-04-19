@@ -40,6 +40,8 @@ public class ConsoleCommandExecutor extends CommandExecutor {
             new SettlerAddMaterialAdapter(),
             new UfoStealAdapter(),
             new SettlerBuildRobotAdapter(),
+            new SettlerBuildTeleportAdapter(),
+            new SettlerBuildRobotAdapter(),
             new UfoStealAdapter(),
             new CreateRobotAdapter()
     );
