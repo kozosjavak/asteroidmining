@@ -85,7 +85,11 @@ public class Spaceship implements Explodeable {
     }
 
     @Override
-    public void explode() throws Exception {
+    public void explode() {
+        currentAsteroid.explode();
+    }
+
+    public void getHitByExplosion() {
         die();
     }
 

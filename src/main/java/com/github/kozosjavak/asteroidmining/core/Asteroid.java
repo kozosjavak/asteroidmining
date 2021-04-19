@@ -140,9 +140,9 @@ public class Asteroid extends Orb implements Explodeable {
     /**
      * Aszteroida felrobbanása
      */
-    public void explode() throws Exception {
+    public void explode() {
         for (Spaceship spaceship : residence) {
-            spaceship.explode();
+            spaceship.getHitByExplosion();
         }
         residence.clear();
         getLocation().fullClearByExplosion();

@@ -40,7 +40,11 @@ public class Robot extends Spaceship implements Steppable {
     }
 
     @Override
-    public void explode() throws Exception {
-        move(getCurrentAsteroid().getLocation().getRandomNeighbor());
+    public void getHitByExplosion() {
+        try {
+            move(getCurrentAsteroid().getLocation().getRandomNeighbor());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
