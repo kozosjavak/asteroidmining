@@ -43,7 +43,8 @@ public class ConsoleCommandExecutor extends CommandExecutor {
             new SettlerBuildTeleportAdapter(),
             new SettlerBuildRobotAdapter(),
             new UfoStealAdapter(),
-            new CreateRobotAdapter()
+            new CreateRobotAdapter(),
+            new CreateTeleportAdapter()
     );
 
     public ConsoleCommandExecutor(Game game) {
