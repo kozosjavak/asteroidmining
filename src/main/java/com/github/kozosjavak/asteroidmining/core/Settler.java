@@ -3,6 +3,7 @@ package com.github.kozosjavak.asteroidmining.core;
 import com.github.kozosjavak.asteroidmining.core.bills.Bills;
 import com.github.kozosjavak.asteroidmining.core.materials.Inventory;
 import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullException;
+import com.github.kozosjavak.asteroidmining.core.materials.Material;
 import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 
 /**
@@ -35,6 +36,8 @@ public class Settler extends Spaceship implements Steppable {
     public Inventory getInventory() {
         return inventory;
     }
+
+    public void addToInventory(Material material) throws InventoryIsFullException {inventory.add(material);}
 
     public Teleport[] getTeleportInventory(){
         return teleportInventory;
