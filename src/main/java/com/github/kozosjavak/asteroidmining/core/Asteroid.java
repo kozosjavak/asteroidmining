@@ -211,11 +211,27 @@ public class Asteroid extends Orb implements Explodeable {
         for (Spaceship spaceship : residence) {
             spaceship.experienceExtremeHeat();
         }
-
     }
 
     public int getSurfaceThickness() {
         return surfaceThickness;
     }
 
+    @Override
+    public String toString(int depth, Game game) {
+        String tab = "";
+        for (int i = 0; i < depth; i++) tab += "\t";
+
+        String out = " Asteroid {\n";
+        out += tab + "ID = " + game.getId(this) + ",\n";
+        out += tab + "CrustThickness = " + surfaceThickness + ",\n";
+        out += tab + "AsteroidInventory = {\n" + asteroidInventory.toString(depth + 1, game) + tab + "},\n";
+        out += tab + "Substance = " + (substance == null ? "null\n" : substance.toString(0, game));
+        out += tab + "Residence = {\n";
+        for (Spaceship resident : residence) {
+            out += resident.toString(depth + 1, game) + ",\n";
+        }
+        out += tab + "}\n";
+        return out;
+    }
 }

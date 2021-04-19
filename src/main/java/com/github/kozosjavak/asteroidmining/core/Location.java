@@ -122,12 +122,20 @@ public class Location {
         getCelestialBody().experienceExtremeHeat();
     }
 
-    public String toString() {
-        return "Sun @" + Integer.toHexString(hashCode()) + "{" +
-                (
-                        "\n" + "neighbors=\n" + neighbors
-                ).indent(4) +
-                '}';
+    public String toString(int depth) {
+        String tab = "";
+        for (int i = 0; i < depth; i++) tab += "\t";
+
+        String out = "Location {\n";
+        out += tab + "Neighbors = {";
+        for (Location loc : neighbors) {
+            out += game.getId(loc.getCelestialBody()) + ", ";
+        }
+        out += "},\n";
+        out += tab + "Orb = " + (celestialBody == null ? "null" : celestialBody.toString(depth + 1, game));
+        out += tab + "Teleport = " + (teleport == null ? "null\n" : teleport.toString(depth + 1, game));
+        out += "},\n";
+        return out;
     }
 
     public Orb getOrb() {

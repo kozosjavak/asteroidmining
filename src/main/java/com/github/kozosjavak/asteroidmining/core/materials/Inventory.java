@@ -1,6 +1,7 @@
 package com.github.kozosjavak.asteroidmining.core.materials;
 
 import com.github.kozosjavak.asteroidmining.core.Explodeable;
+import com.github.kozosjavak.asteroidmining.core.Game;
 
 import java.util.*;
 
@@ -93,4 +94,14 @@ public class Inventory {
         }
     }
 
+    public String toString(int depth, Game game) {
+        String tab = "";
+        for (int i = 0; i < depth; i++) tab += "\t";
+
+        String out = "";
+        for (Material material : materials) {
+            out += tab + material.toString(depth + 1, game) + "\n";
+        }
+        return out;
+    }
 }

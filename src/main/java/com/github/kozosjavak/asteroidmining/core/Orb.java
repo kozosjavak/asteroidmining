@@ -28,8 +28,11 @@ public class Orb implements Steppable {
     public void experienceExtremeHeat() throws Exception {
     }
 
-
     @Override
     public void step() throws CantMoveToTheSpecificLocationException {
+    }
+
+    public String toString(int depth, Game game) {
+        return null;
     }
 }
