@@ -161,6 +161,12 @@ public class Asteroid extends Orb implements Explodeable {
         }
     }
 
+    public void insertSubstance(Material material) {
+        if (material != null) {
+            substance = material;
+        }
+    }
+
     /**
      * Megadott nyersanyag eltávolítása a map-ból, ha lehetséges
      *

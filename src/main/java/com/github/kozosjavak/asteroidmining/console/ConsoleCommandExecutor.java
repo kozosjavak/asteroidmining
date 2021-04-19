@@ -20,7 +20,8 @@ public class ConsoleCommandExecutor extends CommandExecutor {
             new CreateAsteroidAdapter(),
             new CreateMaterialAdapter(),
             new SpaceshipMoveAdapter(),
-            new CreateSettlerAdapter()
+            new CreateSettlerAdapter(),
+            new InsertMaterialAdapter()
     );
 
     public ConsoleCommandExecutor(Game game) {
