@@ -21,6 +21,8 @@ public class ConsoleCommandExecutor extends CommandExecutor {
             new CreateMaterialAdapter(),
             new SpaceshipMoveAdapter(),
             new CreateSettlerAdapter(),
+            new AddNeighborAdapter(),
+            new CreateSettlerAdapter(),
             new SettlerDrillAdapter(),
             new CreateSettlerAdapter(),
             new InsertMaterialAdapter(),
