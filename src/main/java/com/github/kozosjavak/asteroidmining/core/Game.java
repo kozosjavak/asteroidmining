@@ -27,7 +27,7 @@ public class Game {
     /**
      * Initializing the sun in the game
      */
-    private Sun theSun;
+    private Sun sun;
     private boolean running = true;
     private boolean isWon = false;
 
@@ -171,8 +171,12 @@ public class Game {
      *
      * @return Sun
      */
-    public Sun getTheSun() {
-        return theSun;
+    public Sun getSun() {
+        return sun;
+    }
+
+    public void setSun(Sun sun) {
+        this.sun = sun;
     }
 
     /**
@@ -194,7 +198,6 @@ public class Game {
         settlers.remove(settler);
     }
 
-
     /**
      * Starts the game, generate the world
      */
@@ -211,7 +214,7 @@ public class Game {
      * Win the game
      */
     public void Win() {
-        theSun = null;
+        sun = null;
         isWon = true;
         System.gc();
     }

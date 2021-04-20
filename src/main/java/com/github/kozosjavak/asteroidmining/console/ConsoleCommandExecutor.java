@@ -6,10 +6,10 @@ import com.github.kozosjavak.asteroidmining.core.commands.Command;
 import com.github.kozosjavak.asteroidmining.core.commands.CommandExecutor;
 
 import java.io.InputStream;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Console communicator
@@ -18,7 +18,7 @@ public class ConsoleCommandExecutor extends CommandExecutor {
     /**
      * List of the adapters of the commands which can be performed
      */
-    private static final List<StringCommandAdapter> adapterCommandList = List.of(
+    private static final Set<StringCommandAdapter> adapterCommandList = Set.of(
             new StartCommandAdapter(),
             new CreateAsteroidAdapter(),
             new CreateMaterialAdapter(),
@@ -52,7 +52,8 @@ public class ConsoleCommandExecutor extends CommandExecutor {
             new CreateTeleportAdapter(),
             new AddTeleportAdapter(),
             new SettlerUseTeleportAdapter(),
-            new SettlerInsertMaterialAdapter()
+            new SettlerInsertMaterialAdapter(),
+            new CreateUfoAdapter()
     );
 
     public ConsoleCommandExecutor(Game game) {
@@ -75,7 +76,7 @@ public class ConsoleCommandExecutor extends CommandExecutor {
                 if (optionalCommand.isPresent()) {
                     execute(optionalCommand.get());
                 } else {
-                    System.out.println("Wrong command");
+                    System.err.println("Wrong command: " + line);
                 }
             }
         }
