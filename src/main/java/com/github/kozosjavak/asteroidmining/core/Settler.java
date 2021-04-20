@@ -185,8 +185,11 @@ public class Settler extends Spaceship implements Steppable {
      * @throws AsteroidNotMinedException if the asteroid not mined
      * @throws InventoryIsFullException  if the asteroid inventory is full
      */
-    public void insertMaterial() throws AsteroidNotMinedException, InventoryIsFullException {
-        getCurrentAsteroid().insertMaterial(inventory.getList().get(0));
+    public void insertMaterial() throws AsteroidNotMinedException, InventoryIsFullException, NotEnoughMaterialException {
+        if (inventory.getSize() > 0) {
+            getCurrentAsteroid().insertMaterial(inventory.getList().get(0));
+            inventory.remove(inventory.getList().get(0).getClass(), 1);
+        }
     }
 
 

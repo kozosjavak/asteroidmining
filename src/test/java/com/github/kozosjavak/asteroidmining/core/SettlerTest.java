@@ -88,7 +88,7 @@ public class SettlerTest {
     }
 
     @Test
-    public void settler_insert_material_to_asteroid() throws AsteroidIsNotMineable, InventoryIsFullException, AsteroidNotMinedException {
+    public void settler_insert_material_to_asteroid() throws AsteroidIsNotMineable, InventoryIsFullException, AsteroidNotMinedException, NotEnoughMaterialException {
         Location location1 = new Location(game, 5.4, 3.2);
         Asteroid asteroid1 = new Asteroid(location1, 0, false, new Coal(), 1);
         Settler settler = new Settler(asteroid1);

@@ -1,10 +1,22 @@
-CreateMaterial uran 1
-CreateAsteroid 0
-CreateSettler 1
 CreateAsteroid 1
+CreateAsteroid 0
+CreateAsteroid 0
+AddNeighbor 0 1
+AddNeighbor 1 2
+AddNeighbor 0 2
+CreateSettler 0
+CreateSettler 1
+CreateUfo 0
+CreateUfo 1
+CreateRobot 0
+CreateRobot 1
+CreateTeleport
+CreateTeleport
+LinkTeleport 5 6
+AddTeleport 5 1
+AddTeleport 6 2
 CreateSun
-CreateUfo 3
-AddNeighbor 1 4
-AddNeighbor 3 4
+AddNeighbor 0 7
+AddNeighbor 1 7
 StartSolarStorm
 ShowGameState
