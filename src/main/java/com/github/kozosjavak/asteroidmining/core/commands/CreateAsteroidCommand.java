@@ -41,7 +41,7 @@ public class CreateAsteroidCommand implements Command {
         if (materialID != -1) {
             if(game.getObjectFromID(materialID) != null) {
                 if (game.getObjectFromID(materialID).getClass().getSuperclass() == Object.class) { // bovithetoseg miatt nem jobban definialt
-                    asteroid = new Asteroid(loc, surfaceThickness, false, (Material) game.getObjectFromID(materialID), 0);
+                    asteroid = new Asteroid(loc, surfaceThickness, (Material) game.getObjectFromID(materialID));
                 }
                 else {
                     System.out.println("Invalid material ID!\n");
@@ -54,7 +54,7 @@ public class CreateAsteroidCommand implements Command {
             }
         }
         else {
-            asteroid = new Asteroid(loc, surfaceThickness, false, null, 0);
+            asteroid = new Asteroid(loc, surfaceThickness, null);
         }
 
         game.addLocation(loc);

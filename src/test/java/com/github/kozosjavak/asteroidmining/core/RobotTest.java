@@ -37,8 +37,8 @@ public class RobotTest {
         Location location2 = new Location(game, 1.6, 2.8);
         location1.addNeighbor(location2);
         location2.addNeighbor(location1);
-        Asteroid asteroid1 = new Asteroid(location1, 0, false, new Uranium(), 1);
-        Asteroid asteroid2 = new Asteroid(location2, 4, false, new Coal(), 1);
+        Asteroid asteroid1 = new Asteroid(location1, 0, new Uranium());
+        Asteroid asteroid2 = new Asteroid(location2, 4, new Coal());
         Robot robot = new Robot(asteroid1);
 
 
@@ -61,7 +61,7 @@ public class RobotTest {
     @Test
     public void it_should_drill_by_step() throws Exception {
         Location location = new Location(game, 0.0, 0.0);
-        Asteroid asteroid = new Asteroid(location, 2, false, null, 0);
+        Asteroid asteroid = new Asteroid(location, 2, null);
         Robot robot = new Robot(asteroid);
         robot.step();
         assertEquals(1, asteroid.getSurfaceThickness());
@@ -73,8 +73,8 @@ public class RobotTest {
         Location location1 = new Location(game, 1.2, 1.1);
         game.addLocation(location);
         game.addLocation(location1);
-        Asteroid asteroid1 = new Asteroid(location, 0, false, new Coal(), 0);
-        Asteroid asteroid2 = new Asteroid(location1, 2, false, new Coal(), 0);
+        Asteroid asteroid1 = new Asteroid(location, 0, new Coal());
+        Asteroid asteroid2 = new Asteroid(location1, 2, new Coal());
         Robot robot = new Robot(asteroid1);
         asteroid1.getLocation().refreshNeighborsList(5);
         asteroid2.getLocation().refreshNeighborsList(5);

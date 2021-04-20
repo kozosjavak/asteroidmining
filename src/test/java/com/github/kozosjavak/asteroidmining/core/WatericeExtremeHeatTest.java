@@ -10,7 +10,7 @@ public class WatericeExtremeHeatTest {
     public void waterice_should_sublimate() throws Exception {
         Location testLocation = new Location(new Game(100, 100), 2.2, 2.5);
         Material testMaterial = new Waterice();
-        Asteroid testAsteroid = new Asteroid(testLocation, 0, true, testMaterial, 0);
+        Asteroid testAsteroid = new Asteroid(testLocation, 0, testMaterial);
 
         testAsteroid.experienceExtremeHeat();
 

@@ -46,8 +46,11 @@ public class Sun extends Orb {
         }
     }
 
-    public void generateDirectSolarStorm(){
-        experienceSolarStorm();
+    @Override
+    public void experienceExtremeHeat() throws Exception {
+        for (Location location : getLocation().getNeighbors()) {
+            location.experienceExtremeHeat();
+        }
     }
 
     /**
@@ -55,6 +58,7 @@ public class Sun extends Orb {
      */
     @Override
     public void step() throws CantMoveToTheSpecificLocationException {
+
         if (getLocation().game.randomGenerator(20)) {
             sunMoving(random.nextDouble() * getLocation().game.getMaxX(), random.nextDouble() * getLocation().game.getMaxY());
         }

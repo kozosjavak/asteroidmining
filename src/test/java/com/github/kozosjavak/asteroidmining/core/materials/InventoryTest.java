@@ -83,7 +83,7 @@ public class InventoryTest {
         Game game = new Game(100, 100);
         Location location = new Location(game, 0.0, 0.0);
         Uranium uranium = new Uranium();
-        Asteroid asteroid = new Asteroid(location, 0, true, null, 0);
+        Asteroid asteroid = new Asteroid(location, 0, null);
         asteroid.insertMaterial(uranium);
         location.experienceExtremeHeat();
         assertNotNull(location.getCelestialBody());

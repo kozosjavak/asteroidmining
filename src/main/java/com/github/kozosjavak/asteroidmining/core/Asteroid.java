@@ -15,16 +15,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Asteroid extends Orb implements Explodeable {
 
     /**
-     * Is it close to sun
-     */
-    private final boolean inSunZone;
-
-    /**
-     * Inicializálandó szomszédos aszteroidák száma
-     */
-    private final int numberOfChildren;
-
-    /**
      * Inventory of the stored material on the asteroid, after it mined
      */
     private final Inventory asteroidInventory = new Inventory(0);
@@ -45,16 +35,12 @@ public class Asteroid extends Orb implements Explodeable {
      * Aszteroida konstruktor
      *
      * @param surfaceThickness inicializálandó kéregvastagság
-     * @param inSunZone        napközelben van-e az inicializáladnó aszteroida
      * @param substance        aszteroida magjába inicializálandó nyersanyag
-     * @param numberOfChildren inicializálandó szomszédos aszteroidák száma
      */
-    public Asteroid(Location location, int surfaceThickness, boolean inSunZone, Material substance, int numberOfChildren) {
+    public Asteroid(Location location, int surfaceThickness, Material substance) {
         super(location);
         this.surfaceThickness = surfaceThickness;
-        this.inSunZone = inSunZone;
         this.substance = substance;
-        this.numberOfChildren = numberOfChildren;
     }
 
     public Material getSubstance() {
@@ -67,10 +53,6 @@ public class Asteroid extends Orb implements Explodeable {
 
     public List<Material> getMaterials() {
         return asteroidInventory.getList();
-    }
-
-    public boolean isInSunZone() {
-        return inSunZone;
     }
 
     public Inventory getAsteroidInventory() {
