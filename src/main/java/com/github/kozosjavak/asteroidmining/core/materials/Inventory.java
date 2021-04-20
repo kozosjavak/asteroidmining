@@ -27,16 +27,29 @@ public class Inventory {
         return new Inventory(0);
     }
 
+    /**
+     * Returns the size of the inventory
+     *
+     * @return int
+     */
     public int getSize() {
         return materials.size();
     }
 
+    /**
+     * Returns the list of the materials which stored in the inventory
+     *
+     * @return List<Material>
+     */
     public List<Material> getList() {
         return Collections.unmodifiableList(materials);
     }
 
     /**
-     * @param material
+     * Adds the given material to the inventory list
+     *
+     * @param material Material
+     * @return Inventory
      * @throws InventoryIsFullException
      */
     public Inventory add(final Material material) throws InventoryIsFullException {
@@ -49,8 +62,9 @@ public class Inventory {
     }
 
     /**
-     * @param materialType
-     * @param amount
+     * Removes the given amount of the specified materials from the list
+     * @param materialType Material
+     * @param amount int
      * @throws NotEnoughMaterialException
      */
     public void remove(final Class<? extends Material> materialType, final int amount) throws NotEnoughMaterialException {
@@ -88,12 +102,25 @@ public class Inventory {
         return Collections.unmodifiableMap(result);
     }
 
+    /**
+     * Implementation of the experienceExtremeHeat()
+     *
+     * @param carrier Explodeable, carrier of the inventory
+     * @throws Exception
+     */
     public void experienceExtremeHeat(Explodeable carrier) throws Exception {
         for (Material material : materials) {
             material.experienceExtremeHeat(carrier);
         }
     }
 
+    /**
+     * Return the inventory structure in string
+     *
+     * @param depth needed for the correct amount of /t before the data for correct write out
+     * @param game  needed for give the ID of itself
+     * @return String
+     */
     public String toString(int depth, Game game) {
         String tab = "";
         for (int i = 0; i < depth; i++) tab += "\t";

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Játék osztály
+ * The game class everything starts here and can be manipulated from here
  */
 public class Game {
     private final double maxX;
@@ -17,21 +17,61 @@ public class Game {
     private final List<Location> locationList = new ArrayList<>();
 
     ///////
-    //Id implementation, not stationary
+    //Id implementation, for e2e tests
     //////
+    /**
+     * List of the objects, the id is given by the object position on the list
+     */
     private final List<Object> idList = new ArrayList<>();
+    /**
+     * Settlers stored who is alive and in the game currently
+     */
+    private final List<Steppable> settlers = new ArrayList<>();
+    /**
+     * Initializing the sun in the game
+     */
+    private Sun theSun;
 
+    /**
+     * Constructor, it needs 2 coordinates to determine the maximum size of the map
+     *
+     * @param maxX
+     * @param maxY
+     */
+    public Game(double maxX, double maxY) {
+        this.maxX = maxX;
+        this.maxY = maxY;
+    }
+
+    /**
+     * Where you can add an object to the list and prints out the freshly given ID
+     *
+     * @param object object
+     */
     public void putInIdList(Object object) {
         idList.add(object);
         System.out.println("ID: " + getId(object));
     }
+    ///////
 
+    /**
+     * Gives back the object ,which can be casted to the correct one, from the given id
+     *
+     * @param id Int id
+     * @return Object/null
+     */
     public Object getObjectFromID(int id) {
         if (id <= idList.size() - 1 && id >= 0)
             return idList.get(id);
         return null;
     }
 
+    /**
+     * It gives back the position of the specific object from the list
+     *
+     * @param object Give object
+     * @return Int id
+     */
     public int getId(Object object) {
         if (idList.contains(object)) {
             return idList.indexOf(object);
@@ -39,39 +79,50 @@ public class Game {
         return -1;
     }
 
+    private boolean running = true;
+
+    /**
+     * Print out all the object stored in the ID list
+     */
     public void writeOutALlID() {
         for (Object object : idList) {
             System.out.println(getId(object));
         }
     }
-    ///////
-    /**
-     * A játékban levő telepesek száma
-     */
-    private final List<Steppable> settlers = new ArrayList<>();
-    /**
-     * A játékban levő nap inicializálása
-     */
-    private Sun theSun;
-    private boolean running = true;
 
-    public Game(double maxX, double maxY) {
-        this.maxX = maxX;
-        this.maxY = maxY;
-    }
-
+    /**
+     * Gives back the maximum X coordinate
+     *
+     * @return double maxX
+     */
     public double getMaxX() {
         return maxX;
     }
 
+    /**
+     * Gives back the maximum Y coordinate
+     *
+     * @return double maxY
+     */
     public double getMaxY() {
         return maxY;
     }
 
+    /**
+     * Gives back an unmodifiableList of the stored locations
+     *
+     * @return
+     */
     public List<Location> getLocationList() {
         return Collections.unmodifiableList(locationList);
     }
 
+    /**
+     * Gives back a location from the location id
+     *
+     * @param id int ID
+     * @return Location location
+     */
     public Location getLocation(int id) {
         if (id > 0 && id < locationList.size() - 1) {
             return locationList.get(id);
@@ -79,6 +130,11 @@ public class Game {
         return null;
     }
 
+    /**
+     * Add new location to the location list
+     *
+     * @param newLocation Location
+     */
     public void addLocation(Location newLocation) {
         locationList.add(newLocation);
     }
@@ -92,25 +148,45 @@ public class Game {
         return false;
     }
 
+    /**
+     * Gives back the number of settlers in the game, which is alive
+     *
+     * @return int
+     */
     public int getNumberOfSettlers() {
         return settlers.size();
     }
 
+    /**
+     * Gives back the sun
+     *
+     * @return Sun
+     */
     public Sun getTheSun() {
         return theSun;
     }
 
+    /**
+     * Insert a settler in the settlers list
+     *
+     * @param settler Settler
+     */
     public void addASettlerInGame(Settler settler) {
         settlers.add(settler);
     }
 
+    /**
+     * Removes a settler from the settlers list
+     *
+     * @param settler
+     */
     public void removeSettlerFromGame(Settler settler) {
         settlers.remove(settler);
     }
 
 
     /**
-     * Játék indítása
+     * Starts the game, generate the world
      */
     public void startGame(double distanceOfNeighbors) throws Exception {
         //Generate world
@@ -121,23 +197,38 @@ public class Game {
         }
     }
 
+    /**
+     * Win the game
+     */
     public void Win() {
         // System.out.println("Win, Congrat commrad!");
         theSun = null;
         System.gc();
     }
 
+    /**
+     * Gives you back random boolean based on percentage given
+     *
+     * @param percentage Int range
+     * @return boolean
+     */
     Boolean randomGenerator(int percentage) {
         return random.nextInt(1000) % 100 < percentage;
     }
 
     /**
-     * Játék állapotának ellenőrzése. Ha teljesül a játék végét jelentő feltétel akkor végetér a játék.
+     * End game
      */
     public void endGame() {
         running = false;
     }
 
+    /**
+     * Write out all of the objects toString()
+     *
+     * @param depth needed for the correct amount of /t before the data for correct write out
+     * @return String
+     */
     public String toString(int depth) {
         String out = "";
         for (Object obj : idList) {

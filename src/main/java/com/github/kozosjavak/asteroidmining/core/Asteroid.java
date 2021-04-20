@@ -15,7 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Asteroid extends Orb implements Explodeable {
 
     /**
-     * Napközelben van-e az aszteroida
+     * Is it close to sun
      */
     private final boolean inSunZone;
 
@@ -25,19 +25,19 @@ public class Asteroid extends Orb implements Explodeable {
     private final int numberOfChildren;
 
     /**
-     * Aszteroidában a kibányászása után tárolt nyersanyaglista
+     * Inventory of the stored material on the asteroid, after it mined
      */
     private final Inventory asteroidInventory = new Inventory(0);
     /**
-     * Aszteroidán levő űrhajók listája
+     * List of SpaceShips on the asteroid
      */
     private final List<Spaceship> residence = new CopyOnWriteArrayList<>();
     /**
-     * Aszteroida kéregvastagsága
+     * Thickness of the surface of the asteroid
      */
     private int surfaceThickness;
     /**
-     * Aszteroida magjában levő nyersanyag
+     * Material in the core of the asteroid which can be mined
      */
     private Material substance;
 
@@ -138,7 +138,7 @@ public class Asteroid extends Orb implements Explodeable {
     }
 
     /**
-     * Aszteroida felrobbanása
+     * Aszteroida explode and all thing on location explode with it
      */
     public void explode() {
         for (Spaceship spaceship : residence) {
@@ -149,9 +149,9 @@ public class Asteroid extends Orb implements Explodeable {
     }
 
     /**
-     * Berakja a megadott nyersanyagot a map-ba
+     * Insert the given material in the asteroid inventory
      *
-     * @param material a berakandó nyersanyag
+     * @param material the material
      */
     public void insertMaterial(Material material) throws AsteroidNotMinedException, InventoryIsFullException {
         if (substance == null && surfaceThickness == 0) {
@@ -161,6 +161,11 @@ public class Asteroid extends Orb implements Explodeable {
         }
     }
 
+    /**
+     * Insert the given substance to the core of the asteroid, created for the e2e test
+     *
+     * @param material the material
+     */
     public void insertSubstance(Material material) {
         if (material != null) {
             substance = material;
@@ -168,7 +173,7 @@ public class Asteroid extends Orb implements Explodeable {
     }
 
     /**
-     * Megadott nyersanyag eltávolítása a map-ból, ha lehetséges
+     * Remove the given material from the asteroid inventory, if it exist
      *
      * @param materialToRemove az eltávolítandó nyersanyag
      * @throws NotEnoughMaterialException ha nincs elég nyersanyag, amiből el lehetne távolítani
@@ -184,7 +189,7 @@ public class Asteroid extends Orb implements Explodeable {
     }
 
     /**
-     * Űrbázis építése
+     * Build the spacebase on the asteroid, it means the end of the game with win
      */
     public void buildBase() {
         System.out.println("Base builded!");
@@ -192,7 +197,7 @@ public class Asteroid extends Orb implements Explodeable {
     }
 
     /**
-     * Napvihar átélése
+     * Get solar stormed, it will call the experienceSolarStorm() on all the spaceship on the asteroid
      */
     @Override
     public void experienceSolarStorm() {
@@ -201,6 +206,11 @@ public class Asteroid extends Orb implements Explodeable {
         }
     }
 
+    /**
+     * Get extreme heat, itt will call the experienceExtremeHeat() on the inventory and on all the spaceship on the asteroid
+     *
+     * @throws Exception inventory exceptions
+     */
     @Override
     public void experienceExtremeHeat() throws Exception {
         if (surfaceThickness == 0 && substance != null) {
@@ -213,10 +223,22 @@ public class Asteroid extends Orb implements Explodeable {
         }
     }
 
+    /**
+     * Give back the thickness of the surface
+     *
+     * @return int thickness of the surface
+     */
     public int getSurfaceThickness() {
         return surfaceThickness;
     }
 
+    /**
+     * Return the asteroid structure in string
+     *
+     * @param depth needed for the correct amount of /t before the data for correct write out
+     * @param game  needed for give the ID of itself
+     * @return String
+     */
     @Override
     public String toString(int depth, Game game) {
         String tab = "";

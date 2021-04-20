@@ -35,6 +35,13 @@ public interface BillOfMaterial {
         return materialsLeft;
     }
 
+    /**
+     * itt will remove the needed materials from the given inventory and if it succesfull it will return with True
+     *
+     * @param inventory Inventory
+     * @return boolean
+     * @throws NotEnoughMaterialException if there is not enough material in the inventory
+     */
     default boolean buy(Inventory inventory) throws NotEnoughMaterialException {
         Map<Class<? extends Material>, Integer> currentNeed = this.isNeeded(inventory);
         //check if the returned (currentNeed) map is empty
@@ -45,7 +52,7 @@ public interface BillOfMaterial {
             }
             return true;
         } else {
-            System.out.println("You can't build " + this.toString() + ", you dont have: ");
+            System.out.println("You can't build " + this + ", you dont have: ");
             for (Map.Entry<Class<? extends Material>, Integer> entry : currentNeed.entrySet()) {
                 System.out.print("Name of material: " + entry.getKey().getSimpleName());
                 System.out.print(", Quantity left: " + entry.getValue().toString());

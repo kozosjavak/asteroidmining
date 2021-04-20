@@ -8,24 +8,27 @@ import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialExce
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Ufo class
+ */
 public class Ufo extends Spaceship implements Steppable {
 
     /**
-     * Az ufo inventory-ja
+     * Inventory of the Ufo
      */
     private final Inventory inventory = new Inventory(0);
 
     /**
-     * Ufo konstruktor
+     * Basic constructor of the ufo
      *
-     * @param asteroid aszteroida, amire az ufo kerül
+     * @param asteroid Asteroid, where the ufo will be placed
      */
     public Ufo(Asteroid asteroid) {
         super(asteroid);
     }
 
     /**
-     * Lépés implementációja
+     * Implementation of the step(), it's randomly moving,steal,mine
      */
     @Override
     public void step() throws AsteroidIsNotMineable, InventoryIsFullException {
@@ -44,6 +47,9 @@ public class Ufo extends Spaceship implements Steppable {
 
     }
 
+    /**
+     * It steals random amount of material from the asteroid inventory
+     */
     public void steal() {
         Random rand = new Random();
         List<Material> materials = getCurrentAsteroid().getMaterials();
@@ -57,16 +63,21 @@ public class Ufo extends Spaceship implements Steppable {
     }
 
     /**
-     * Bányászás
-     * Nyersanyag kibányászása azon az aszteroidán, amelyen a telepes épp tartózkodik
+     * Mine
+     * Mine on the current asteroid
      *
-     * @throws InventoryIsFullException az inventory tele van kivétel
-     * @throws AsteroidIsNotMineable    az asteroida nem bányászható állapotban van
+     * @throws InventoryIsFullException inventory is full
+     * @throws AsteroidIsNotMineable    asteroid can't be mined
      */
     public void mine() throws InventoryIsFullException, AsteroidIsNotMineable {
         inventory.add(getCurrentAsteroid().mine());
     }
 
+    /**
+     * Implementation of the experienceExtremeHeat(), calls inventory experienceExtremeHea()
+     *
+     * @throws Exception
+     */
     @Override
     public void experienceExtremeHeat() throws Exception {
         if (inventory.getSize() != 0) {
@@ -74,10 +85,22 @@ public class Ufo extends Spaceship implements Steppable {
         }
     }
 
+    /**
+     * Gives back inventory
+     *
+     * @return Inventory
+     */
     public Inventory getInventory() {
         return inventory;
     }
 
+    /**
+     * Return the Ufo structure in string
+     *
+     * @param depth needed for the correct amount of /t before the data for correct write out
+     * @param game  needed for give the ID of itself
+     * @return String
+     */
     @Override
     public String toString(int depth, Game game) {
         String tab = "";
