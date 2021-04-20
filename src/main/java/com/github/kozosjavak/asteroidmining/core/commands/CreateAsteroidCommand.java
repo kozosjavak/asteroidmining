@@ -3,27 +3,61 @@ package com.github.kozosjavak.asteroidmining.core.commands;
 import com.github.kozosjavak.asteroidmining.core.Asteroid;
 import com.github.kozosjavak.asteroidmining.core.Game;
 import com.github.kozosjavak.asteroidmining.core.Location;
+import com.github.kozosjavak.asteroidmining.core.materials.Material;
 
 
-//Itt mar a command listaba mentett command Objektum (fontos kiemelni hogy ez mar egy letezo objektum sajat adatokkal amit megadott neki az adapter)
+/**
+ * Aszteroida letrehozasa parancs implementacio
+ */
 public class CreateAsteroidCommand implements Command {
     private final int surfaceThickness;
+    private final int materialID;
 
-    //csinalunk egy construktort a commandhoz amit az adapter szepen kitolt
-    public CreateAsteroidCommand(int surfaceThickness) {
+    /**
+     * Parancs ctor
+     * @param surfaceThickness az aszteroida kopenyvastagsaga
+     * @param materialID
+     */
+    public CreateAsteroidCommand(int surfaceThickness, int materialID) {
         this.surfaceThickness = surfaceThickness;
+        this.materialID = materialID; // if -1 then empty
     }
 
-    //Itt fut le a command! Vegig megy a command listan es mindegyiken lefuttatja az apply-t, fontos kiemelni hogy ez mar effektiven a jatekon valtoztat ez a vegcel
+    /**
+     * Parancs applikalasa a jatekra
+     * @param game a jatek melyre alkalmazzuk
+     * @param game
+     */
     @Override
     public void apply(Game game) {
         Location loc = new Location(game, 0.0, 0.0);
-        //Itt kene az id listan atmenni es leelenorizni hogy az substance-e es ha igen berakni ide: Most a pelda miatt egy sima coalt rakok be de erre figyleni kell
-        Asteroid asteroid = new Asteroid(loc, surfaceThickness, false, null/*Itt kene az idban meghatarozott Subtance Objektumor berakni*/, 0);
-        //es legvegso soron hozzadjuk az uj lokaciot az uj aszteroidaval egyetembe a jatekhoz
-        game.addLocation(loc);
+        Asteroid asteroid = null;
 
-        //Barmit letrehozol aminek kell ID akkor ez a 2 sor.
+        if(surfaceThickness < 0) {
+            System.out.println("Invalid surface thickness!\n");
+            return;
+        }
+
+        if (materialID != -1) {
+            if(game.getObjectFromID(materialID) != null) {
+                if (game.getObjectFromID(materialID).getClass().getSuperclass() == Object.class) { // bovithetoseg miatt nem jobban definialt
+                    asteroid = new Asteroid(loc, surfaceThickness, false, (Material) game.getObjectFromID(materialID), 0);
+                }
+                else {
+                    System.out.println("Invalid material ID!\n");
+                    return;
+                }
+            }
+            else {
+                System.out.println("Invalid material ID!\n");
+                return;
+            }
+        }
+        else {
+            asteroid = new Asteroid(loc, surfaceThickness, false, null, 0);
+        }
+
+        game.addLocation(loc);
         game.putInIdList(asteroid);
     }
 }
