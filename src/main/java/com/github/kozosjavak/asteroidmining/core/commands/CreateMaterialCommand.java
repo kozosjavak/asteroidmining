@@ -8,24 +8,26 @@ import com.github.kozosjavak.asteroidmining.core.materials.types.Uranium;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Waterice;
 
 public class CreateMaterialCommand implements Command {
-    String data;
 
+    String[] data;
 
-    public CreateMaterialCommand(String data) {
+    public CreateMaterialCommand(String[] data) {
         this.data = data;
     }
 
     @Override
     public void apply(Game game) throws Exception {
         Material mat;
-        if (data.equals("iron")) {
+        if (data[1].equals("iron")) {
             mat = new Iron();
-        } else if (data.equals("coal")) {
+        } else if (data[1].equals("coal")) {
             mat = new Coal();
-        } else if (data.equals("waterice")) {
+        } else if (data[1].equals("waterice")) {
             mat = new Waterice();
-        } else if (data.equals("uran")) {
-            mat = new Uranium();
+        } else if (data[1].equals("uran")) {
+            Uranium uran = new Uranium();
+            if (data.length == 3) uran.setExperienceExtremeHeatCounter(Integer.parseInt(data[2]));
+            mat = uran;
         } else {
             return;
         }
