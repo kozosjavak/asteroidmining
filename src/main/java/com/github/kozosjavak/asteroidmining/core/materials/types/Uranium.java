@@ -11,7 +11,7 @@ public class Uranium implements Material {
         if (experienceExtremeHeatCounter < 3) {
             experienceExtremeHeatCounter++;
         }
-        if (experienceExtremeHeatCounter == 3) {
+        if (experienceExtremeHeatCounter > 2) {
             explodeableHolder.explode();
         }
         System.out.println(experienceExtremeHeatCounter);
@@ -28,5 +28,9 @@ public class Uranium implements Material {
     @Override
     public String toString() {
         return "Uranium";
+    }
+
+    public void setExperienceExtremeHeatCounter(int count) {
+        experienceExtremeHeatCounter = count;
     }
 }
