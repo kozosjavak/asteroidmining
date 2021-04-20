@@ -1,7 +1,6 @@
 package com.github.kozosjavak.asteroidmining.core.commands;
 
 import com.github.kozosjavak.asteroidmining.core.Game;
-import com.github.kozosjavak.asteroidmining.core.Settler;
 import com.github.kozosjavak.asteroidmining.core.Teleport;
 
 /**
@@ -23,14 +22,15 @@ public class LinkTeleportsCommand implements Command {
 
     /**
      * Parancs applikalasa a jatekra
+     *
      * @param game a jatek melyre alkalmazzuk
      * @throws Exception
      */
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if ((game.getObjectFromID(teleportAid).getClass() == Teleport.class) && (game.getObjectFromID(teleportBid).getClass() == Teleport.class)) {
-            Teleport teleportA = new Teleport((Teleport) game.getObjectFromID(teleportAid));
-            Teleport teleportB = new Teleport((Teleport) game.getObjectFromID(teleportBid));
+            Teleport teleportA = (Teleport) game.getObjectFromID(teleportAid);
+            Teleport teleportB = (Teleport) game.getObjectFromID(teleportBid);
             teleportA.setPair(teleportB);
             teleportB.setPair(teleportA);
         } else {

@@ -14,7 +14,7 @@ public class AddTeleportCommand implements Command {
     }
 
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if (game.getObjectFromID(asteroidID).getClass() == Asteroid.class && game.getObjectFromID(teleportID).getClass() == Teleport.class) {
             Asteroid asteroid = (Asteroid) game.getObjectFromID(asteroidID);
             asteroid.getLocation().setTeleport((Teleport) game.getObjectFromID(teleportID));

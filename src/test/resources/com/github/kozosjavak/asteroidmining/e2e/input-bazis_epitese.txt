@@ -1,0 +1,33 @@
+CreateAsteroid 0
+CreateSettler 0
+CreateMaterial iron
+CreateMaterial iron
+CreateMaterial iron
+CreateMaterial waterice
+CreateMaterial waterice
+CreateMaterial waterice
+CreateMaterial coal
+CreateMaterial coal
+CreateMaterial coal
+CreateMaterial uran 1
+CreateMaterial uran 1
+CreateMaterial uran 1
+SettlerAddMaterial 1 2
+SettlerAddMaterial 1 3
+SettlerAddMaterial 1 4
+SettlerAddMaterial 1 5
+SettlerAddMaterial 1 6
+SettlerAddMaterial 1 7
+SettlerAddMaterial 1 8
+SettlerAddMaterial 1 9
+SettlerAddMaterial 1 10
+SettlerAddMaterial 1 11
+SettlerInsertMaterial 1 2
+SettlerInsertMaterial 1 3
+SettlerInsertMaterial 1 4
+SettlerBuildBase 1
+ShowGameState
+SettlerAddMaterial 1 12
+SettlerAddMaterial 1 13
+SettlerBuildBase 1
+ShowGameState

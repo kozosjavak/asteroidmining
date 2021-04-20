@@ -2,6 +2,8 @@ package com.github.kozosjavak.asteroidmining.core.commands;
 
 import com.github.kozosjavak.asteroidmining.core.Game;
 import com.github.kozosjavak.asteroidmining.core.Settler;
+import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullException;
+import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 
 public class SettlerBuildBaseCommand implements Command {
 
@@ -12,10 +14,16 @@ public class SettlerBuildBaseCommand implements Command {
     }
 
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if (game.getObjectFromID(settlerId).getClass() == Settler.class) {
             Settler settler = (Settler) game.getObjectFromID(settlerId);
-            settler.buildBase();
+            try {
+                settler.buildBase();
+            } catch (NotEnoughMaterialException e) {
+                e.printStackTrace(); // TODO
+            } catch (InventoryIsFullException e) {
+                e.printStackTrace(); // TODO
+            }
         } else System.out.printf("Invalid object ID");
     }
 }

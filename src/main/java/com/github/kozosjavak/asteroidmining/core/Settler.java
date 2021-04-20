@@ -27,7 +27,7 @@ public class Settler extends Spaceship implements Steppable {
      */
     public Settler(Asteroid asteroid) {
         super(asteroid);
-        getCurrentAsteroid().getLocation().game.addASettlerInGame(this);
+        getCurrentAsteroid().getLocation().game.getSettlers().add(this);
     }
 
     /**
@@ -100,60 +100,60 @@ public class Settler extends Spaceship implements Steppable {
                 numberOfEmptyElement += 1;
             }
         }
-        if (Bills.TELEPORT.buy(inventory)) {
-            if(numberOfEmptyElement>1){
-                Teleport t1 = new Teleport();
-                Teleport t2 = new Teleport(t1);
-                t1.setPair(t2);
-                for(int i = 0; i < teleportInventory.length; i++) {
-                    if(teleportInventory[i] == null) {
-                        teleportInventory[i]=t1;
-                    break;}
 
-                }
-                for(int i = 0; i < teleportInventory.length; i++) {
-                    if(teleportInventory[i] == null) {
-                        teleportInventory[i]=t2;
-                        break; }
+        Bills.TELEPORT.buy(inventory);
 
+        if (numberOfEmptyElement > 1) {
+            Teleport t1 = new Teleport();
+            Teleport t2 = new Teleport(t1);
+            t1.setPair(t2);
+            for (int i = 0; i < teleportInventory.length; i++) {
+                if (teleportInventory[i] == null) {
+                    teleportInventory[i] = t1;
+                    break;
                 }
+
             }
-            else{
-                System.out.println("Not enough space in teleport inventory");
+            for (int i = 0; i < teleportInventory.length; i++) {
+                if (teleportInventory[i] == null) {
+                    teleportInventory[i] = t2;
+                    break;
+                }
+
             }
+        } else {
+            System.out.println("Not enough space in teleport inventory");
         }
-
     }
 
 
     /**
      * Builds base
+     *
      * @throws NotEnoughMaterialException not enough material on the asteroid, combined with the inventory of the settler
      * @throws InventoryIsFullException
      */
     public void buildBase() throws NotEnoughMaterialException, InventoryIsFullException {
         Inventory inventoryFromAsteroidAndSettler = new Inventory(0);
-        for(int i=0;i< getCurrentAsteroid().getAsteroidInventory().getSize();i++) {
+        for (int i = 0; i < getCurrentAsteroid().getAsteroidInventory().getSize(); i++) {
             inventoryFromAsteroidAndSettler.add(getCurrentAsteroid().getAsteroidInventory().getList().get(i));
         }
-        for(int i=0;i< getInventory().getSize();i++) {
+        for (int i = 0; i < getInventory().getSize(); i++) {
             inventoryFromAsteroidAndSettler.add(getInventory().getList().get(i));
         }
-        if (Bills.BASE.buy(inventoryFromAsteroidAndSettler))
-            getCurrentAsteroid().buildBase();
+        Bills.BASE.buy(inventoryFromAsteroidAndSettler);
+        getCurrentAsteroid().buildBase();
     }
 
     /**
      * Build robot
+     *
      * @return Robot
      * @throws NotEnoughMaterialException not enough material
      */
     public Robot buildRobot() throws NotEnoughMaterialException {
-        if (Bills.ROBOT.buy(inventory)) {
-            Robot robot = new Robot(getCurrentAsteroid());
-            return robot;
-        }
-        return null;
+        Bills.ROBOT.buy(inventory);
+        return new Robot(getCurrentAsteroid());
     }
 
 
@@ -163,7 +163,7 @@ public class Settler extends Spaceship implements Steppable {
      * @param number ID of the teleport which will be placed
      */
     public void deployTeleport(int number) {
-        if( teleportInventory[number] != null) {
+        if (teleportInventory[number] != null) {
             teleportInventory[number].deployTeleport(getCurrentAsteroid().getLocation());
             teleportInventory[number] = null;
         }

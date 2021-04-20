@@ -6,7 +6,7 @@ import com.github.kozosjavak.asteroidmining.core.Teleport;
 public class CreateTeleportCommand implements Command {
 
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         Teleport teleport = new Teleport();
         game.putInIdList(teleport);
     }

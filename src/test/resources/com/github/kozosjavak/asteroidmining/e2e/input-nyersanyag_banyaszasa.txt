@@ -1,0 +1,30 @@
+CreateMaterial coal
+CreateAsteroid 1
+CreateMaterial iron
+CreateAsteroid 0
+AddNeighbor 1 3
+CreateSettler 1
+CreateMaterial coal
+CreateMaterial coal
+CreateMaterial coal
+CreateMaterial coal
+CreateMaterial coal
+CreateMaterial coal
+CreateMaterial coal
+CreateMaterial coal
+CreateMaterial coal
+SettlerAddMaterial 5
+SettlerAddMaterial 6
+SettlerAddMaterial 7
+SettlerAddMaterial 8
+SettlerAddMaterial 9
+SettlerAddMaterial 10
+SettlerAddMaterial 11
+SettlerAddMaterial 12
+SettlerAddMaterial 13
+SettlerMine 4
+SettlerDrill 4
+SettlerMine 4
+SpaceshipMove 4 3
+SettlerMine 4
+ShowGameState

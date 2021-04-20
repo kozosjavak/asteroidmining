@@ -99,14 +99,14 @@ public class Spaceship implements Explodeable {
      * If explode calls the current asteroid explode()
      */
     @Override
-    public void explode() {
+    public void explode() throws Exception {
         currentAsteroid.explode();
     }
 
     /**
      * If it hit by explosion, dies
      */
-    public void getHitByExplosion() {
+    public void getHitByExplosion() throws NoNeighborException {
         die();
     }
 

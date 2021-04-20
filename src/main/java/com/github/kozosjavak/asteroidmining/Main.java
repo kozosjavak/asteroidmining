@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game(20, 20);
         ConsoleCommandExecutor cce = new ConsoleCommandExecutor(game);
-        cce.attachToConsole();
+        cce.attachToConsole(System.in);
     }
 
 }

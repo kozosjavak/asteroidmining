@@ -1,0 +1,13 @@
+CreateAsteroid 0
+CreateAsteroid 0
+CreateSettler 0
+CreateRobot 0
+CreateTeleport
+CreateTeleport
+LinkTeleport 4 5
+AddTeleport 4 0
+AddTeleport 5 1
+AddNeighbor 0 1
+ShowGameState
+AsteroidExplode 0
+ShowGameState

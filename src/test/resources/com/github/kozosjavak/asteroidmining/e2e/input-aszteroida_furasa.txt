@@ -1,0 +1,5 @@
+CreateAsteroid 1
+CreateSettler 0
+SettlerDrill 1
+SettlerDrill 1
+ShowGameState

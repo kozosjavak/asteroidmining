@@ -62,11 +62,7 @@ public class Robot extends Spaceship implements Steppable {
      * hit by explosion and fly to the next random location
      */
     @Override
-    public void getHitByExplosion() {
-        try {
-            move(getCurrentAsteroid().getLocation().getRandomNeighbor());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void getHitByExplosion() throws NoNeighborException {
+        move(getCurrentAsteroid().getLocation().getRandomNeighbor());
     }
 }

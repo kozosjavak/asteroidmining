@@ -1,0 +1,15 @@
+CreateAsteroid 1
+CreateSettler 0
+CreateMaterial uran
+CreateMaterial iron
+CreateMaterial iron
+CreateMaterial waterice
+SettlerAddMaterial 1 2
+SettlerAddMaterial 1 3
+SettlerAddMaterial 1 4
+SettlerBuildTeleport 1
+ShowGameState
+SettlerAddMaterial 1 5
+SettlerBuildTeleport 1
+ShowGameState
+

@@ -1,0 +1,10 @@
+CreateMaterial uran 1
+CreateAsteroid 0
+CreateSettler 1
+CreateAsteroid 1
+CreateSun
+CreateUfo 3
+AddNeighbor 1 4
+AddNeighbor 3 4
+StartSolarStorm
+ShowGameState

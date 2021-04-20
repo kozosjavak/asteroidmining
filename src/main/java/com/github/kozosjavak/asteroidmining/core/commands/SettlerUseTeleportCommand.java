@@ -16,7 +16,7 @@ public class SettlerUseTeleportCommand implements Command {
     }
 
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if (game.getObjectFromID(settlerID).getClass() == Settler.class && game.getObjectFromID(teleportID).getClass() == Teleport.class) {
             teleport = (Teleport) game.getObjectFromID(teleportID);
             settler = (Settler) game.getObjectFromID(settlerID);

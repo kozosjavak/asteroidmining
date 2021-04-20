@@ -1,6 +1,5 @@
 package com.github.kozosjavak.asteroidmining.core.commands;
 
-import com.github.kozosjavak.asteroidmining.core.Asteroid;
 import com.github.kozosjavak.asteroidmining.core.Game;
 import com.github.kozosjavak.asteroidmining.core.Settler;
 
@@ -20,16 +19,20 @@ public class SettlerDrillCommand implements Command {
 
     /**
      * Parancs applikalasa a jatekra
+     *
      * @param game a jatek melyre alkalmazzuk
      * @throws Exception
      */
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if (game.getObjectFromID(settlerID).getClass() == Settler.class) {
             Settler settler = (Settler) game.getObjectFromID(settlerID);
-            settler.drill();
-        }
-        else {
+            try {
+                settler.drill();
+            } catch (Exception exception) {
+                System.err.println("Surface thickness is zero");
+            }
+        } else {
             System.out.println("Invalid Settler ID!\n");
         }
 

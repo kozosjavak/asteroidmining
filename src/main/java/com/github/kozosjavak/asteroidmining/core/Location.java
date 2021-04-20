@@ -121,9 +121,10 @@ public class Location {
 
     /**
      * Return a randomly chosed neighbor location
+     *
      * @return Location
      */
-    public Location getRandomNeighbor() throws Exception {
+    public Location getRandomNeighbor() throws NoNeighborException {
         int randomNext;
         if (neighbors.size() == 0) {
             throw new NoNeighborException(this);
@@ -139,6 +140,7 @@ public class Location {
 
     /**
      * Gives back the list of the neighbors
+     *
      * @return List<Location>
      */
     public List<Location> getNeighbors() {
@@ -147,6 +149,7 @@ public class Location {
 
     /**
      * Add a neighbors in the list
+     *
      * @param location new neighbor
      */
     public void addNeighbor(Location location) {
