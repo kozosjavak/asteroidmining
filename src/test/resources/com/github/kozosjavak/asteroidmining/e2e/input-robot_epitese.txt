@@ -1,0 +1,12 @@
+CreateAsteroid 1
+CreateSettler 0
+CreateMaterial iron
+CreateMaterial coal
+CreateMaterial uran 0
+SettlerAddMaterial 1 2
+SettlerAddMaterial 1 3
+SettlerBuildRobot 1
+ShowGameState
+SettlerAddMaterial 1 4
+SettlerBuildRobot 1
+ShowGameState

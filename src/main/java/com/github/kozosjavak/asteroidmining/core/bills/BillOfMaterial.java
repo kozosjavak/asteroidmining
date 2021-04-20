@@ -52,13 +52,7 @@ public interface BillOfMaterial {
             }
             return true;
         } else {
-            System.out.println("You can't build " + this + ", you dont have: ");
-            for (Map.Entry<Class<? extends Material>, Integer> entry : currentNeed.entrySet()) {
-                System.out.print("Name of material: " + entry.getKey().getSimpleName());
-                System.out.print(", Quantity left: " + entry.getValue().toString());
-            }
-            return false;
+            throw new NotEnoughMaterialException(currentNeed.keySet().iterator().next());
         }
-
     }
 }

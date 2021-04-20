@@ -140,7 +140,7 @@ public class Asteroid extends Orb implements Explodeable {
     /**
      * Aszteroida explode and all thing on location explode with it
      */
-    public void explode() {
+    public void explode() throws NoNeighborException {
         for (Spaceship spaceship : residence) {
             spaceship.getHitByExplosion();
         }
@@ -180,7 +180,6 @@ public class Asteroid extends Orb implements Explodeable {
      */
     public void removeMaterial(Material materialToRemove) throws NotEnoughMaterialException {
         asteroidInventory.remove(materialToRemove.getClass(), 1);
-
     }
 
     @Override

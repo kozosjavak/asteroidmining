@@ -14,7 +14,7 @@ public class InsertMaterialCommand implements Command {
     }
 
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if (game.getObjectFromID(asteroidID).getClass() == Asteroid.class && game.getObjectFromID(materialId).getClass().getInterfaces()[0] == Material.class) {
             Asteroid asteroid = (Asteroid) game.getObjectFromID(asteroidID);
             asteroid.insertSubstance((Material) game.getObjectFromID(materialId));

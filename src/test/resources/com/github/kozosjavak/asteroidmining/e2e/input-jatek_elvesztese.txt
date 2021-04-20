@@ -1,0 +1,6 @@
+CreateMaterial uran 2
+CreateAsteroid 0 1
+CreateSettler 2
+CreateSun
+AddNeighbor 1 3
+ShowGameState

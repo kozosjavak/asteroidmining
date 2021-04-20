@@ -12,10 +12,9 @@ public class CreateSettlerCommand implements Command {
     }
 
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if (game.getObjectFromID(asteroidID).getClass() == Asteroid.class) {
             Settler settler = new Settler((Asteroid) game.getObjectFromID(asteroidID));
-            game.addASettlerInGame(settler);
             game.putInIdList(settler);
         } else {
             System.out.println("Invalid Asteroid ID!\n");

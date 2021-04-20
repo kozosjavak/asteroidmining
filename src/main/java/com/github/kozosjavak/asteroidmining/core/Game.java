@@ -16,9 +16,6 @@ public class Game {
     private final Random random = new Random();
     private final List<Location> locationList = new ArrayList<>();
 
-    ///////
-    //Id implementation, for e2e tests
-    //////
     /**
      * List of the objects, the id is given by the object position on the list
      */
@@ -31,6 +28,8 @@ public class Game {
      * Initializing the sun in the game
      */
     private Sun theSun;
+    private boolean running = true;
+    private boolean isWon = false;
 
     /**
      * Constructor, it needs 2 coordinates to determine the maximum size of the map
@@ -43,6 +42,18 @@ public class Game {
         this.maxY = maxY;
     }
 
+    public boolean isRunning() {
+        return running;
+    }
+
+    public boolean isWon() {
+        return isWon;
+    }
+
+    public List<Steppable> getSettlers() {
+        return settlers;
+    }
+
     /**
      * Where you can add an object to the list and prints out the freshly given ID
      *
@@ -52,7 +63,6 @@ public class Game {
         idList.add(object);
         System.out.println("ID: " + getId(object));
     }
-    ///////
 
     /**
      * Gives back the object ,which can be casted to the correct one, from the given id
@@ -78,8 +88,6 @@ public class Game {
         }
         return -1;
     }
-
-    private boolean running = true;
 
     /**
      * Print out all the object stored in the ID list
@@ -124,7 +132,7 @@ public class Game {
      * @return Location location
      */
     public Location getLocation(int id) {
-        if (id > 0 && id < locationList.size() - 1) {
+        if (id >= 0 && id <= locationList.size() - 1) {
             return locationList.get(id);
         }
         return null;
@@ -153,6 +161,7 @@ public class Game {
      *
      * @return int
      */
+    @Deprecated
     public int getNumberOfSettlers() {
         return settlers.size();
     }
@@ -171,6 +180,7 @@ public class Game {
      *
      * @param settler Settler
      */
+    @Deprecated
     public void addASettlerInGame(Settler settler) {
         settlers.add(settler);
     }
@@ -201,8 +211,8 @@ public class Game {
      * Win the game
      */
     public void Win() {
-        // System.out.println("Win, Congrat commrad!");
         theSun = null;
+        isWon = true;
         System.gc();
     }
 
@@ -232,7 +242,7 @@ public class Game {
     public String toString(int depth) {
         String out = "";
         for (Object obj : idList) {
-            if (obj.getClass().getSuperclass() == Orb.class) {
+            if (obj != null && obj.getClass().getSuperclass() == Orb.class) {
                 Orb orb = (Orb) obj;
                 out += orb.getLocation().toString(depth + 1);
             }

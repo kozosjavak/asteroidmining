@@ -20,17 +20,17 @@ public class CreateUfoCommand implements Command{
 
     /**
      * Parancs applikalasa a jatekra
+     *
      * @param game a jatek melyre alkalmazzuk
      * @throws Exception
      */
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if (game.getObjectFromID(asteroidID).getClass() == Asteroid.class) {
             Asteroid asteroid = (Asteroid) game.getObjectFromID(asteroidID);
             Ufo ufo = new Ufo(asteroid);
             game.putInIdList(ufo);
-        }
-        else {
+        } else {
             System.out.println("Invalid Asteroid ID!\n");
         }
     }

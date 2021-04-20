@@ -9,7 +9,6 @@ import org.junit.Test;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 
 public class BillOfMaterialTest {
@@ -73,13 +72,13 @@ public class BillOfMaterialTest {
         assertEquals(0, inventory.getSize());
     }
 
-    @Test
-    public void it_should_return_false_if_not_enough_materials() throws InventoryIsFullException, NotEnoughMaterialException {
+    @Test(expected = NotEnoughMaterialException.class)
+    public void it_should_throw_exception_if_not_enough_materials() throws InventoryIsFullException, NotEnoughMaterialException {
         Inventory inventory = Inventory.infiniteCapacity()
                 .add(new Iron())
                 .add(new Waterice())
                 .add(new Waterice())
                 .add(new Uranium());
-        assertFalse(Bills.TELEPORT.buy(inventory));
+        Bills.TELEPORT.buy(inventory);
     }
 }

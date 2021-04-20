@@ -1,0 +1,18 @@
+CreateAsteroid 0
+CreateAsteroid 0
+CreateAsteroid 0
+CreateMaterial uran 2
+CreateMaterial uran 2
+CreateMaterial uran 2
+InsertMaterial 3 0
+InsertMaterial 4 1
+CreateSettler 2
+SettlerAddMaterial 6 5
+CreateUfo 1
+UfoSteal 7
+ShowGameState
+CreateSun
+AddNeighbor 0 8
+AddNeighbor 1 8
+AddNeighbor 2 8
+ShowGameState

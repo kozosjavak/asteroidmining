@@ -8,7 +8,7 @@ import com.github.kozosjavak.asteroidmining.core.Game;
 public class ShowGameStateCommand implements Command {
 
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         System.out.printf("<ShowGameState starts>\n" + game.toString(0) + "<ShowGameState ends>\n");
     }
 }

@@ -1,0 +1,10 @@
+CreateAsteroid 1
+CreateSettler 0
+CreateAsteroid 1
+CreateTeleport
+CreateTeleport
+LinkTeleports 3 4
+AddTeleport 3 0
+AddTeleport 4 2
+SettlerUseTeleport 1 3
+ShowGameState

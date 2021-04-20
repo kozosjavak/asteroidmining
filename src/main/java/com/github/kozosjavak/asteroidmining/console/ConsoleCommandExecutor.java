@@ -5,6 +5,7 @@ import com.github.kozosjavak.asteroidmining.core.Game;
 import com.github.kozosjavak.asteroidmining.core.commands.Command;
 import com.github.kozosjavak.asteroidmining.core.commands.CommandExecutor;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -60,11 +61,11 @@ public class ConsoleCommandExecutor extends CommandExecutor {
 
     /**
      * Connects to the console and listen
+     *
+     * @param in
      */
-    public void attachToConsole() {
-
-        try (Scanner scanner = new Scanner(System.in)) {
-
+    public void attachToConsole(InputStream in) {
+        try (Scanner scanner = new Scanner(in)) {
             while (scanner.hasNextLine()) {
                 final String line = scanner.nextLine();
                 Optional<Command> optionalCommand = adapterCommandList.stream()
@@ -77,9 +78,6 @@ public class ConsoleCommandExecutor extends CommandExecutor {
                     System.out.println("Wrong command");
                 }
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

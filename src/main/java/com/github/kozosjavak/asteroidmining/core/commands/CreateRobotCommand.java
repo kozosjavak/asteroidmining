@@ -12,7 +12,7 @@ public class CreateRobotCommand implements Command {
     }
 
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if (game.getObjectFromID(asteroidID).getClass() == Asteroid.class) {
             Robot robot = new Robot((Asteroid) game.getObjectFromID(asteroidID));
             game.putInIdList(robot);

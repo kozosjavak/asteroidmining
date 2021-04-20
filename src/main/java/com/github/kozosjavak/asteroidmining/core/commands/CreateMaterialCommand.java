@@ -16,7 +16,7 @@ public class CreateMaterialCommand implements Command {
     }
 
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         Material mat;
         if (data[1].equals("iron")) {
             mat = new Iron();

@@ -1,0 +1,11 @@
+CreateAsteroid 0
+CreateAsteroid 0
+CreateAsteroid 0
+CreateSun
+AddNeighbor 0 1
+AddNeighbor 1 3
+CreateSettler 0
+SpaceshipMove 4 2
+SpaceshipMove 4 1
+SpaceshipMove 4 3
+ShowGameState

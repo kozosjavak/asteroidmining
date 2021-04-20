@@ -1,0 +1,10 @@
+CreateMaterial uran 3
+CreateAsteroid 1
+CreateSettler 1
+SettlerAddMaterial 2 0
+ShowGameState
+SettlerInsertMaterial 2
+SettlerDrill 2
+SettlerInsertMaterial 2
+SettlerRemoveMaterial 2
+ShowGameState

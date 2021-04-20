@@ -16,11 +16,12 @@ public class CreateSunCommand implements Command {
 
     /**
      * Parancs applikalasa a jatekra
+     *
      * @param game a jatek melyre alkalmazzuk
      * @throws Exception
      */
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         Location loc = new Location(game, 0.0, 0.0);
         Sun sun = new Sun(loc);
         game.addLocation(loc);

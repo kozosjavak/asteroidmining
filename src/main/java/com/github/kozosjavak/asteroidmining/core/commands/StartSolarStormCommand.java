@@ -4,7 +4,7 @@ import com.github.kozosjavak.asteroidmining.core.Game;
 
 public class StartSolarStormCommand implements Command {
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if (game.getTheSun() != null) {
             game.getTheSun().generateDirectSolarStorm();
         } else {

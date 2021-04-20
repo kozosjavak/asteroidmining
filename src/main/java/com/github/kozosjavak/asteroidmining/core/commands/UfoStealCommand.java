@@ -12,10 +12,11 @@ public class UfoStealCommand implements Command {
     }
 
     @Override
-    public void apply(Game game) throws Exception {
-        if (game.getObjectFromID(ufoId).getClass() == Ufo.class) {
-            Ufo ufo = (Ufo) game.getObjectFromID(ufoId);
+    public void apply(Game game) {
+        if (game.getObjectFromID(ufoId) instanceof Ufo ufo) {
             ufo.steal();
-        } else System.out.println("Invalid object ID");
+        } else {
+            System.out.println("Invalid object ID");
+        }
     }
 }

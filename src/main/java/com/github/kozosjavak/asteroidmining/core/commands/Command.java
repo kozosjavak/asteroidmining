@@ -12,7 +12,6 @@ public interface Command extends Serializable {
      * Can be call for execute the specific command
      *
      * @param game game
-     * @throws Exception
      */
-    void apply(Game game) throws Exception;
+    void apply(Game game);
 }

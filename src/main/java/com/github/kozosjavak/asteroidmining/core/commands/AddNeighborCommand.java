@@ -28,18 +28,21 @@ public class AddNeighborCommand implements Command {
      * @throws Exception
      */
     @Override
-    public void apply(Game game) throws Exception {
+    public void apply(Game game) {
         if (game.getObjectFromID(objId1) != null && game.getObjectFromID(objId2) != null && objId1 != objId2) {
             if (game.getObjectFromID(objId1).getClass().getSuperclass() == Orb.class && game.getObjectFromID(objId2).getClass().getSuperclass() == Orb.class) {
                 Orb orb1 = (Orb) game.getObjectFromID(objId1);
                 Orb orb2 = (Orb) game.getObjectFromID(objId2);
                 orb1.getLocation().addNeighbor(orb2.getLocation());
                 orb2.getLocation().addNeighbor(orb1.getLocation());
-
-                if (game.getObjectFromID(objId1).getClass() == Sun.class) {
-                    orb2.experienceExtremeHeat();
-                } else if (game.getObjectFromID(objId2).getClass() == Orb.class) {
-                    orb1.experienceExtremeHeat();
+                try {
+                    if (game.getObjectFromID(objId1).getClass() == Sun.class) {
+                        orb2.experienceExtremeHeat();
+                    } else if (game.getObjectFromID(objId2).getClass() == Orb.class) {
+                        orb1.experienceExtremeHeat();
+                    }
+                } catch (Exception exception) {
+                    exception.printStackTrace(); // TODO
                 }
                 return;
             }
