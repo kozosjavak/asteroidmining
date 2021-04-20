@@ -37,7 +37,7 @@ public class UfoTest {
     @Test
     public void ufo_mine_material() throws AsteroidIsNotMineable, InventoryIsFullException {
         Location location1 = new Location(game, 5.4, 3.2);
-        Asteroid asteroid1 = new Asteroid(location1, 0, false, new Coal(), 1);
+        Asteroid asteroid1 = new Asteroid(location1, 0, new Coal());
         Ufo ufo = new Ufo(asteroid1);
         ufo.mine();
         assertEquals("Coal", ufo.getInventory().getList().get(0).toString());
@@ -46,7 +46,7 @@ public class UfoTest {
     @Test
     public void ufo_get_experience_extreme_heat() throws Exception {
         Location location1 = new Location(game, 5.4, 3.2);
-        Asteroid asteroid1 = new Asteroid(location1, 0, false, new Coal(), 1);
+        Asteroid asteroid1 = new Asteroid(location1, 0, new Coal());
         Ufo ufo = new Ufo(asteroid1);
         ufo.getInventory().add(new Uranium());
         ufo.experienceExtremeHeat();
@@ -58,7 +58,7 @@ public class UfoTest {
     @Test
     public void it_should_mine_by_step() throws Exception {
         Location location = new Location(game, 1.1, 1.1);
-        Asteroid asteroid1 = new Asteroid(location, 0, false, new Coal(), 1);
+        Asteroid asteroid1 = new Asteroid(location, 0, new Coal());
         Ufo ufo = new Ufo(asteroid1);
         ufo.step();
         assertNull(asteroid1.getSubstance());
@@ -68,7 +68,7 @@ public class UfoTest {
     @Test
     public void it_shouldnt_mine_by_step() throws Exception {
         Location location = new Location(game, 1.1, 1.1);
-        Asteroid asteroid1 = new Asteroid(location, 1, false, new Coal(), 1);
+        Asteroid asteroid1 = new Asteroid(location, 1, new Coal());
         Ufo ufo = new Ufo(asteroid1);
         ufo.step();
     }
@@ -76,7 +76,7 @@ public class UfoTest {
     @Test
     public void it_should_experience_extreme_heat() throws Exception {
         Location location = new Location(game, 1.1, 1.1);
-        Asteroid asteroid1 = new Asteroid(location, 0, false, new Uranium(), 1);
+        Asteroid asteroid1 = new Asteroid(location, 0, new Uranium());
         Ufo ufo = new Ufo(asteroid1);
         ufo.step();
         ufo.experienceExtremeHeat();

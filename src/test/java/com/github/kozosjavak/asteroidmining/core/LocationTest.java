@@ -105,7 +105,7 @@ public class LocationTest {
 
         testLocation.setTeleport(testTeleport);
 
-        Asteroid testAsteroid = new Asteroid(testLocation, 0, true, new Uranium(), 0);
+        Asteroid testAsteroid = new Asteroid(testLocation, 0, new Uranium());
 
         testLocation.experienceSolarStorm(); // testTeleport is solarized
         testTeleport.step();

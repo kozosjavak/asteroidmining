@@ -11,8 +11,6 @@ import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialExce
  */
 public class Waterice implements Material {
     public void experienceExtremeHeat(Asteroid a) throws NotEnoughMaterialException {
-
-        if (a.isInSunZone())
             a.removeMaterial(this);
     }
 

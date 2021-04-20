@@ -29,7 +29,7 @@ public class AsteroidTest {
     @Test
     public void should_get_back_set_spaceships() {
         Location testLocation = new Location(game, 2.2, 2.5);
-        Asteroid testAsteroid = new Asteroid(testLocation, 2, false, null, 0);
+        Asteroid testAsteroid = new Asteroid(testLocation, 2, null);
         Settler testSpaceship = new Settler(testAsteroid); // addSpaceship()
 
         assertEquals(testSpaceship, testAsteroid.getResidence().get(0));
@@ -44,7 +44,7 @@ public class AsteroidTest {
     public void shouldnt_be_able_to_mine_if_not_fully_drilled() throws AsteroidIsNotMineable {
         Location testLocation = new Location(game, 2.2, 2.5);
         Material testMaterial = new Iron();
-        Asteroid testAsteroid = new Asteroid(testLocation, 1, false, testMaterial, 0);
+        Asteroid testAsteroid = new Asteroid(testLocation, 1, testMaterial);
 
         Material mined = testAsteroid.mine();
     }
@@ -53,7 +53,7 @@ public class AsteroidTest {
     public void should_mine_only_if_fully_drilled() throws Exception {
         Location testLocation = new Location(game, 2.2, 2.5);
         Material testMaterial = new Iron();
-        Asteroid testAsteroid = new Asteroid(testLocation, 1, false, testMaterial, 0);
+        Asteroid testAsteroid = new Asteroid(testLocation, 1, testMaterial);
 
         testAsteroid.drill();
         Material mined = testAsteroid.mine();
@@ -62,15 +62,8 @@ public class AsteroidTest {
     }
 
     @Test
-    public void should_be_in_sunzone() {
-        Asteroid testAsteroid = new Asteroid(new Location(game, 2.2, 2.5), 1, true, null, 0);
-
-        assertEquals(true, testAsteroid.isInSunZone());
-    }
-
-    @Test
     public void spaceships_should_experience_solarstorm() {
-        Asteroid testAsteroid = new Asteroid(new Location(game, 2.2, 2.5), 1, true, null, 0);
+        Asteroid testAsteroid = new Asteroid(new Location(game, 2.2, 2.5), 1, null);
         Settler testSpaceship = new Settler(testAsteroid);
 
         testAsteroid.experienceSolarStorm();
@@ -80,7 +73,7 @@ public class AsteroidTest {
 
     @Test(expected = SurfaceThicknessIsZeroException.class)
     public void surfacethickness_should_be_return_the_proper_value() throws Exception {
-        Asteroid testAsteroid = new Asteroid(new Location(game, 2.2, 2.5), 6, true, null, 0);
+        Asteroid testAsteroid = new Asteroid(new Location(game, 2.2, 2.5), 6, null);
 
         testAsteroid.drill(); // 6->5
 
@@ -99,7 +92,7 @@ public class AsteroidTest {
         Location testLocation = new Location(game, 2.2, 2.5);
         Teleport testTeleport = new Teleport();
         testLocation.setTeleport(testTeleport);
-        Asteroid testAsteroid = new Asteroid(testLocation, 1, false, null, 0);
+        Asteroid testAsteroid = new Asteroid(testLocation, 1, null);
 
         testAsteroid.explode();
 
@@ -111,7 +104,7 @@ public class AsteroidTest {
         Location testLocation = new Location(game, 2.2, 2.5);
         Material testMaterial1 = new Iron();
         Material testMaterial2 = new Coal();
-        Asteroid testAsteroid = new Asteroid(testLocation, 0, false, null, 0);
+        Asteroid testAsteroid = new Asteroid(testLocation, 0, null);
 
         testAsteroid.insertMaterial(testMaterial1);
         testAsteroid.insertMaterial(testMaterial2);
@@ -129,7 +122,7 @@ public class AsteroidTest {
     public void should_not_be_able_to_insert_material() throws AsteroidNotMinedException, InventoryIsFullException {
         Location testLocation = new Location(game, 2.2, 2.5);
         Material testMaterial = new Iron();
-        Asteroid testAsteroid = new Asteroid(testLocation, 5, false, null, 0);
+        Asteroid testAsteroid = new Asteroid(testLocation, 5, null);
 
         testAsteroid.insertMaterial(testMaterial);
     }
@@ -146,7 +139,7 @@ public class AsteroidTest {
     public void waterice_should_disappear() throws Exception {
         Location testLocation = new Location(game, 2.2, 2.5);
         Material testMaterial = new Waterice();
-        Asteroid testAsteroid = new Asteroid(testLocation, 0, true, testMaterial, 0);
+        Asteroid testAsteroid = new Asteroid(testLocation, 0, testMaterial);
 
         testAsteroid.experienceExtremeHeat();
 
@@ -157,7 +150,7 @@ public class AsteroidTest {
     public void uranium_should_explode() throws Exception {
         Location testLocation = new Location(game, 2.2, 2.5);
         Material testMaterial = new Uranium();
-        Asteroid testAsteroid = new Asteroid(testLocation, 0, true, testMaterial, 0);
+        Asteroid testAsteroid = new Asteroid(testLocation, 0, testMaterial);
 
         testAsteroid.experienceExtremeHeat();
 
