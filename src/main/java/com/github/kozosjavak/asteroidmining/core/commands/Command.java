@@ -4,7 +4,15 @@ import com.github.kozosjavak.asteroidmining.core.Game;
 
 import java.io.Serializable;
 
-
+/**
+ * Interface of the Commands
+ */
 public interface Command extends Serializable {
+    /**
+     * Can be call for execute the specific command
+     *
+     * @param game game
+     * @throws Exception
+     */
     void apply(Game game) throws Exception;
 }

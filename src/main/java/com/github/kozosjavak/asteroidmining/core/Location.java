@@ -5,19 +5,38 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Location osztály
+ * Location class, location is used to store celestial body, like asteroid, and teleports on a same location and it gives the coordinates for this location
  */
 public class Location {
+    /**
+     * Game
+     */
     final Game game;
+    /**
+     * Coordinate
+     */
     final Coordinate coordinate;
     /**
-     * Szomszédok listája
+     * List of the neighbor locations
      */
     final List<Location> neighbors;
     Random random;
+    /**
+     * Can be Asteroid, Sun
+     */
     Orb celestialBody;
+    /**
+     * Teleport
+     */
     Teleport teleport;
 
+    /**
+     * Basic constructor
+     *
+     * @param game Game
+     * @param X    Double
+     * @param Y    Double
+     */
     public Location(Game game, Double X, Double Y) {
         this.game = game;
         neighbors = new ArrayList<>();
@@ -25,28 +44,56 @@ public class Location {
         coordinate = new Coordinate(X, Y);
     }
 
+    /**
+     * Gives back the coordinates
+     *
+     * @return Coordinate
+     */
     public Coordinate getCoordinate() {
         return coordinate;
     }
 
+    /**
+     * Gives back the celestial body can be Asteroid, Sun
+     *
+     * @return Orb/null
+     */
     public Orb getCelestialBody() {
         return celestialBody;
     }
 
+    /**
+     * Set the celestial body to this location
+     *
+     * @param celestialBody Orb
+     */
     public void setCelestialBody(Orb celestialBody) {
         this.celestialBody = celestialBody;
     }
 
+    /**
+     * Gives back the teleport
+     *
+     * @return Teleport/null
+     */
     public Teleport getTeleport() {
         return teleport;
     }
 
+    /**
+     * Set the teleport if there is no current teleport on the location
+     *
+     * @param teleport Teleport
+     */
     public void setTeleport(Teleport teleport) {
         this.teleport = teleport;
         if (teleport != null)
             getTeleport().setLocation(this);
     }
 
+    /**
+     * Calls the getHitByExplosion() on the celestial body and teleport on the location and clear them
+     */
     public void fullClearByExplosion() {
         celestialBody = null;
         if (teleport != null) {
@@ -56,6 +103,11 @@ public class Location {
         System.gc();
     }
 
+    /**
+     * Rewrite the neighborlist depends on the given distance, map the new neighbors
+     *
+     * @param distance double
+     */
     public void refreshNeighborsList(double distance) {
         if (distance > 1) {
             neighbors.clear();
@@ -68,9 +120,8 @@ public class Location {
     }
 
     /**
-     * Véletlenszerűen választott szomszéd lekérése
-     *
-     * @return a véletlenszerűen választott szomszédot
+     * Return a randomly chosed neighbor location
+     * @return Location
      */
     public Location getRandomNeighbor() throws Exception {
         int randomNext;
@@ -87,41 +138,53 @@ public class Location {
     }
 
     /**
-     * Szomszédok listájának lekérdezése
-     *
-     * @return szomszédok
+     * Gives back the list of the neighbors
+     * @return List<Location>
      */
     public List<Location> getNeighbors() {
         return neighbors;
     }
 
     /**
-     * Szomszéd hozzáadása
-     *
-     * @param location a hozzáadandó szomszéd
+     * Add a neighbors in the list
+     * @param location new neighbor
      */
     public void addNeighbor(Location location) {
         neighbors.add(location);
     }
 
     /**
-     * Szomszéd eltávolítása
+     * Removes the given location from the neighbors list
      *
-     * @param location az eltávolítandó szomszéd
+     * @param location
      */
     public void removeNeighbor(Location location) {
         neighbors.remove(location);
     }
 
+    /**
+     * Calls the experienceSolarStorm() on the celestialbody and teleport
+     */
     public void experienceSolarStorm() {
         getCelestialBody().experienceSolarStorm();
         getTeleport().experienceSolarStorm();
     }
 
+    /**
+     * Calls the experienceExtremeHeat() on the celestial body
+     *
+     * @throws Exception
+     */
     public void experienceExtremeHeat() throws Exception {
         getCelestialBody().experienceExtremeHeat();
     }
 
+    /**
+     * Return the location structure in string
+     *
+     * @param depth int, needed for the correct amount of /t before the data for correct write out
+     * @return String
+     */
     public String toString(int depth) {
         String tab = "";
         for (int i = 0; i < depth; i++) tab += "\t";
@@ -138,10 +201,21 @@ public class Location {
         return out;
     }
 
+    /**
+     * Gives back the celestial body
+     *
+     * @return Orb
+     */
     public Orb getOrb() {
         return celestialBody;
     }
 
+    /**
+     * Calls the refreshNeighborsList() to repath the neighbors and calls the step() on the celestialbody and teleport
+     *
+     * @param distanceOfNeighbors double
+     * @throws Exception
+     */
     public void step(double distanceOfNeighbors) throws Exception {
         refreshNeighborsList(distanceOfNeighbors);
         getCelestialBody().step();

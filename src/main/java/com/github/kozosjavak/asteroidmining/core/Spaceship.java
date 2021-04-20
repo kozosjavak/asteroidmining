@@ -1,19 +1,19 @@
 package com.github.kozosjavak.asteroidmining.core;
 
 /**
- * Űrhajó osztály
+ * Spaceship class, super of Settler,Ufo,Robot
  */
 public class Spaceship implements Explodeable {
 
     /**
-     * Aktuális aszteroida, melyen az űrhajó tartózkodik
+     * Current asteroid
      */
     private Asteroid currentAsteroid;
 
     /**
-     * Spaceship konstruktor
+     * Basic constructor
      *
-     * @param asteroid aszteroida, melyre a telepes kerül
+     * @param asteroid Asteroid, where will be placed
      */
     public Spaceship(Asteroid asteroid) {
         asteroid.addSpaceShip(this);
@@ -21,7 +21,7 @@ public class Spaceship implements Explodeable {
     }
 
     /**
-     * Napvihar elszenvedése
+     * ExperienceSolarStorm if the spaceship can't hide, dies
      */
     public void experienceSolarStorm() {
         if (getCurrentAsteroid().getSurfaceThickness() != 0) {
@@ -29,12 +29,17 @@ public class Spaceship implements Explodeable {
         }
     }
 
+    /**
+     * Experience extreme heat
+     *
+     * @throws Exception
+     */
     public void experienceExtremeHeat() throws Exception {
     }
 
 
     /**
-     * Megsemmisülés
+     * Spaceship dies and removed from current asteroid
      */
     public void die() {
         Asteroid tempAsteroid = getCurrentAsteroid();
@@ -43,7 +48,11 @@ public class Spaceship implements Explodeable {
 
     }
 
-
+    /**
+     * Move to the given location, if the location is not Asteroid it won't move
+     *
+     * @param location Location
+     */
     public void move(Location location) {
         if (location.getCelestialBody() == null) {
             System.out.println("There is no body to land on, just the waste empty void.");
@@ -58,23 +67,25 @@ public class Spaceship implements Explodeable {
     }
 
     /**
-     * Visszaadja az aszteroidát, amelyen tartózkodik az űrhajó
-     *
-     * @return az aszteroida, amelyen tartózkodik az űrhajó
+     * Returns the current asteroid
+     * @return Asteroid
      */
     public Asteroid getCurrentAsteroid() {
         return currentAsteroid;
     }
 
     /**
-     * Beállítja, hogy a telepes melyik aszteroidán gondolja magát
+     * Set the current asteroid where the spaceship is
      *
-     * @param newAsteroidLocation az új aszteroida, melyen szeretnénk, hogy a telepes legyen
+     * @param newAsteroidLocation Asteroid, new asteroid
      */
     public void setCurrentAsteroid(Asteroid newAsteroidLocation) {
         this.currentAsteroid = newAsteroidLocation;
     }
 
+    /**
+     * Use the teleport on the current asteroid's location, if there is no teleport it won't move
+     */
     public void Teleport() {
         Teleport teleport = getCurrentAsteroid().getLocation().teleport;
         if (teleport != null && teleport.getPair() != null) {
@@ -84,15 +95,24 @@ public class Spaceship implements Explodeable {
         }
     }
 
+    /**
+     * If explode calls the current asteroid explode()
+     */
     @Override
     public void explode() {
         currentAsteroid.explode();
     }
 
+    /**
+     * If it hit by explosion, dies
+     */
     public void getHitByExplosion() {
         die();
     }
 
+    /**
+     * remove the substance from the current asteroid
+     */
     @Override
     public void removeSubstance() {
         /**
@@ -100,6 +120,13 @@ public class Spaceship implements Explodeable {
          */
     }
 
+    /**
+     * Super of the toString
+     *
+     * @param depth needed for the correct amount of /t before the data for correct write out
+     * @param game  needed for give the ID of itself
+     * @return String
+     */
     public String toString(int depth, Game game) {
         return null;
     }

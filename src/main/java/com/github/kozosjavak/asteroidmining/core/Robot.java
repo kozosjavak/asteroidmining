@@ -1,13 +1,13 @@
 package com.github.kozosjavak.asteroidmining.core;
 
 /**
- * Robot osztály
+ * Robot class
  */
 public class Robot extends Spaceship implements Steppable {
     /**
-     * Robot konstruktor
+     * Robot constructor
      *
-     * @param asteroid aszteroida, amire a robot kerül
+     * @param asteroid Asterooid, where the robot will be placed
      */
     public Robot(Asteroid asteroid) {
         super(asteroid);
@@ -15,7 +15,7 @@ public class Robot extends Spaceship implements Steppable {
 
 
     /**
-     * Napvihar elszenvedése
+     * experience solar storm
      */
     @Override
     public void experienceSolarStorm() {
@@ -23,7 +23,7 @@ public class Robot extends Spaceship implements Steppable {
 
 
     /**
-     * Lépés implementációja
+     * Step, it drill till the asteroid is mineable, then fly to the next Asteroid
      */
     @Override
     public void step() throws Exception {
@@ -34,11 +34,23 @@ public class Robot extends Spaceship implements Steppable {
         }
     }
 
+    /**
+     * To string where only the specified robot object given back in string
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         return "Robot @" + Integer.toHexString(hashCode());
     }
 
+    /**
+     * To string where the structure of the robot class given back in string
+     *
+     * @param depth int, needed for the correct amount of /t before the data for correct write out
+     * @param game  Game
+     * @return String
+     */
     @Override
     public String toString(int depth, Game game) {
         String tab = "";
@@ -46,6 +58,9 @@ public class Robot extends Spaceship implements Steppable {
         return tab + "Robot {ID = " + game.getId(this) + "}";
     }
 
+    /**
+     * hit by explosion and fly to the next random location
+     */
     @Override
     public void getHitByExplosion() {
         try {

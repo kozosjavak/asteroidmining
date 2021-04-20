@@ -14,7 +14,9 @@ import java.util.Scanner;
  * Console communicator
  */
 public class ConsoleCommandExecutor extends CommandExecutor {
-    //Ird be a listaba az uj adaptert.
+    /**
+     * List of the adapters of the commands which can be performed
+     */
     private static final List<StringCommandAdapter> adapterCommandList = List.of(
             new StartCommandAdapter(),
             new CreateAsteroidAdapter(),
@@ -55,7 +57,9 @@ public class ConsoleCommandExecutor extends CommandExecutor {
         super(game);
     }
 
-    //Magic
+    /**
+     * Connects to the console and listen
+     */
     public void attachToConsole() {
 
         try (Scanner scanner = new Scanner(System.in)) {

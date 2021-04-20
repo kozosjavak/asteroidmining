@@ -7,34 +7,65 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class of the command executor
+ */
 public abstract class CommandExecutor {
-    //Jatekot tarolja amin dolgozunk
+    /**
+     * Game
+     */
     private final Game game;
-    //itt tarolja az elkeszult commandokat
+    /**
+     * Contains the command which have been successfully ran.
+     */
     private final List<Command> executedCommands = new ArrayList<>();
 
+    /**
+     * Basic constructor
+     *
+     * @param game
+     */
     public CommandExecutor(Game game) {
         this.game = game;
     }
 
+    /**
+     * Returns the game
+     *
+     * @return
+     */
     public Game getGame() {
         return game;
     }
 
-    //itt tudsz egy bizonyos commandot lefuttatni
+    /**
+     * Calls the command apply()
+     *
+     * @param command Command
+     * @throws Exception
+     */
     public void execute(Command command) throws Exception {
         command.apply(game);
         executedCommands.add(command);
     }
 
-    //lefuttatja a tarolt osszes commandot
+    /**
+     * Calls all of the commands apply()
+     *
+     * @param commands
+     * @throws Exception
+     */
     public void executeAll(Collection<Command> commands) throws Exception {
         for (Command command : commands) {
             execute(command);
         }
     }
 
-    //visszaadja a listat egy modosithatlan listaban
+    /**
+     * Returns the list of the executed commands
+     *
+     * @return
+     */
     public List<Command> getExecutedCommands() {
         return Collections.unmodifiableList(executedCommands);
     }

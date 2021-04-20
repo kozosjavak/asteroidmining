@@ -7,59 +7,89 @@ import com.github.kozosjavak.asteroidmining.core.materials.Material;
 import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 
 /**
- * Telepes osztály
+ * Settler class
  */
 public class Settler extends Spaceship implements Steppable {
 
     /**
-     * A telepes inventory-ja
+     * Settler's inventory
      */
     private final Inventory inventory = new Inventory(10);
-    // ez egy issue
+    /**
+     * Settler's teleport inventory array
+     */
     private final Teleport[] teleportInventory = new Teleport[3];
 
     /**
-     * Telepes konstruktor
+     * Basic constructor
      *
-     * @param asteroid aszteroida, melyre a telepes kerül
+     * @param asteroid Asteroid, where will be placed
      */
     public Settler(Asteroid asteroid) {
         super(asteroid);
         getCurrentAsteroid().getLocation().game.addASettlerInGame(this);
     }
 
+    /**
+     * give back "Settler"
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         return "Settler";
     }
 
+    /**
+     * Gives back the settler inventory
+     *
+     * @return Inventory
+     */
     public Inventory getInventory() {
         return inventory;
     }
 
-    public void addToInventory(Material material) throws InventoryIsFullException {inventory.add(material);}
+    /**
+     * Adds material to the settler's inventory
+     *
+     * @param material Material, which have to be added
+     * @throws InventoryIsFullException if the inventory is full
+     */
+    public void addToInventory(Material material) throws InventoryIsFullException {
+        inventory.add(material);
+    }
 
-    public Teleport[] getTeleportInventory(){
+    /**
+     * Gives back the teleport inventory array
+     *
+     * @return Teleport[]
+     */
+    public Teleport[] getTeleportInventory() {
         return teleportInventory;
     }
 
     /**
-     * Bányászás
-     * Nyersanyag kibányászása azon az aszteroidán, amelyen a telepes épp tartózkodik
+     * Mining
+     * Mine the material from the Asteroid where settlers currently on
      *
-     * @throws InventoryIsFullException az inventory tele van kivétel
-     * @throws AsteroidIsNotMineable    az asteroida nem bányászható állapotban van
+     * @throws InventoryIsFullException inventory is full
+     * @throws AsteroidIsNotMineable    Asteroid can't be mined
      */
     public void mine() throws InventoryIsFullException, AsteroidIsNotMineable {
         inventory.add(getCurrentAsteroid().mine());
     }
 
+    /**
+     * Drills, remove a layer of crust
+     *
+     * @throws Exception
+     */
     public void drill() throws Exception {
         getCurrentAsteroid().drill();
     }
 
     /**
-     * Teleportpár építése
+     * Builds a teleport pair and puts in the teleport inventory
      */
     public void buildTeleportPair() throws NotEnoughMaterialException {
         int numberOfEmptyElement;
@@ -97,8 +127,9 @@ public class Settler extends Spaceship implements Steppable {
 
 
     /**
-     * Bázis építése
-     * Aktuális aszteroida inventorijából buy segítségével
+     * Builds base
+     * @throws NotEnoughMaterialException not enough material on the asteroid, combined with the inventory of the settler
+     * @throws InventoryIsFullException
      */
     public void buildBase() throws NotEnoughMaterialException, InventoryIsFullException {
         Inventory inventoryFromAsteroidAndSettler = new Inventory(0);
@@ -113,8 +144,9 @@ public class Settler extends Spaceship implements Steppable {
     }
 
     /**
-     * Robot építése
-     * A robotot arra az aszteroidára helyezi le, amelyen maga a telepes is tartózkodik
+     * Build robot
+     * @return Robot
+     * @throws NotEnoughMaterialException not enough material
      */
     public Robot buildRobot() throws NotEnoughMaterialException {
         if (Bills.ROBOT.buy(inventory)) {
@@ -126,19 +158,19 @@ public class Settler extends Spaceship implements Steppable {
 
 
     /**
-     * Teleportkaput helyez a megadott aszteroidára
+     * Place teleport on the location where the currently asteroid is
      *
-     * @param number aszteroida, melyre a teleportot helyezzük
+     * @param number ID of the teleport which will be placed
      */
     public void deployTeleport(int number) {
         if( teleportInventory[number] != null) {
             teleportInventory[number].deployTeleport(getCurrentAsteroid().getLocation());
-            teleportInventory[number]=null;
+            teleportInventory[number] = null;
         }
     }
 
     /**
-     * Telepes megsemmisülése
+     * Settlers dies
      */
     @Override
     public void die() {
@@ -147,14 +179,19 @@ public class Settler extends Spaceship implements Steppable {
         setCurrentAsteroid(null);
     }
 
-
+    /**
+     * Puts back material in the asteroid inventory
+     *
+     * @throws AsteroidNotMinedException if the asteroid not mined
+     * @throws InventoryIsFullException  if the asteroid inventory is full
+     */
     public void insertMaterial() throws AsteroidNotMinedException, InventoryIsFullException {
         getCurrentAsteroid().insertMaterial(inventory.getList().get(0));
     }
 
 
     /**
-     * Lépés implementációja
+     * Implementation of the step(), settler can be controlled from there
      */
     @Override
     public void step() {
@@ -162,7 +199,11 @@ public class Settler extends Spaceship implements Steppable {
         //hivd meg a drill().
     }
 
-
+    /**
+     * Implementation of the experienceExtremeHeat(), it calls the experienceExteremeHeat() of the inventory
+     *
+     * @throws Exception
+     */
     @Override
     public void experienceExtremeHeat() throws Exception {
         if (inventory.getSize() != 0) {
@@ -170,6 +211,13 @@ public class Settler extends Spaceship implements Steppable {
         }
     }
 
+    /**
+     * Return the settler structure in string
+     *
+     * @param depth needed for the correct amount of /t before the data for correct write out
+     * @param game  needed for give the ID of itself
+     * @return String
+     */
     @Override
     public String toString(int depth, Game game) {
         String tab = "";

@@ -8,6 +8,9 @@ import com.github.kozosjavak.asteroidmining.core.materials.types.Waterice;
 
 import java.util.Map;
 
+/**
+ * Bill of base
+ */
 public class BillOfBase implements BillOfMaterial {
 
     @Override
