@@ -26,5 +26,6 @@ public class CreateSunCommand implements Command {
         Sun sun = new Sun(loc);
         game.addLocation(loc);
         game.putInIdList(sun);
+        game.setSun(sun);
     }
 }

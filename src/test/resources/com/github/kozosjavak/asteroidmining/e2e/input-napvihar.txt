@@ -12,11 +12,11 @@ CreateRobot 0
 CreateRobot 1
 CreateTeleport
 CreateTeleport
-LinkTeleport 5 6
-AddTeleport 5 1
-AddTeleport 6 2
+LinkTeleports 9 10
+AddTeleport 9 1
+AddTeleport 10 2
 CreateSun
-AddNeighbor 0 7
-AddNeighbor 1 7
+AddNeighbor 0 11
+AddNeighbor 1 11
 StartSolarStorm
 ShowGameState

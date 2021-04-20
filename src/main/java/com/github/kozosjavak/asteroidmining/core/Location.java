@@ -169,8 +169,12 @@ public class Location {
      * Calls the experienceSolarStorm() on the celestialbody and teleport
      */
     public void experienceSolarStorm() {
-        getCelestialBody().experienceSolarStorm();
-        getTeleport().experienceSolarStorm();
+        if (getCelestialBody() != null) {
+            getCelestialBody().experienceSolarStorm();
+        }
+        if (getTeleport() != null) {
+            getTeleport().experienceSolarStorm();
+        }
     }
 
     /**
