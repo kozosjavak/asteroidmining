@@ -50,7 +50,8 @@ public class ConsoleCommandExecutor extends CommandExecutor {
             new AsteroidExplodeAdapter(),
             new CreateTeleportAdapter(),
             new AddTeleportAdapter(),
-            new SettlerUseTeleportAdapter()
+            new SettlerUseTeleportAdapter(),
+            new SettlerInsertMaterialAdapter()
     );
 
     public ConsoleCommandExecutor(Game game) {

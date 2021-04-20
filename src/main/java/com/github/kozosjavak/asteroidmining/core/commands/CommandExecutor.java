@@ -44,9 +44,13 @@ public abstract class CommandExecutor {
      * @param command Command
      * @throws Exception
      */
-    public void execute(Command command) throws Exception {
-        command.apply(game);
-        executedCommands.add(command);
+    public void execute(Command command) {
+        try {
+            command.apply(game);
+            executedCommands.add(command);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     /**
