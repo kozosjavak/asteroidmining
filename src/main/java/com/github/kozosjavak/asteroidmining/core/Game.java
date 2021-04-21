@@ -196,6 +196,9 @@ public class Game {
      */
     public void removeSettlerFromGame(Settler settler) {
         settlers.remove(settler);
+        if (settlers.size() == 0){
+            endGame();
+        }
     }
 
     /**

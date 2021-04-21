@@ -63,8 +63,9 @@ public class Inventory {
 
     /**
      * Removes the given amount of the specified materials from the list
+     *
      * @param materialType Material
-     * @param amount int
+     * @param amount       int
      * @throws NotEnoughMaterialException
      */
     public void remove(final Class<? extends Material> materialType, final int amount) throws NotEnoughMaterialException {

@@ -13,8 +13,8 @@ public class CreateSettlerCommand implements Command {
 
     @Override
     public void apply(Game game) {
-        if (game.getObjectFromID(asteroidID).getClass() == Asteroid.class) {
-            Settler settler = new Settler((Asteroid) game.getObjectFromID(asteroidID));
+        if (game.getObjectFromID(asteroidID) instanceof Asteroid asteroid) {
+            Settler settler = new Settler(asteroid);
             game.putInIdList(settler);
         } else {
             System.out.println("Invalid Asteroid ID!\n");

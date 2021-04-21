@@ -95,6 +95,10 @@ public class Location {
      * Calls the getHitByExplosion() on the celestial body and teleport on the location and clear them
      */
     public void fullClearByExplosion() {
+
+        Asteroid asteroid = (Asteroid) celestialBody;
+
+
         celestialBody = null;
         if (teleport != null) {
             teleport.getHitByExplosion();
