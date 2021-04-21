@@ -3,6 +3,7 @@ package com.github.kozosjavak.asteroidmining.core.commands;
 import com.github.kozosjavak.asteroidmining.core.Asteroid;
 import com.github.kozosjavak.asteroidmining.core.Game;
 import com.github.kozosjavak.asteroidmining.core.Settler;
+import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullException;
 import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 
 public class SettlerRemoveMaterialCommand implements Command{
@@ -27,8 +28,8 @@ public class SettlerRemoveMaterialCommand implements Command{
         Asteroid asteroid = settler.getCurrentAsteroid();
         if (asteroid.getMaterials().get(0) != null) {
             try {
-                asteroid.removeMaterial(asteroid.getMaterials().get(0));
-            } catch (NotEnoughMaterialException e) {
+                settler.removeMaterial();
+            } catch (NotEnoughMaterialException | InventoryIsFullException e) {
                 e.printStackTrace();
             }
         } else {

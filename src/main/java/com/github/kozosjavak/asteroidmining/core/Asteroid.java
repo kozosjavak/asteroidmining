@@ -164,6 +164,12 @@ public class Asteroid extends Orb implements Explodeable {
         asteroidInventory.remove(materialToRemove.getClass(), 1);
     }
 
+    public Material removeMaterial() throws NotEnoughMaterialException {
+        Material temp = asteroidInventory.getList().get(0);
+        asteroidInventory.remove(asteroidInventory.getList().get(0).getClass(),1);
+        return temp;
+    }
+
     @Override
     public void removeSubstance() {
         substance = null;

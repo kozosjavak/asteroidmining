@@ -21,7 +21,7 @@ public class SettlerInsertMaterialCommand implements Command {
             try {
                 settler.insertMaterial();
             } catch (AsteroidNotMinedException e) {
-                System.err.println("Asteroid can't be mined!");
+                System.err.println("Asteroid not mined!");
             } catch (InventoryIsFullException e) {
                 System.err.println("Inventory is full!");
             } catch (NotEnoughMaterialException e) {

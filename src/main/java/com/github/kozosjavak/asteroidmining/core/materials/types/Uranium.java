@@ -24,7 +24,6 @@ public class Uranium implements Material {
         if (experienceExtremeHeatCounter > 2) {
             explodeableHolder.explode();
         }
-        System.out.println(experienceExtremeHeatCounter);
     }
 
     /**

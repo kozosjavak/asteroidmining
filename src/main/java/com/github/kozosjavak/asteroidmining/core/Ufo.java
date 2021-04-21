@@ -53,12 +53,14 @@ public class Ufo extends Spaceship implements Steppable {
     public void steal() {
         Random rand = new Random();
         List<Material> materials = getCurrentAsteroid().getMaterials();
-        Material material = materials.get(rand.nextInt(materials.size()) - 1);
-        try {
-            getCurrentAsteroid().removeMaterial(material);
-            inventory.add(material);
-        } catch (NotEnoughMaterialException | InventoryIsFullException e) {
-            e.printStackTrace();
+        if (materials.size() != 0) {
+            Material material = materials.get(rand.nextInt(materials.size() - 1));
+            try {
+                getCurrentAsteroid().removeMaterial(material);
+                inventory.add(material);
+            } catch (NotEnoughMaterialException | InventoryIsFullException e) {
+                e.printStackTrace();
+            }
         }
     }
 
