@@ -1,4 +1,4 @@
-CreateMaterial uran 3
+CreateMaterial uran 2
 CreateAsteroid 1
 CreateSettler 1
 SettlerAddMaterial 2 0
@@ -6,5 +6,6 @@ ShowGameState
 SettlerInsertMaterial 2
 SettlerDrill 2
 SettlerInsertMaterial 2
+ShowGameState
 SettlerRemoveMaterial 2
 ShowGameState

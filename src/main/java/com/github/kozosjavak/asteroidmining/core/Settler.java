@@ -194,6 +194,11 @@ public class Settler extends Spaceship implements Steppable {
         }
     }
 
+    public void removeMaterial() throws NotEnoughMaterialException, InventoryIsFullException {
+        if (!inventory.isFull()) {
+            inventory.add(getCurrentAsteroid().removeMaterial());
+        }
+    }
 
     /**
      * Implementation of the step(), settler can be controlled from there
