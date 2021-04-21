@@ -6,7 +6,11 @@ public class StartSolarStormCommand implements Command {
     @Override
     public void apply(Game game) {
         if (game.getSun() != null) {
-            game.getSun().experienceSolarStorm();
+            try {
+                game.getSun().experienceSolarStorm();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             System.out.println("We don't have sun!\n");
         }

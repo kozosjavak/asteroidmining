@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class NapkozelsegTest {
 
     @Test
-    @Ignore
+
     public void it_should_run_test() {
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("com/github/kozosjavak/asteroidmining/e2e/input-napkozelseg_hatasa_nyersanyagokra.txt");
         Game game = E2eTools.getGame(inputStream);

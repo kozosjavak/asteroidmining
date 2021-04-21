@@ -54,7 +54,7 @@ public class Orb implements Steppable {
      * @throws CantMoveToTheSpecificLocationException
      */
     @Override
-    public void step() throws CantMoveToTheSpecificLocationException {
+    public void step() throws Exception {
     }
 
     /**

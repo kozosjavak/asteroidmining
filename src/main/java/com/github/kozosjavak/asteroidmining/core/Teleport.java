@@ -107,8 +107,13 @@ public class Teleport implements Steppable {
     /**
      * Implementation of the experienceSolarStorm() it set solarized true
      */
-    public void experienceSolarStorm() {
+    public void experienceSolarStorm(){
         solarized = true;
+        try{
+            step(); // TODO torold ki
+        }catch (Exception e){
+        }
+
     }
 
     /**
@@ -117,8 +122,8 @@ public class Teleport implements Steppable {
      * @throws Exception
      */
     public void step() throws Exception {
-        if (solarized) {
-            reDeployTeleport(getLocation().getRandomNeighbor());
+        if (solarized) { // TODO
+            reDeployTeleport(getLocation().getRandomNeighborWithNoTeleport());
         }
     }
 

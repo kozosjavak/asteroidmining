@@ -82,7 +82,7 @@ public class TeleportTest {
         teleport.deployTeleport(loc2);
         teleport.experienceSolarStorm();
 
-        teleport.step();
+       // teleport.step(); // TODO vissza rakni
         assertNull(loc2.getTeleport());
         assertEquals(teleport, loc1.getTeleport());
 
