@@ -80,6 +80,6 @@ public class Sun extends Orb {
         String tab = "";
         for (int i = 0; i < depth; i++) tab += "\t";
 
-        return tab + "Sun {ID = " + game.getId(this) + "}\n";
+        return "Sun {ID = " + game.getId(this) + "},\n";
     }
 }

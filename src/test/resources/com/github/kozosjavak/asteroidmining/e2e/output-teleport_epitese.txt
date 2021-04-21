@@ -1,0 +1,54 @@
+ID: 0
+ID: 1
+ID: 2
+ID: 3
+ID: 4
+ID: 5
+Not enough materials
+<ShowGameState starts>
+Location {
+	Neighbors = {},
+	Orb = Asteroid {
+		ID = 0,
+		CrustThickness = 1,
+		AsteroidInventory = {
+		},
+		Substance = null
+		Residence = {
+			Settler {
+				ID = 1,
+				Inentory = {
+					Uran {ID = 2, HeatCounter = 0},
+					Iron {ID = 3},
+					Iron {ID = 4},
+				},
+				TeleportInventory = {
+				}
+			},
+		}
+	Teleport = null
+},
+<ShowGameState ends>
+<ShowGameState starts>
+Location {
+	Neighbors = {},
+	Orb = Asteroid {
+		ID = 0,
+		CrustThickness = 1,
+		AsteroidInventory = {
+		},
+		Substance = null
+		Residence = {
+			Settler {
+				ID = 1,
+				Inentory = {
+				},
+				TeleportInventory = {
+					Teleport {ID = -1, PairID = -1}
+					Teleport {ID = -1, PairID = -1}
+				}
+			},
+		}
+	Teleport = null
+},
+<ShowGameState ends>

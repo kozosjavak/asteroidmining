@@ -1,0 +1,80 @@
+ID: 0
+ID: 1
+ID: 2
+ID: 3
+ID: 4
+ID: 5
+ID: 6
+ID: 7
+ID: 8
+ID: 9
+ID: 10
+ID: 11
+ID: 12
+ID: 13
+Not enough material!
+<ShowGameState starts>
+Location {
+	Neighbors = {},
+	Orb = Asteroid {
+		ID = 0,
+		CrustThickness = 0,
+		AsteroidInventory = {
+			Iron {ID = 2},
+			Iron {ID = 3},
+			Iron {ID = 4},
+		},
+		Substance = null
+		Residence = {
+			Settler {
+				ID = 1,
+				Inentory = {
+					WaterIce {ID = 5},
+					WaterIce {ID = 6},
+					WaterIce {ID = 7},
+					Coal {ID = 8},
+					Coal {ID = 9},
+					Coal {ID = 10},
+					Uran {ID = 11, HeatCounter = 1},
+				},
+				TeleportInventory = {
+				}
+			},
+		}
+	Teleport = null
+},
+<ShowGameState ends>
+Base builded!
+<ShowGameState starts>
+Location {
+	Neighbors = {},
+	Orb = Asteroid {
+		ID = 0,
+		CrustThickness = 0,
+		AsteroidInventory = {
+			Iron {ID = 2},
+			Iron {ID = 3},
+			Iron {ID = 4},
+		},
+		Substance = null
+		Residence = {
+			Settler {
+				ID = 1,
+				Inentory = {
+					WaterIce {ID = 5},
+					WaterIce {ID = 6},
+					WaterIce {ID = 7},
+					Coal {ID = 8},
+					Coal {ID = 9},
+					Coal {ID = 10},
+					Uran {ID = 11, HeatCounter = 1},
+					Uran {ID = 12, HeatCounter = 1},
+					Uran {ID = 13, HeatCounter = 1},
+				},
+				TeleportInventory = {
+				}
+			},
+		}
+	Teleport = null
+},
+<ShowGameState ends>

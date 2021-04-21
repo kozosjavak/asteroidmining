@@ -231,7 +231,7 @@ public class Asteroid extends Orb implements Explodeable {
         String tab = "";
         for (int i = 0; i < depth; i++) tab += "\t";
 
-        String out = " Asteroid {\n";
+        String out = "Asteroid {\n";
         out += tab + "ID = " + game.getId(this) + ",\n";
         out += tab + "CrustThickness = " + surfaceThickness + ",\n";
         out += tab + "AsteroidInventory = {\n" + asteroidInventory.toString(depth + 1, game) + tab + "},\n";

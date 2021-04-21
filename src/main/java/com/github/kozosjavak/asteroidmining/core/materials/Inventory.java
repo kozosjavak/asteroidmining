@@ -128,15 +128,12 @@ public class Inventory {
 
         String out = "";
         for (Material material : materials) {
-            out += tab + material.toString(depth + 1, game) + "\n";
+            out += material.toString(depth, game);
         }
         return out;
     }
 
     public boolean isFull(){
-        if (getSize() == capacity){
-            return true;
-        }
-        return false;
+        return getSize() == capacity;
     }
 }

@@ -1,0 +1,16 @@
+ID: 0
+ID: 1
+ID: 2
+ID: 3
+<ShowGameState starts>
+Location {
+	Neighbors = {3, },
+	Orb = null,
+	Teleport = null
+},
+Location {
+	Neighbors = {-1, },
+	Orb = Sun {ID = 3},
+	Teleport = null
+},
+<ShowGameState ends>

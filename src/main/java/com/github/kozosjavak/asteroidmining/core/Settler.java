@@ -239,7 +239,7 @@ public class Settler extends Spaceship implements Steppable {
         out += tab + "\t},\n";
         out += tab + "\tTeleportInventory = {\n";
         for (int i = 0; i < 3; i++) {
-            if (teleportInventory[i] != null) out += tab + "\t\t" + teleportInventory[i].toString(depth + 3, game);
+            if (teleportInventory[i] != null) out += teleportInventory[i].toString(depth + 2, game);
         }
         out += tab + "\t}\n";
         out += tab + "}";

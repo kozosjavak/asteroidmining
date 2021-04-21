@@ -1,0 +1,24 @@
+ID: 0
+ID: 1
+Surface thickness is zero
+<ShowGameState starts>
+Location {
+	Neighbors = {},
+	Orb = Asteroid {
+		ID = 0,
+		CrustThickness = 0,
+		AsteroidInventory = {
+		},
+		Substance = null
+		Residence = {
+			Settler {
+				ID = 1,
+				Inentory = {
+				},
+				TeleportInventory = {
+				}
+			},
+		}
+	Teleport = null
+},
+<ShowGameState ends>

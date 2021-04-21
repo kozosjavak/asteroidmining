@@ -4,7 +4,7 @@ CreateSettler 0
 CreateRobot 0
 CreateTeleport
 CreateTeleport
-LinkTeleport 4 5
+LinkTeleports 4 5
 AddTeleport 4 0
 AddTeleport 5 1
 AddNeighbor 0 1

@@ -1,0 +1,38 @@
+ID: 0
+ID: 1
+ID: 2
+ID: 3
+ID: 4
+<ShowGameState starts>
+Location {
+	Neighbors = {},
+	Orb = Asteroid {
+		ID = 0,
+		CrustThickness = 1,
+		AsteroidInventory = {
+		},
+		Substance = null
+		Residence = {
+		}
+	Teleport = Teleport {ID = 3, PairID = 4}
+},
+Location {
+	Neighbors = {},
+	Orb = Asteroid {
+		ID = 2,
+		CrustThickness = 1,
+		AsteroidInventory = {
+		},
+		Substance = null
+		Residence = {
+			Settler {
+				ID = 1,
+				Inentory = {
+				},
+				TeleportInventory = {
+				}
+			},
+		}
+	Teleport = Teleport {ID = 4, PairID = 3}
+},
+<ShowGameState ends>

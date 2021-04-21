@@ -1,0 +1,52 @@
+ID: 0
+ID: 1
+ID: 2
+ID: 3
+ID: 4
+Not enough materials to build the robot
+<ShowGameState starts>
+Location {
+	Neighbors = {},
+	Orb = Asteroid {
+		ID = 0,
+		CrustThickness = 1,
+		AsteroidInventory = {
+		},
+		Substance = null
+		Residence = {
+			Settler {
+				ID = 1,
+				Inentory = {
+					Iron {ID = 2},
+					Coal {ID = 3},
+				},
+				TeleportInventory = {
+				}
+			},
+		}
+	Teleport = null
+},
+<ShowGameState ends>
+ID: 5
+<ShowGameState starts>
+Location {
+	Neighbors = {},
+	Orb = Asteroid {
+		ID = 0,
+		CrustThickness = 1,
+		AsteroidInventory = {
+		},
+		Substance = null
+		Residence = {
+			Settler {
+				ID = 1,
+				Inentory = {
+				},
+				TeleportInventory = {
+				}
+			},
+			Robot {ID = 5},
+		}
+	Teleport = null
+},
+<ShowGameState ends>

@@ -1,0 +1,58 @@
+ID: 0
+ID: 1
+ID: 2
+ID: 3
+ID: 4
+ID: 5
+ID: 6
+ID: 7
+ID: 8
+ID: 9
+<ShowGameState starts>
+Location {
+	Neighbors = {5, 8, },
+	Orb = Asteroid {
+		ID = 4,
+		CrustThickness = 0,
+		AsteroidInventory = {
+		},
+		Substance = Coal {ID = 0},
+		Residence = {
+		}
+	Teleport = null
+},
+Location {
+	Neighbors = {4, 6, 8, },
+	Orb = Asteroid {
+		ID = 5,
+		CrustThickness = 0,
+		AsteroidInventory = {
+		},
+		Substance = Iron {ID = 1},
+		Residence = {
+		}
+	Teleport = null
+},
+Location {
+	Neighbors = {5, -1, 8, },
+	Orb = Asteroid {
+		ID = 6,
+		CrustThickness = 0,
+		AsteroidInventory = {
+		},
+		Substance = null
+		Residence = {
+		}
+	Teleport = null
+},
+Location {
+	Neighbors = {6, 8, },
+	Orb = null,
+	Teleport = null
+},
+Location {
+	Neighbors = {4, 5, 6, -1, },
+	Orb = Sun {ID = 8},
+	Teleport = null
+},
+<ShowGameState ends>
