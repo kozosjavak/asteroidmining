@@ -12,4 +12,3 @@ ShowGameState
 SettlerAddMaterial 1 5
 SettlerBuildTeleport 1
 ShowGameState
-

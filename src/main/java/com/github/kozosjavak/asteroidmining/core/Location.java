@@ -206,8 +206,8 @@ public class Location {
             out += game.getId(loc.getCelestialBody()) + ", ";
         }
         out += "},\n";
-        out += tab + "Orb = " + (celestialBody == null ? "null" : celestialBody.toString(depth + 1, game));
-        out += tab + "Teleport = " + (teleport == null ? "null\n" : teleport.toString(depth + 1, game));
+        out += tab + "Orb = " + (celestialBody == null ? "null,\n" : celestialBody.toString(depth + 1, game));
+        out += tab + "Teleport = " + (teleport == null ? "null\n" : teleport.toString(0, game));
         out += "},\n";
         return out;
     }

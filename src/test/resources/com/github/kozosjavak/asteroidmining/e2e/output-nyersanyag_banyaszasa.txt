@@ -1,0 +1,58 @@
+ID: 0
+ID: 1
+ID: 2
+ID: 3
+ID: 4
+ID: 5
+ID: 6
+ID: 7
+ID: 8
+ID: 9
+ID: 10
+ID: 11
+ID: 12
+ID: 13
+Asteroid is not mineable!
+<ShowGameState starts>
+Location {
+	Neighbors = {3, },
+	Orb = Asteroid {
+		ID = 1,
+		CrustThickness = 0,
+		AsteroidInventory = {
+		},
+		Substance = null
+		Residence = {
+		}
+	Teleport = null
+},
+Location {
+	Neighbors = {1, },
+	Orb = Asteroid {
+		ID = 3,
+		CrustThickness = 0,
+		AsteroidInventory = {
+		},
+		Substance = Iron {ID = 2},
+		Residence = {
+			Settler {
+				ID = 4,
+				Inentory = {
+					Coal {ID = 5},
+					Coal {ID = 6},
+					Coal {ID = 7},
+					Coal {ID = 8},
+					Coal {ID = 9},
+					Coal {ID = 10},
+					Coal {ID = 11},
+					Coal {ID = 12},
+					Coal {ID = 13},
+					Coal {ID = 0},
+				},
+				TeleportInventory = {
+				}
+			},
+		}
+	Teleport = null
+},
+<ShowGameState ends>
