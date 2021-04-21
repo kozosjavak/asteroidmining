@@ -232,4 +232,13 @@ public class Location {
         getCelestialBody().step();
         getTeleport().step();
     }
+
+    public Location getRandomNeighborWithNoTeleport() throws NoNeighborException {
+        for (Location location : neighbors) {
+            if (location.getTeleport() == null) {
+                return location;
+            }
+        }
+        throw new NoNeighborException(this);
+    }
 }

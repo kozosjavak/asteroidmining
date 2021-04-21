@@ -57,7 +57,7 @@ public class Sun extends Orb {
      * Implementation of the step(), randomly moving or generate solarstorm
      */
     @Override
-    public void step() throws CantMoveToTheSpecificLocationException {
+    public void step() throws Exception {
 
         if (getLocation().game.randomGenerator(20)) {
             sunMoving(random.nextDouble() * getLocation().game.getMaxX(), random.nextDouble() * getLocation().game.getMaxY());

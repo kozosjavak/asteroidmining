@@ -13,15 +13,6 @@ public class Robot extends Spaceship implements Steppable {
         super(asteroid);
     }
 
-
-    /**
-     * experience solar storm
-     */
-    @Override
-    public void experienceSolarStorm() {
-    }
-
-
     /**
      * Step, it drill till the asteroid is mineable, then fly to the next Asteroid
      */
