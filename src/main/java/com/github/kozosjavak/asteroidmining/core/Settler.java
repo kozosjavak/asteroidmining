@@ -76,7 +76,9 @@ public class Settler extends Spaceship implements Steppable {
      * @throws AsteroidIsNotMineable    Asteroid can't be mined
      */
     public void mine() throws InventoryIsFullException, AsteroidIsNotMineable {
-        inventory.add(getCurrentAsteroid().mine());
+        if (!inventory.isFull()) {
+            inventory.add(getCurrentAsteroid().mine());
+        }
     }
 
     /**

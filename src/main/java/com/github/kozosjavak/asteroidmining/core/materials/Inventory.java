@@ -132,4 +132,11 @@ public class Inventory {
         }
         return out;
     }
+
+    public boolean isFull(){
+        if (getSize() == capacity){
+            return true;
+        }
+        return false;
+    }
 }
