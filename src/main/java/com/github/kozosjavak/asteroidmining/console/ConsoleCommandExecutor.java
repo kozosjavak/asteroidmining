@@ -54,7 +54,8 @@ public class ConsoleCommandExecutor extends CommandExecutor {
             new SettlerUseTeleportAdapter(),
             new SettlerInsertMaterialAdapter(),
             new CreateUfoAdapter(),
-            new SettlerMineAdapter()
+            new SettlerMineAdapter(),
+            new HelpAdapter()
     );
 
     public ConsoleCommandExecutor(Game game) {
