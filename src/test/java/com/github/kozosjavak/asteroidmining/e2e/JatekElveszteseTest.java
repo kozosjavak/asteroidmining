@@ -13,7 +13,6 @@ import static org.junit.Assert.*;
 public class JatekElveszteseTest {
 
     @Test
-    @Ignore
     public void it_should_run_test() {
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("com/github/kozosjavak/asteroidmining/e2e/input-jatek_elvesztese.txt");
         Game game = E2eTools.getGame(inputStream);

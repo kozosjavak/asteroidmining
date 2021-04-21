@@ -20,9 +20,9 @@ public class SettlerBuildBaseCommand implements Command {
             try {
                 settler.buildBase();
             } catch (NotEnoughMaterialException e) {
-                e.printStackTrace(); // TODO
+                System.err.println("Not enough material!");
             } catch (InventoryIsFullException e) {
-                e.printStackTrace(); // TODO
+                System.err.println("Inventory is full!");
             }
         } else System.out.printf("Invalid object ID");
     }

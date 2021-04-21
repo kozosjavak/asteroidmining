@@ -8,8 +8,14 @@ public class SettlerInsertMaterialAdapter implements StringCommandAdapter {
     public Command parse(String str) {
         String[] splitted = str.split(" ");
         if (splitted[0].equals("SettlerInsertMaterial")) {
-            return new SettlerInsertMaterialCommand(Integer.parseInt(splitted[1]), Integer.parseInt(splitted[2]));
+            if (splitted.length == 2) {
+                return new SettlerInsertMaterialCommand(Integer.parseInt(splitted[1]));
+            } else {
+                System.out.println("Invalid command");
+            }
+
         }
         return null;
     }
+
 }

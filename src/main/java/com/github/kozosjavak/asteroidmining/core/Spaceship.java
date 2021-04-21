@@ -42,10 +42,8 @@ public class Spaceship implements Explodeable {
      * Spaceship dies and removed from current asteroid
      */
     public void die() {
-        Asteroid tempAsteroid = getCurrentAsteroid();
+        currentAsteroid.removeSpaceship(this);
         setCurrentAsteroid(null);
-        tempAsteroid.removeSpaceship(this);
-
     }
 
     /**

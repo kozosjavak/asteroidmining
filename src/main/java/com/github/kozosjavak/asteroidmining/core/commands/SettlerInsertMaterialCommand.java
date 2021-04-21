@@ -9,25 +9,23 @@ import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialExce
 
 public class SettlerInsertMaterialCommand implements Command {
     private final int settlerID;
-    private final int materialID;
 
-    public SettlerInsertMaterialCommand(int settlerID, int materialID) {
+    public SettlerInsertMaterialCommand(int settlerID) {
         this.settlerID = settlerID;
-        this.materialID = materialID;
     }
 
     @Override
     public void apply(Game game) {
-        if (game.getObjectFromID(settlerID).getClass() == Settler.class && game.getObjectFromID(materialID).getClass().getInterfaces()[0] == Material.class) {
+        if (game.getObjectFromID(settlerID).getClass() == Settler.class) {
             Settler settler = (Settler) game.getObjectFromID(settlerID);
             try {
                 settler.insertMaterial();
             } catch (AsteroidNotMinedException e) {
-                e.printStackTrace(); // TODO
+                System.err.println("Asteroid can't be mined!");
             } catch (InventoryIsFullException e) {
-                e.printStackTrace(); // TODO
+                System.err.println("Inventory is full!");
             } catch (NotEnoughMaterialException e) {
-                e.printStackTrace();
+                System.err.println("Not enough material!");
             }
         }
     }

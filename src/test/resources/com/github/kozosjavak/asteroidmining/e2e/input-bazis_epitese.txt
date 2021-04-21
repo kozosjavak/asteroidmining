@@ -22,9 +22,9 @@ SettlerAddMaterial 1 8
 SettlerAddMaterial 1 9
 SettlerAddMaterial 1 10
 SettlerAddMaterial 1 11
-SettlerInsertMaterial 1 2
-SettlerInsertMaterial 1 3
-SettlerInsertMaterial 1 4
+SettlerInsertMaterial 1
+SettlerInsertMaterial 1
+SettlerInsertMaterial 1
 SettlerBuildBase 1
 ShowGameState
 SettlerAddMaterial 1 12

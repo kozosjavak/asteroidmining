@@ -35,14 +35,14 @@ public class AddNeighborCommand implements Command {
                 Orb orb2 = (Orb) game.getObjectFromID(objId2);
                 orb1.getLocation().addNeighbor(orb2.getLocation());
                 orb2.getLocation().addNeighbor(orb1.getLocation());
-                try {
+                try { // TODO
                     if (game.getObjectFromID(objId1).getClass() == Sun.class) {
                         orb2.experienceExtremeHeat();
-                    } else if (game.getObjectFromID(objId2).getClass() == Orb.class) {
+                    } else if (game.getObjectFromID(objId2).getClass() == Sun.class) {
                         orb1.experienceExtremeHeat();
                     }
                 } catch (Exception exception) {
-                    exception.printStackTrace(); // TODO
+                    exception.printStackTrace();
                 }
                 return;
             }
