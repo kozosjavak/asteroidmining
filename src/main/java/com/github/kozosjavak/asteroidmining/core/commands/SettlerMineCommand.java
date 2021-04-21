@@ -33,9 +33,9 @@ public class SettlerMineCommand implements Command{
             try {
                 settler.mine();
             } catch (InventoryIsFullException e) {
-                e.printStackTrace(); // TODO
+                System.err.println("Inventory is full!");
             } catch (AsteroidIsNotMineable asteroidIsNotMineable) {
-                asteroidIsNotMineable.printStackTrace(); // TODO
+                System.err.println("Asteroid is not mineable!");
             }
         }
         else {
