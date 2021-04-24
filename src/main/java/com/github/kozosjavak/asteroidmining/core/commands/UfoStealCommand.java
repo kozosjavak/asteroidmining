@@ -13,7 +13,8 @@ public class UfoStealCommand implements Command {
 
     @Override
     public void apply(Game game) {
-        if (game.getObjectFromID(ufoId) instanceof Ufo ufo) {
+        if (game.getObjectFromID(ufoId).getClass() == Ufo.class) {
+            Ufo ufo = (Ufo) game.getObjectFromID(ufoId);
             ufo.steal();
         } else {
             System.out.println("Invalid object ID");
