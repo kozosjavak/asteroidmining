@@ -1,0 +1,62 @@
+
+kozosjavak_astpck.png
+size: 2048, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+robot
+  rotate: false
+  xy: 1227, 81
+  size: 94, 148
+  orig: 94, 148
+  offset: 0, 0
+  index: -1
+spaceMeteors
+  rotate: false
+  xy: 2, 8
+  size: 220, 221
+  orig: 220, 221
+  offset: 0, 0
+  index: 4
+spaceMeteors
+  rotate: false
+  xy: 224, 2
+  size: 214, 227
+  orig: 214, 227
+  offset: 0, 0
+  index: 3
+spaceMeteors
+  rotate: false
+  xy: 440, 11
+  size: 212, 218
+  orig: 212, 218
+  offset: 0, 0
+  index: 2
+spaceMeteors
+  rotate: false
+  xy: 654, 18
+  size: 215, 211
+  orig: 215, 211
+  offset: 0, 0
+  index: 1
+spaceShip
+  rotate: false
+  xy: 1053, 78
+  size: 172, 151
+  orig: 172, 151
+  offset: 0, 0
+  index: -1
+sun
+  rotate: false
+  xy: 871, 49
+  size: 180, 180
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
+ufo
+  rotate: false
+  xy: 1323, 171
+  size: 124, 58
+  orig: 124, 58
+  offset: 0, 0
+  index: -1
