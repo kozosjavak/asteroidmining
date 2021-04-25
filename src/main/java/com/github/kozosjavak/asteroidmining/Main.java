@@ -15,7 +15,7 @@ public class Main {
      * @param args az argumentumok
      */
     public static void main(String[] args) {
-        Game game = new Game(1920, 1080);
+        Game game = new Game(7680, 4320);
         AsteroidMiningGame gameGfx = new AsteroidMiningGame(game);
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.width = 1920;

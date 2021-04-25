@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.github.kozosjavak.asteroidmining.gfx.model.Model;
@@ -27,14 +28,22 @@ public class GameScreen implements Screen {
     private final int WORLD_HEIGHT = 4320; //veletlen muve ez nem a felbontas
     //timing
     private final int backGroundOffset; //kicsit mozgo hatterert
-    private List<Model> modelList;
+
+    private final TextureAtlas textureAtlas;
 
     public GameScreen() {
         camera = new OrthographicCamera(); //2d kamera, ami kesobb rendeledodik elobb van az jelenik meg, legegyszerubb kamera
         viewport = new StretchViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
         backGround = new Texture("space_background.jpg");
+        textureAtlas = new TextureAtlas("images.atlas");
         backGroundOffset = 0;
         batch = new SpriteBatch();
+    }
+
+    private List<Model> modelList;
+
+    public TextureAtlas getTextureAtlas() {
+        return textureAtlas;
     }
 
     public void updateModelList(List<Model> modelList) {

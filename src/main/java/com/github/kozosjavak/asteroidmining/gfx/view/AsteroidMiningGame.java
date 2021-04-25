@@ -1,7 +1,6 @@
 package com.github.kozosjavak.asteroidmining.gfx.view;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.github.kozosjavak.asteroidmining.core.*;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Coal;
@@ -13,31 +12,34 @@ import java.util.List;
 public class AsteroidMiningGame extends Game {
 
     private final com.github.kozosjavak.asteroidmining.core.Game game;
-    private final TextureAtlas textureAtlas;
+
     GameScreen gameScreen;
 
     public AsteroidMiningGame(com.github.kozosjavak.asteroidmining.core.Game game) {
         this.game = game;
-        textureAtlas = new TextureAtlas("kozosjavak_astpck.atlas");
-        Location sunLocation = new Location(game, 0.0, 0.0);
+
+    }
+
+    private void setScene(com.github.kozosjavak.asteroidmining.core.Game game) {
+        Location sunLocation = new Location(game, 3840.0, 2160.0);
         game.setSun(new Sun(sunLocation));
 
-        Location locationAsteroid = new Location(game, 50.0, 50.0);
+        Location locationAsteroid = new Location(game, 4200.0, 1800.0);
         Asteroid asteroid = new Asteroid(locationAsteroid, 1, new Coal());
         game.addLocation(locationAsteroid);
 
-        Location locationAsteroidSettler = new Location(game, 250.0, 50.0);
-        Asteroid asteroidSettler = new Asteroid(locationAsteroid, 1, new Coal());
+        Location locationAsteroidSettler = new Location(game, 4600.0, 2160.0);
+        Asteroid asteroidSettler = new Asteroid(locationAsteroidSettler, 1, new Coal());
         Settler settler = new Settler(asteroidSettler);
         game.addLocation(locationAsteroidSettler);
 
-        Location locationAsteroidUfo = new Location(game, 50.0, 250.0);
-        Asteroid asteroidUfo = new Asteroid(locationAsteroid, 1, new Coal());
+        Location locationAsteroidUfo = new Location(game, 5000.0, 2160.0);
+        Asteroid asteroidUfo = new Asteroid(locationAsteroidUfo, 1, new Coal());
         Ufo ufo = new Ufo(asteroidUfo);
         game.addLocation(locationAsteroidUfo);
 
-        Location locationAsteroidRobot = new Location(game, 1000.0, 1000.0);
-        Asteroid asteroidRobot = new Asteroid(locationAsteroid, 1, new Coal());
+        Location locationAsteroidRobot = new Location(game, 2500.0, 2160.0);
+        Asteroid asteroidRobot = new Asteroid(locationAsteroidRobot, 1, new Coal());
         Robot robot = new Robot(asteroidRobot);
         game.addLocation(locationAsteroidRobot);
     }
@@ -46,6 +48,7 @@ public class AsteroidMiningGame extends Game {
     public void create() {
         gameScreen = new GameScreen();
         setScreen(gameScreen);
+        setScene(game);
     }
 
     @Override
@@ -69,24 +72,27 @@ public class AsteroidMiningGame extends Game {
      * Ha nem tudunk castolni floatra akkor at kell irni a gamebe
      */
     private void updateModelList() {
+
         List<Model> modelList = new ArrayList<>();
-        modelList.add(new SunModel(textureAtlas, new Vector2((float) game.getSun().getLocation().getCoordinate().getX(), (float) game.getSun().getLocation().getCoordinate().getY())));
+        modelList.add(new SunModel(gameScreen.getTextureAtlas(), new Vector2((float) game.getSun().getLocation().getCoordinate().getX(), (float) game.getSun().getLocation().getCoordinate().getY())));
         for (Location location : game.getLocationList()) {
-            if (location.getOrb().getClass() == Asteroid.class && location.getOrb() != null) {
-                modelList.add(new AsteroidModel(textureAtlas, new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
+            if (location.getCelestialBody() == null)
+                continue;
+            if (location.getCelestialBody().getClass() == Asteroid.class && location.getCelestialBody() != null) {
+                modelList.add(new AsteroidModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
             }
             if (location.getTeleport() != null) {
-                modelList.add(new TeleportModel(textureAtlas, new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
+                modelList.add(new TeleportModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
             }
-            if (location.getOrb().getClass() == Asteroid.class && location.getOrb() != null) {
-                Asteroid asteroid = (Asteroid) location.getOrb();
+            if (location.getCelestialBody().getClass() == Asteroid.class && location.getCelestialBody() != null) {
+                Asteroid asteroid = (Asteroid) location.getCelestialBody();
                 for (Spaceship sp : asteroid.getResidence()) {
                     if (sp.getClass() == Settler.class) {
-                        modelList.add(new SettlerModel(textureAtlas, new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
+                        modelList.add(new SettlerModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
                     } else if (sp.getClass() == Ufo.class) {
-                        modelList.add(new UfoModel(textureAtlas, new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
+                        modelList.add(new UfoModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
                     } else if (sp.getClass() == Robot.class) {
-                        modelList.add(new RobotModel(textureAtlas, new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
+                        modelList.add(new RobotModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
                     }
                 }
             }

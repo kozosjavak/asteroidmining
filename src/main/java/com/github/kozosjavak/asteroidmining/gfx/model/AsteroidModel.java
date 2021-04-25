@@ -13,6 +13,7 @@ public class AsteroidModel extends Model {
 
     @Override
     public void draw(SpriteBatch batch) {
+        batch.draw(texture, position.x, position.y);
     }
 
     @Override
