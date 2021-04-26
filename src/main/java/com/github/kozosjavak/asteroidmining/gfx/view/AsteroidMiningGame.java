@@ -1,6 +1,7 @@
 package com.github.kozosjavak.asteroidmining.gfx.view;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector2;
 import com.github.kozosjavak.asteroidmining.core.*;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Coal;
@@ -14,6 +15,8 @@ public class AsteroidMiningGame extends Game {
     private final com.github.kozosjavak.asteroidmining.core.Game game;
 
     GameScreen gameScreen;
+    MainMenuScreen mainMenuScreen;
+    Screen actualScreen;
 
     public AsteroidMiningGame(com.github.kozosjavak.asteroidmining.core.Game game) {
         this.game = game;
@@ -21,24 +24,24 @@ public class AsteroidMiningGame extends Game {
     }
 
     private void setScene(com.github.kozosjavak.asteroidmining.core.Game game) {
-        Location sunLocation = new Location(game, 3840.0, 2160.0);
+        Location sunLocation = new Location(game, 384.0, 216.0);
         game.setSun(new Sun(sunLocation));
 
-        Location locationAsteroid = new Location(game, 4200.0, 1800.0);
+        Location locationAsteroid = new Location(game, 420.0, 180.0);
         Asteroid asteroid = new Asteroid(locationAsteroid, 1, new Coal());
         game.addLocation(locationAsteroid);
 
-        Location locationAsteroidSettler = new Location(game, 4600.0, 2160.0);
+        Location locationAsteroidSettler = new Location(game, 460.0, 216.0);
         Asteroid asteroidSettler = new Asteroid(locationAsteroidSettler, 1, new Coal());
         Settler settler = new Settler(asteroidSettler);
         game.addLocation(locationAsteroidSettler);
 
-        Location locationAsteroidUfo = new Location(game, 5000.0, 2160.0);
+        Location locationAsteroidUfo = new Location(game, 500.0, 216.0);
         Asteroid asteroidUfo = new Asteroid(locationAsteroidUfo, 1, new Coal());
         Ufo ufo = new Ufo(asteroidUfo);
         game.addLocation(locationAsteroidUfo);
 
-        Location locationAsteroidRobot = new Location(game, 2500.0, 2160.0);
+        Location locationAsteroidRobot = new Location(game, 250.0, 216.0);
         Asteroid asteroidRobot = new Asteroid(locationAsteroidRobot, 1, new Coal());
         Robot robot = new Robot(asteroidRobot);
         game.addLocation(locationAsteroidRobot);
@@ -47,24 +50,28 @@ public class AsteroidMiningGame extends Game {
     @Override
     public void create() {
         gameScreen = new GameScreen();
-        setScreen(gameScreen);
+        mainMenuScreen = new MainMenuScreen();
+        actualScreen = gameScreen;
+        setScreen(mainMenuScreen);
         setScene(game);
     }
 
     @Override
     public void dispose() {
-        gameScreen.dispose();
+        actualScreen.dispose();
     }
 
     @Override
     public void render() {
-        updateModelList();
+        if (actualScreen.getClass() == GameScreen.class) {
+            updateModelList();
+        }
         super.render();
     }
 
     @Override
     public void resize(int width, int height) {
-        gameScreen.resize(width, height);
+        actualScreen.resize(width, height);
     }
 
     /**

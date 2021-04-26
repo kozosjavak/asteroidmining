@@ -1,8 +1,10 @@
 package com.github.kozosjavak.asteroidmining;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.github.kozosjavak.asteroidmining.core.Game;
+import com.github.kozosjavak.asteroidmining.gfx.MenuEventHandler;
 import com.github.kozosjavak.asteroidmining.gfx.view.AsteroidMiningGame;
 
 /**
@@ -15,15 +17,18 @@ public class Main {
      * @param args az argumentumok
      */
     public static void main(String[] args) {
-        Game game = new Game(7680, 4320);
+        Game game = new Game(800, 800);
         AsteroidMiningGame gameGfx = new AsteroidMiningGame(game);
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        config.width = 1920;
-        config.height = 1080;
-        config.resizable = true;
+
+        config.width = 1200;
+        config.height = 800;
+        config.resizable = false;
         config.vSyncEnabled = true;
         config.useHDPI = true;
         LwjglApplication application = new LwjglApplication(gameGfx, config);
+        MenuEventHandler inputProcessor = new MenuEventHandler();
+        Gdx.input.setInputProcessor(inputProcessor);
 
 
         //  ConsoleCommandExecutor cce = new ConsoleCommandExecutor(game);

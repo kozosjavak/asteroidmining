@@ -1,7 +1,5 @@
 package com.github.kozosjavak.asteroidmining.gfx.view;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -24,8 +22,8 @@ public class GameScreen implements Screen {
     private final Texture backGround;
 
     //world params meg kell tartani az aranyszamot
-    private final int WORLD_WIDTH = 7680; //meterben ertendo
-    private final int WORLD_HEIGHT = 4320; //veletlen muve ez nem a felbontas
+    private final int RENDER_WIDTH = 1200; //meterben ertendo
+    private final int RENDER_HEIGHT = 800; //veletlen muve ez nem a felbontas
     //timing
     private final int backGroundOffset; //kicsit mozgo hatterert
 
@@ -33,7 +31,7 @@ public class GameScreen implements Screen {
 
     public GameScreen() {
         camera = new OrthographicCamera(); //2d kamera, ami kesobb rendeledodik elobb van az jelenik meg, legegyszerubb kamera
-        viewport = new StretchViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+        viewport = new StretchViewport(RENDER_WIDTH, RENDER_HEIGHT, camera);
         backGround = new Texture("space_background.jpg");
         textureAtlas = new TextureAtlas("images.atlas");
         backGroundOffset = 0;
@@ -51,9 +49,7 @@ public class GameScreen implements Screen {
     }
 
     private void update() {
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-            Gdx.app.exit();
-        }
+
 
     }
 
@@ -61,7 +57,7 @@ public class GameScreen implements Screen {
     public void render(float delta) {   //delta = delta time megmondja hogy mennyi ido telt el a 2 render kort kozott (magyarul orahoz kotott ido, nem orajelhez)
         update();
         batch.begin();
-        batch.draw(backGround, 0, -backGroundOffset, WORLD_WIDTH, WORLD_HEIGHT);
+        batch.draw(backGround, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
         for (Model model : modelList) {
             model.draw(batch);
         }
