@@ -24,14 +24,14 @@ public class AsteroidMiningGame extends Game {
     }
 
     private void setScene(com.github.kozosjavak.asteroidmining.core.Game game) {
-        Location sunLocation = new Location(game, 384.0, 216.0);
+        Location sunLocation = new Location(game, 400.0, 400.0);
         game.setSun(new Sun(sunLocation));
 
-        Location locationAsteroid = new Location(game, 420.0, 180.0);
+        Location locationAsteroid = new Location(game, 420.0, 360.0);
         Asteroid asteroid = new Asteroid(locationAsteroid, 1, new Coal());
         game.addLocation(locationAsteroid);
 
-        Location locationAsteroidSettler = new Location(game, 460.0, 216.0);
+        Location locationAsteroidSettler = new Location(game, 460.0, 240.0);
         Asteroid asteroidSettler = new Asteroid(locationAsteroidSettler, 1, new Coal());
         Settler settler = new Settler(asteroidSettler);
         game.addLocation(locationAsteroidSettler);
@@ -52,7 +52,7 @@ public class AsteroidMiningGame extends Game {
         gameScreen = new GameScreen();
         mainMenuScreen = new MainMenuScreen();
         actualScreen = gameScreen;
-        setScreen(mainMenuScreen);
+        setScreen(actualScreen);
         setScene(game);
     }
 

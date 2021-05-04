@@ -20,6 +20,7 @@ public class GameScreen implements Screen {
     //graphics
     private final SpriteBatch batch;  //megjelnitendo texturak osszegsege
     private final Texture backGround;
+    private final Texture settlerMenu;
 
     //world params meg kell tartani az aranyszamot
     private final int RENDER_WIDTH = 1200; //meterben ertendo
@@ -33,8 +34,10 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera(); //2d kamera, ami kesobb rendeledodik elobb van az jelenik meg, legegyszerubb kamera
         viewport = new StretchViewport(RENDER_WIDTH, RENDER_HEIGHT, camera);
         backGround = new Texture("space_background.jpg");
+        settlerMenu = new Texture("settlermenu.png");
         textureAtlas = new TextureAtlas("images.atlas");
         backGroundOffset = 0;
+
         batch = new SpriteBatch();
     }
 
@@ -58,6 +61,7 @@ public class GameScreen implements Screen {
         update();
         batch.begin();
         batch.draw(backGround, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
+        batch.draw(settlerMenu, 800, 0, 400, 800);
         for (Model model : modelList) {
             model.draw(batch);
         }

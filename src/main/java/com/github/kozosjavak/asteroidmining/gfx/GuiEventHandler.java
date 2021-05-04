@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 
-public class MenuEventHandler implements InputProcessor {
+public class GuiEventHandler implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {

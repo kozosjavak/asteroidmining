@@ -1,62 +1,76 @@
 
-kozosjavak_astpck.png
-size: 2048, 256
+kozos_javak_asstets_small.png
+size: 512, 64
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 robot
   rotate: false
-  xy: 1227, 81
-  size: 94, 148
-  orig: 94, 148
+  xy: 358, 32
+  size: 19, 30
+  orig: 19, 30
   offset: 0, 0
   index: -1
 spaceMeteors
   rotate: false
-  xy: 2, 8
-  size: 220, 221
-  orig: 220, 221
+  xy: 126, 22
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: 4
 spaceMeteors
   rotate: false
-  xy: 224, 2
-  size: 214, 227
-  orig: 214, 227
+  xy: 168, 22
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: 1
+spaceMeteors
+  rotate: false
+  xy: 210, 22
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: 3
 spaceMeteors
   rotate: false
-  xy: 440, 11
-  size: 212, 218
-  orig: 212, 218
+  xy: 252, 22
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: 2
-spaceMeteors
-  rotate: false
-  xy: 654, 18
-  size: 215, 211
-  orig: 215, 211
-  offset: 0, 0
-  index: 1
 spaceShip
   rotate: false
-  xy: 1053, 78
-  size: 172, 151
-  orig: 172, 151
+  xy: 294, 32
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+ssuuuuuunnnn
+  rotate: false
+  xy: 2, 2
+  size: 60, 60
+  orig: 60, 60
   offset: 0, 0
   index: -1
 sun
   rotate: false
-  xy: 871, 49
-  size: 180, 180
-  orig: 180, 180
+  xy: 64, 5
+  size: 60, 57
+  orig: 60, 57
+  offset: 0, 0
+  index: -1
+teleport
+  rotate: false
+  xy: 326, 32
+  size: 30, 30
+  orig: 30, 30
   offset: 0, 0
   index: -1
 ufo
   rotate: false
-  xy: 1323, 171
-  size: 124, 58
-  orig: 124, 58
+  xy: 126, 6
+  size: 30, 14
+  orig: 30, 14
   offset: 0, 0
   index: -1

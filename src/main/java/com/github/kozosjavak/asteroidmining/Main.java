@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.github.kozosjavak.asteroidmining.core.Game;
-import com.github.kozosjavak.asteroidmining.gfx.MenuEventHandler;
+import com.github.kozosjavak.asteroidmining.gfx.GuiEventHandler;
 import com.github.kozosjavak.asteroidmining.gfx.view.AsteroidMiningGame;
 
 /**
@@ -27,7 +27,7 @@ public class Main {
         config.vSyncEnabled = true;
         config.useHDPI = true;
         LwjglApplication application = new LwjglApplication(gameGfx, config);
-        MenuEventHandler inputProcessor = new MenuEventHandler();
+        GuiEventHandler inputProcessor = new GuiEventHandler();
         Gdx.input.setInputProcessor(inputProcessor);
 
 
