@@ -210,6 +210,15 @@ public class Asteroid extends Orb implements Explodeable {
         }
     }
 
+    @Override
+    public void step() throws Exception {
+        for (Spaceship sp : residence) {
+            if (sp.getClass() != Settler.class) {
+                sp.step();
+            }
+        }
+    }
+
     /**
      * Give back the thickness of the surface
      *

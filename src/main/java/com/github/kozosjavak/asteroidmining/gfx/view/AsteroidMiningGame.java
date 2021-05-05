@@ -53,7 +53,7 @@ public class AsteroidMiningGame extends Game {
         mainMenuScreen = new MainMenuScreen();
         actualScreen = gameScreen;
         setScreen(actualScreen);
-        setScene(game);
+        //setScene(game);
     }
 
     @Override

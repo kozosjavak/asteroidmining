@@ -3,7 +3,7 @@ package com.github.kozosjavak.asteroidmining.core;
 /**
  * Robot class
  */
-public class Robot extends Spaceship implements Steppable {
+public class Robot extends Spaceship {
     /**
      * Robot constructor
      *

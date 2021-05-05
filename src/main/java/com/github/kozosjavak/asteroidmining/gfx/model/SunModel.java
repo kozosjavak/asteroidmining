@@ -13,7 +13,7 @@ public class SunModel extends Model {
 
     @Override
     public void draw(SpriteBatch batch) {
-        batch.draw(texture, position.x, position.y);
+        batch.draw(texture, position.x - texture.getRegionWidth(), position.y - texture.getRegionHeight());
     }
 
     @Override

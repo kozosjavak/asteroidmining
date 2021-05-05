@@ -230,7 +230,9 @@ public class Location {
     public void step(double distanceOfNeighbors) throws Exception {
         refreshNeighborsList(distanceOfNeighbors);
         getCelestialBody().step();
-        getTeleport().step();
+        if (getTeleport() != null) {
+            getTeleport().step();
+        }
     }
 
     public Location getRandomNeighborWithNoTeleport() throws NoNeighborException {

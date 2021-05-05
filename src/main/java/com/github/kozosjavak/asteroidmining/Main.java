@@ -18,6 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         Game game = new Game(800, 800);
+
         AsteroidMiningGame gameGfx = new AsteroidMiningGame(game);
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
@@ -29,6 +30,11 @@ public class Main {
         LwjglApplication application = new LwjglApplication(gameGfx, config);
         GuiEventHandler inputProcessor = new GuiEventHandler();
         Gdx.input.setInputProcessor(inputProcessor);
+        try {
+            game.startGame(120, 4, 100.0);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
 
 
         //  ConsoleCommandExecutor cce = new ConsoleCommandExecutor(game);

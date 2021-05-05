@@ -9,7 +9,7 @@ import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialExce
 /**
  * Settler class
  */
-public class Settler extends Spaceship implements Steppable {
+public class Settler extends Spaceship {
 
     /**
      * Settler's inventory
