@@ -11,6 +11,7 @@ public class Model {
 
     public Model(TextureAtlas atlas, Vector2 position) {
         this.position = position;
+       //this.position.set(this.position.x,this.position.y);
 
     }
 

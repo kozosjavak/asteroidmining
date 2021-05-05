@@ -1,5 +1,11 @@
 package com.github.kozosjavak.asteroidmining.core;
 
+import com.github.kozosjavak.asteroidmining.core.materials.Material;
+import com.github.kozosjavak.asteroidmining.core.materials.types.Coal;
+import com.github.kozosjavak.asteroidmining.core.materials.types.Iron;
+import com.github.kozosjavak.asteroidmining.core.materials.types.Uranium;
+import com.github.kozosjavak.asteroidmining.core.materials.types.Waterice;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -149,7 +155,7 @@ public class Game {
 
     public boolean checkIfLocationCollide(Location location) {
         for (Location nextLocation : getLocationList()) {
-            if (nextLocation != location && location.coordinate.getDistance(nextLocation.getCoordinate()) < 1) {
+            if (nextLocation != location && location.coordinate.getDistance(nextLocation.getCoordinate()) < 40) {
                 return true;
             }
         }
@@ -196,7 +202,7 @@ public class Game {
      */
     public void removeSettlerFromGame(Settler settler) {
         settlers.remove(settler);
-        if (settlers.size() == 0){
+        if (settlers.size() == 0) {
             endGame();
         }
     }
@@ -204,10 +210,13 @@ public class Game {
     /**
      * Starts the game, generate the world
      */
-    public void startGame(double distanceOfNeighbors) throws Exception {
-        //Generate world
+    public void startGame(int numberOfAsteroids, int maxCrustThickness, double distanceOfNeighbors) throws Exception {
+        generateWorld(numberOfAsteroids, maxCrustThickness);
+        //teszt
+        Robot robot = new Robot((Asteroid) getLocationList().get(3).getCelestialBody());
         while (running) {
             for (Location nextStep : locationList) {
+                Thread.sleep(5);
                 nextStep.step(distanceOfNeighbors);
             }
         }
@@ -230,6 +239,47 @@ public class Game {
      */
     Boolean randomGenerator(int percentage) {
         return random.nextInt(1000) % 100 < percentage;
+    }
+
+    private Material randomMaterial() {
+        Material material;
+        int rand = random.nextInt(4);
+        if (rand == 0) {
+            material = new Uranium();
+        } else if (rand == 1) {
+            material = new Waterice();
+        } else if (rand == 2) {
+            material = new Iron();
+        } else if (rand == 3) {
+            material = new Coal();
+        } else {
+            material = null;
+        }
+        return material;
+    }
+
+    private void generateWorld(int numberOfAsteroid, int maximumCrustThickness) throws Exception {
+        if (numberOfAsteroid > 0) {
+            Location sunLocation = new Location(this, maxX / 2, maxY / 2);
+            double randX, randY;
+
+            sun = new Sun(sunLocation);
+            locationList.add(sunLocation);
+
+            for (int i = 0; i < numberOfAsteroid; i++) {
+                randX = Math.sqrt(random.nextDouble());
+                randY = Math.sqrt(random.nextDouble());
+
+                Location newLocation = new Location(this, randX * maxX, randY * maxY);
+                while (checkIfLocationCollide(newLocation)) {
+                    randX = Math.sqrt(random.nextDouble());
+                    randY = Math.sqrt(random.nextDouble());
+                    newLocation.getCoordinate().updateCoordinates(randX * maxX, randY * maxY);
+                }
+                Asteroid newAsteroid = new Asteroid(newLocation, random.nextInt(1 + random.nextInt(maximumCrustThickness - 1)), randomMaterial());
+                locationList.add(newLocation);
+            }
+        }
     }
 
     /**

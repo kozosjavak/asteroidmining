@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * Ufo class
  */
-public class Ufo extends Spaceship implements Steppable {
+public class Ufo extends Spaceship {
 
     /**
      * Inventory of the Ufo

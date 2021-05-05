@@ -26,13 +26,31 @@ public class Sun extends Orb {
      * @param newY double new Y coordinate
      * @throws CantMoveToTheSpecificLocationException if can't move the specific coordinate
      */
-    public void sunMoving(double newX, double newY) throws CantMoveToTheSpecificLocationException {
+    public void sunMoving(double newX, double newY, int counter) throws CantMoveToTheSpecificLocationException {
+        //csunya javitasra szorul
         double x = getLocation().getCoordinate().getX();
         double y = getLocation().getCoordinate().getY();
-        getLocation().getCoordinate().updateCoordinates(newX, newY);
-        if (getLocation().game.checkIfLocationCollide(getLocation())) {
+        if (x + newX < getLocation().game.getMaxX() && y + newY < getLocation().game.getMaxY() && getLocation().game.randomGenerator(50)) {
+            getLocation().getCoordinate().updateCoordinates(x + newX, y + newY);
+            // System.out.println("Sun: Elso");
+        } else if (x - newX > 0 && y + newY < getLocation().game.getMaxY() && getLocation().game.randomGenerator(50)) {
+            getLocation().getCoordinate().updateCoordinates(x - newX, y + newY);
+            //System.out.println("Sun: masodik");
+        } else if (x + newX < getLocation().game.getMaxX() && y - newY > 0 && getLocation().game.randomGenerator(50)) {
+            getLocation().getCoordinate().updateCoordinates(x + newX, y - newY);
+            // System.out.println("Sun: harmadik");
+        } else if (x - newX > 0 && y - newY > 0 && getLocation().game.randomGenerator(50)) {
+            getLocation().getCoordinate().updateCoordinates(x - newX, y - newY);
+            // System.out.println("Sun: negyedik");
+        }
+        if (getLocation().game.checkIfLocationCollide(getLocation()) && counter > 0) {
             getLocation().getCoordinate().updateCoordinates(x, y);
+            sunMoving(random.nextDouble() * getLocation().game.getMaxX() * 0.2, random.nextDouble() * getLocation().game.getMaxY() * 0.2, --counter);
+        } else if (getLocation().game.checkIfLocationCollide(getLocation()) && counter == 0) {
             throw new CantMoveToTheSpecificLocationException(new Coordinate(newX, newY));
+        } else {
+            //System.out.println("Hupsz(sun)");
+            return;
         }
     }
 
@@ -60,7 +78,14 @@ public class Sun extends Orb {
     public void step() throws Exception {
 
         if (getLocation().game.randomGenerator(20)) {
-            sunMoving(random.nextDouble() * getLocation().game.getMaxX(), random.nextDouble() * getLocation().game.getMaxY());
+            try {
+                sunMoving(random.nextDouble() * getLocation().game.getMaxX() * 0.2, random.nextDouble() * getLocation().game.getMaxY() * 0.2, 20);
+            } catch (Exception e) {
+                if (e.getClass() == CantMoveToTheSpecificLocationException.class) {
+                    System.out.println("Sun couldn't move!");
+                }
+            }
+
         }
         if (getLocation().game.randomGenerator(30)) {
             experienceSolarStorm();
