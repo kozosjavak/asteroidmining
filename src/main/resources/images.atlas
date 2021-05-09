@@ -46,6 +46,13 @@ spaceShip
   orig: 30, 30
   offset: 0, 0
   index: -1
+selectedSpaceShip
+  rotate: false
+  xy: 378, 30
+  size: 34, 34
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
 ssuuuuuunnnn
   rotate: false
   xy: 2, 2
@@ -55,9 +62,9 @@ ssuuuuuunnnn
   index: -1
 sun
   rotate: false
-  xy: 64, 5
-  size: 60, 57
-  orig: 60, 57
+  xy: 64, 2
+  size: 60, 60
+  orig: 60, 60
   offset: 0, 0
   index: -1
 teleport
