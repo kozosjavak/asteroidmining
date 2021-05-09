@@ -5,9 +5,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 public class SettlerModel extends Model {
-    public SettlerModel(TextureAtlas atlas, Vector2 position) {
+    public SettlerModel(TextureAtlas atlas, Vector2 position, boolean isSelected) {
         super(atlas, position);
-        texture = atlas.findRegion("spaceShip");
+        if (isSelected) {
+            texture = atlas.findRegion("selectedSpaceShip");
+        } else {
+            texture = atlas.findRegion("spaceShip");
+        }
+
     }
 
     @Override
