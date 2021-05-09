@@ -81,3 +81,10 @@ ufo
   orig: 30, 14
   offset: 0, 0
   index: -1
+hole
+  rotate: false
+  xy: 414, 34
+  size: 32, 23
+  orig: 32, 23
+  offset: 0, 0
+  index: -1
