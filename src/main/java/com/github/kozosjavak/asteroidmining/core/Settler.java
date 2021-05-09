@@ -182,6 +182,7 @@ public class Settler extends Spaceship {
      * @param number ID of the teleport which will be placed
      */
     public void deployTeleport(int number) {
+
         if (teleportInventory[number] != null) {
             teleportInventory[number].deployTeleport(getCurrentAsteroid().getLocation());
             teleportInventory[number] = null;

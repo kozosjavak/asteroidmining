@@ -120,7 +120,7 @@ public class SpaceShipTest {
         asteroid1.getLocation().setTeleport(teleport1);
         asteroid2.getLocation().setTeleport(teleport2);
 
-        sp.Teleport();
+        sp.teleport();
         assertEquals(asteroid2, sp.getCurrentAsteroid());
     }
 
@@ -134,7 +134,7 @@ public class SpaceShipTest {
         Teleport teleport1 = new Teleport();
         asteroid1.getLocation().setTeleport(teleport1);
 
-        sp.Teleport();
+        sp.teleport();
         assertEquals("Teleport is not available", outContent.toString().trim());
     }
 

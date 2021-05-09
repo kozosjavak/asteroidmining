@@ -212,9 +212,9 @@ public class Game {
      * Starts the game, generate the world
      */
 
-    public void startGame(int numberOfAsteroids, int maxCrustThickness, double distanceOfNeighbors, int numberOfSettlers) throws Exception {
+    public void startGame(int numberOfAsteroids, int maxCrustThickness, double distanceOfNeighbors, int numberOfSettlers, int numberOfUfos) throws Exception {
 
-        generateWorld(numberOfAsteroids, maxCrustThickness, numberOfSettlers);
+        generateWorld(numberOfAsteroids, maxCrustThickness, numberOfSettlers, numberOfUfos, distanceOfNeighbors);
         //teszt
         // Robot robot = new Robot((Asteroid) getLocationList().get(3).getCelestialBody());
         new Thread(() -> {
@@ -227,7 +227,7 @@ public class Game {
                     selectedSettler.step();
                     while (selectedSettler.isSelected()) {
                         try {
-                            Thread.sleep(600);
+                            Thread.sleep(10);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -282,7 +282,7 @@ public class Game {
         return material;
     }
 
-    private void generateWorld(int numberOfAsteroid, int maximumCrustThickness, int numberOfSettlers) throws Exception {
+    private void generateWorld(int numberOfAsteroid, int maximumCrustThickness, int numberOfSettlers, int numberOfUfos, double neighborDistance) throws Exception {
         if (numberOfAsteroid > 0) {
             Location sunLocation = new Location(this, maxX / 2, maxY / 2);
             double randX, randY;
@@ -310,6 +310,17 @@ public class Game {
                 }
                 Asteroid asteroid = (Asteroid) location.getCelestialBody();
                 Settler settler = new Settler(asteroid);
+            }
+            for (int i = 0; i < numberOfUfos; i++) {
+                Location location = locationList.get(random.nextInt(locationList.size() - 1));
+                while (location.getCelestialBody().getClass() != Asteroid.class) {
+                    location = locationList.get(random.nextInt(locationList.size() - 1));
+                }
+                Asteroid asteroid = (Asteroid) location.getCelestialBody();
+                Ufo settler = new Ufo(asteroid);
+            }
+            for (Location location : getLocationList()) {
+                location.refreshNeighborsList(neighborDistance);
             }
         }
     }

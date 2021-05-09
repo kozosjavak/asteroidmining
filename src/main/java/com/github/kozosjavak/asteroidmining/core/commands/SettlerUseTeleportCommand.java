@@ -21,7 +21,7 @@ public class SettlerUseTeleportCommand implements Command {
             teleport = (Teleport) game.getObjectFromID(teleportID);
             settler = (Settler) game.getObjectFromID(settlerID);
             if (teleport.getLocation() == settler.getCurrentAsteroid().getLocation()) {
-                settler.Teleport();
+                settler.teleport();
             } else {
                 System.out.println("The given Teleport is not on the same location with the given Settler");
             }
