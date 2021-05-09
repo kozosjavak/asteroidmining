@@ -7,6 +7,9 @@ import com.github.kozosjavak.asteroidmining.core.Settler;
 import com.github.kozosjavak.asteroidmining.core.Steppable;
 import com.github.kozosjavak.asteroidmining.gfx.view.AsteroidMiningGame;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GuiEventHandler implements InputProcessor {
     AsteroidMiningGame game;
 
@@ -40,18 +43,22 @@ public class GuiEventHandler implements InputProcessor {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        for (Steppable settler : game.getGame().getSettlers()) {
+        List<Steppable> settlerList = new ArrayList<>(game.getGame().getSettlers());
+
+        for (Steppable settler : settlerList) {
             Settler currentSettler = (Settler) settler;
             if (currentSettler.isSelected()) {
                 try {
                     currentSettler.drill();
-                    currentSettler.setSelectedFalse();
                 } catch (Exception exception) {
                     System.out.println(exception.getMessage());
                 }
+                currentSettler.setSelectedFalse();
+                System.out.println(currentSettler.getCurrentAsteroid().getSurfaceThickness());
             }
         }
-        System.out.println(screenX + " " + screenY);
+        //System.out.println(screenX + " " + screenY);
+
         return false;
     }
 
