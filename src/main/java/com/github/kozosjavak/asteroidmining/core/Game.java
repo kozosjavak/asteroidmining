@@ -300,7 +300,7 @@ public class Game {
                     randY = Math.sqrt(random.nextDouble());
                     newLocation.getCoordinate().updateCoordinates(randX * maxX, randY * maxY);
                 }
-                Asteroid newAsteroid = new Asteroid(newLocation, random.nextInt(1 + random.nextInt(maximumCrustThickness - 1)), randomMaterial());
+                Asteroid newAsteroid = new Asteroid(newLocation, 1 + random.nextInt(1 + random.nextInt(maximumCrustThickness - 1)), randomMaterial());
                 locationList.add(newLocation);
             }
             for (int i = 0; i < numberOfSettlers; i++) {

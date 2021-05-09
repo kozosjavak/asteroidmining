@@ -29,7 +29,7 @@ public class MainMenuScreen implements Screen {
         backGround = new Texture("fomenu.png");
         spriteBatch = new SpriteBatch();
 
-        eventHandler = new MainMenuEventHandler(this, guiEventHandler);
+        eventHandler = new MainMenuEventHandler(this, guiEventHandler, game);
         this.game = game;
         this.gameScreen = gameScreen;
         Gdx.input.setInputProcessor(eventHandler);

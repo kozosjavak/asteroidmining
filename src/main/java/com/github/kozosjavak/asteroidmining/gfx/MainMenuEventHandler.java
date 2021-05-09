@@ -11,7 +11,7 @@ public class MainMenuEventHandler implements InputProcessor {
     GuiEventHandler guiEventHandler;
     AsteroidMiningGame game;
 
-    public MainMenuEventHandler(MainMenuScreen screen, GuiEventHandler guiEventHandler) {
+    public MainMenuEventHandler(MainMenuScreen screen, GuiEventHandler guiEventHandler, AsteroidMiningGame game) {
         super();
         this.screen = screen;
         this.guiEventHandler = guiEventHandler;
@@ -47,6 +47,7 @@ public class MainMenuEventHandler implements InputProcessor {
         if (screenX >= 1638 && screenX <= 1638 + 476 && screenY >= 831 && screenY <= 831 + 192) {
             Gdx.input.setInputProcessor(guiEventHandler);
             System.out.println("Screen valtva");
+            game.getJanosHegyen().play();
             screen.setScreenToGame();
         }
         System.out.println(screenX + " " + screenY);

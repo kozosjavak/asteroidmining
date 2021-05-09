@@ -1,6 +1,8 @@
 package com.github.kozosjavak.asteroidmining.gfx.view;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector2;
 import com.github.kozosjavak.asteroidmining.core.*;
 import com.github.kozosjavak.asteroidmining.gfx.GuiEventHandler;
@@ -15,9 +17,14 @@ public class AsteroidMiningGame extends Game {
     GameScreen gameScreen;
     MainMenuScreen mainMenuScreen;
     GuiEventHandler eventHandler;
+    Music janosHegyen;
 
     public AsteroidMiningGame(com.github.kozosjavak.asteroidmining.core.Game game) {
         this.game = game;
+    }
+
+    public Music getJanosHegyen() {
+        return janosHegyen;
     }
 
     public com.github.kozosjavak.asteroidmining.core.Game getGame() {
@@ -26,9 +33,12 @@ public class AsteroidMiningGame extends Game {
 
     @Override
     public void create() {
+        janosHegyen = Gdx.audio.newMusic(Gdx.files.internal("Janos_hegyen.mp3"));
         gameScreen = new GameScreen(this);
         eventHandler = new GuiEventHandler(this);
         mainMenuScreen = new MainMenuScreen(this, gameScreen, eventHandler);
+        getJanosHegyen().setVolume(0.5f);
+        getJanosHegyen().setLooping(true);
         setScreen(mainMenuScreen);
 
     }
@@ -36,6 +46,8 @@ public class AsteroidMiningGame extends Game {
     @Override
     public void dispose() {
         gameScreen.dispose();
+        mainMenuScreen.dispose();
+        janosHegyen.dispose();
     }
 
     @Override
@@ -64,7 +76,7 @@ public class AsteroidMiningGame extends Game {
                     continue;
                 if (location.getCelestialBody().getClass() == Asteroid.class && location.getCelestialBody() != null) {
                     Asteroid as = (Asteroid) location.getCelestialBody();
-                    modelList.add(new AsteroidModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), as.getTexture_index()));
+                    modelList.add(new AsteroidModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), as.getTexture_index(), as.getSurfaceThickness() == 0));
                 }
                 if (location.getTeleport() != null) {
                     modelList.add(new TeleportModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
