@@ -12,9 +12,8 @@ import java.io.InputStream;
 import static org.junit.Assert.*;
 
 public class NapviharTest {
-
+    @Ignore
     @Test
-
     public void it_should_run_test() {
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("com/github/kozosjavak/asteroidmining/e2e/input-napvihar.txt");
         Game game = E2eTools.getGame(inputStream);
