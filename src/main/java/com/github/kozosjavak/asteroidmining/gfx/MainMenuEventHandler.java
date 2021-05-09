@@ -10,9 +10,11 @@ public class MainMenuEventHandler implements InputProcessor {
     MainMenuScreen screen;
     GuiEventHandler guiEventHandler;
     AsteroidMiningGame game;
+    int divider = 1;
 
-    public MainMenuEventHandler(MainMenuScreen screen, GuiEventHandler guiEventHandler, AsteroidMiningGame game) {
+    public MainMenuEventHandler(MainMenuScreen screen, GuiEventHandler guiEventHandler, AsteroidMiningGame game, int divider) {
         super();
+        this.divider = divider;
         this.screen = screen;
         this.guiEventHandler = guiEventHandler;
         this.game = game;
@@ -44,11 +46,16 @@ public class MainMenuEventHandler implements InputProcessor {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        if (screenX >= 1638 && screenX <= 1638 + 476 && screenY >= 831 && screenY <= 831 + 192) {
+
+        if (screenX >= 1638 / divider && screenX <= 1638 / divider + 476 / divider && screenY >= 831 / divider && screenY <= 831 / divider + 192 / divider) {
             Gdx.input.setInputProcessor(guiEventHandler);
             System.out.println("Screen valtva");
             game.getJanosHegyen().play();
             screen.setScreenToGame();
+        }
+        if ((screenX >= 1638 / 2 && screenX <= 1638 / 2 + 476 / 2 && screenY >= 831 / 2 && screenY <= 831 / 2 + 192 / 2)) {
+            game.setDivider(2);
+            divider = 2;
         }
         System.out.println(screenX + " " + screenY);
         return false;

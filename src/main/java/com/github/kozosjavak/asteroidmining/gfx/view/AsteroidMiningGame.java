@@ -19,6 +19,17 @@ public class AsteroidMiningGame extends Game {
     GuiEventHandler eventHandler;
     Music janosHegyen;
 
+    int divider = 1;
+
+    public int getDivider() {
+        return divider;
+    }
+
+    public void setDivider(int divider) {
+        this.divider = divider;
+    }
+
+
     public AsteroidMiningGame(com.github.kozosjavak.asteroidmining.core.Game game) {
         this.game = game;
     }
@@ -37,7 +48,7 @@ public class AsteroidMiningGame extends Game {
         gameScreen = new GameScreen(this);
         eventHandler = new GuiEventHandler(this);
         mainMenuScreen = new MainMenuScreen(this, gameScreen, eventHandler);
-        getJanosHegyen().setVolume(0.5f);
+        getJanosHegyen().setVolume(0.1f);
         getJanosHegyen().setLooping(true);
         setScreen(mainMenuScreen);
 

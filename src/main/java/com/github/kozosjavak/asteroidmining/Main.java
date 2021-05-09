@@ -26,6 +26,7 @@ public class Main {
         config.vSyncEnabled = true;
         config.useHDPI = true;
         LwjglApplication application = new LwjglApplication(gameGfx, config);
+
         // GuiEventHandler inputProcessor = new GuiEventHandler();
         //Gdx.input.setInputProcessor(inputProcessor);
         try {

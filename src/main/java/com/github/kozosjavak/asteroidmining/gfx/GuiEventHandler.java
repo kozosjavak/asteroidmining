@@ -15,9 +15,9 @@ import java.util.List;
 
 public class GuiEventHandler implements InputProcessor {
     AsteroidMiningGame game;
-
     public GuiEventHandler(AsteroidMiningGame game) {
         this.game = game;
+
     }
 
     @Override
@@ -49,7 +49,7 @@ public class GuiEventHandler implements InputProcessor {
         List<Steppable> settlerList = new ArrayList<>(game.getGame().getSettlers());
 
         //Drill
-        if (screenX >= 2010 && screenX <= 2010 + 378 && screenY >= 15 && screenY <= 15 + 136) {
+        if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 15 / game.getDivider() && screenY <= 15 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
@@ -64,7 +64,7 @@ public class GuiEventHandler implements InputProcessor {
             }
         }
         //Mine
-        if (screenX >= 2010 && screenX <= 2010 + 378 && screenY >= 175 && screenY <= 175 + 136) {
+        if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 175 / game.getDivider() && screenY <= 175 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
@@ -81,7 +81,7 @@ public class GuiEventHandler implements InputProcessor {
             }
         }
         //InsertMaterial
-        if (screenX >= 2010 && screenX <= 2010 + 378 && screenY >= 337 && screenY <= 337 + 136) {
+        if (screenX >= 1610 / game.getDivider() && screenX <= 1610 / game.getDivider() + 378 / game.getDivider() && screenY >= 655 / game.getDivider() && screenY <= 655 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
@@ -98,8 +98,26 @@ public class GuiEventHandler implements InputProcessor {
                 }
             }
         }
+        //Remove material
+        if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 655 / game.getDivider() && screenY <= 655 / game.getDivider() + 136 / game.getDivider()) {
+            for (Steppable settler : settlerList) {
+                Settler currentSettler = (Settler) settler;
+                if (currentSettler.isSelected()) {
+                    try {
+                        currentSettler.removeMaterial();
+                    } catch (Exception exception) {
+                        System.out.println(exception.getMessage());
+                    }
+                    currentSettler.setSelectedFalse();
+
+                    System.out.println(currentSettler.getCurrentAsteroid().getSurfaceThickness());
+                    System.out.println(currentSettler.getInventory());
+                    System.out.println(currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                }
+            }
+        }
         //Pass
-        if (screenX >= 1612 && screenX <= 1612 + 776 && screenY >= 1297 && screenY <= 1297 + 138) {
+        if (screenX >= 1612 / game.getDivider() && screenX <= 1612 / game.getDivider() + 776 / game.getDivider() && screenY >= 1297 / game.getDivider() && screenY <= 1297 / game.getDivider() + 138 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
@@ -110,7 +128,7 @@ public class GuiEventHandler implements InputProcessor {
             }
         }
         //MOVE
-        if (screenX >= 1612 && screenX <= 1612 + 378 && screenY >= 657 && screenY <= 657 + 136) {
+        if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 335 / game.getDivider() && screenY <= 335 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
@@ -125,7 +143,7 @@ public class GuiEventHandler implements InputProcessor {
             }
         }
         //Deploy teleport
-        if (screenX >= 2010 && screenX <= 2010 + 378 && screenY >= 497 && screenY <= 497 + 136) {
+        if (screenX >= 1610 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 495 / game.getDivider() && screenY <= 495 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
@@ -136,7 +154,7 @@ public class GuiEventHandler implements InputProcessor {
             }
         }
         //Use teleport
-        if (screenX >= 2010 && screenX <= 2010 + 378 && screenY >= 655 && screenY <= 655 + 136) {
+        if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 495 / game.getDivider() && screenY <= 495 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
@@ -146,7 +164,7 @@ public class GuiEventHandler implements InputProcessor {
             }
         }
         //Build teleport pair
-        if (screenX >= 2010 && screenX <= 2010 + 378 && screenY >= 815 && screenY <= 815 + 136) {
+        if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 815 / game.getDivider() && screenY <= 815 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
@@ -160,7 +178,7 @@ public class GuiEventHandler implements InputProcessor {
             }
         }
         //Build robot
-        if (screenX >= 2010 && screenX <= 2010 + 378 && screenY >= 977 && screenY <= 977 + 136) {
+        if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 977 / game.getDivider() && screenY <= 977 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
@@ -174,7 +192,7 @@ public class GuiEventHandler implements InputProcessor {
             }
         }
         //Build base
-        if (screenX >= 2010 && screenX <= 2010 + 378 && screenY >= 1137 && screenY <= 1137 + 136) {
+        if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 1137 / game.getDivider() && screenY <= 1137 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
