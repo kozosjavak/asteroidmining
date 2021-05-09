@@ -6,26 +6,38 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.github.kozosjavak.asteroidmining.gfx.GuiEventHandler;
+import com.github.kozosjavak.asteroidmining.gfx.MainMenuEventHandler;
 
 public class MainMenuScreen implements Screen {
     Camera camera;
     Viewport viewport;
     Texture backGround;
     SpriteBatch spriteBatch;
-    Stage stage;
-    Table table;
-    //ImageButton playButton;
-    //Skin skin = new Skin();
 
-    public MainMenuScreen() {
+
+    AsteroidMiningGame game;
+    GameScreen gameScreen;
+    MainMenuEventHandler eventHandler;
+
+
+    public MainMenuScreen(AsteroidMiningGame game, GameScreen gameScreen, GuiEventHandler guiEventHandler) {
         camera = new OrthographicCamera();
         viewport = new StretchViewport(1200, 800, camera);
         backGround = new Texture("fomenu.png");
         spriteBatch = new SpriteBatch();
+
+        eventHandler = new MainMenuEventHandler(this, guiEventHandler);
+        this.game = game;
+        this.gameScreen = gameScreen;
+        Gdx.input.setInputProcessor(eventHandler);
+
+    }
+
+    public void setScreenToGame() {
+        game.setScreen(gameScreen);
     }
 
     @Override

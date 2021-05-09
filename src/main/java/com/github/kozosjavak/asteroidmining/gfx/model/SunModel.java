@@ -5,10 +5,16 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 public class SunModel extends Model {
+    boolean isSunShine;
 
-    public SunModel(TextureAtlas atlas, Vector2 position) {
+    public SunModel(TextureAtlas atlas, Vector2 position, boolean isSunShine) {
         super(atlas, position);
-        texture = atlas.findRegion("sun");
+        this.isSunShine = isSunShine;
+        if (isSunShine) {
+            texture = atlas.findRegion("ssuuuuuunnnn");
+        } else {
+            texture = atlas.findRegion("sun");
+        }
     }
 
     @Override
