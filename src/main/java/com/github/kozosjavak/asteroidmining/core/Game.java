@@ -219,11 +219,20 @@ public class Game {
         // Robot robot = new Robot((Asteroid) getLocationList().get(3).getCelestialBody());
         new Thread(() -> {
             while (running) {
-                for (Steppable currentSettler : settlers) {
-                    Settler settler = (Settler) currentSettler;
-                    settler.step();
-                    while (settler.isSelected()) {
+                Settler selectedSettler;
+                List<Steppable> settlerListOfTheNewThread = new ArrayList<>(getSettlers());
+
+                for (int i = 0; i < settlerListOfTheNewThread.size(); i++) {
+                    selectedSettler = (Settler) settlerListOfTheNewThread.get(i);
+                    selectedSettler.step();
+                    while (selectedSettler.isSelected()) {
+                        try {
+                            Thread.sleep(600);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+                    System.out.println("Settler Done");
                 }
                 System.out.println("Round was done!");
                 for (Location nextStep : locationList) {
