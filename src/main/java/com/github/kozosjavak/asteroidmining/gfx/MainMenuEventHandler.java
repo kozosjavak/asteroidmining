@@ -3,14 +3,18 @@ package com.github.kozosjavak.asteroidmining.gfx;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.github.kozosjavak.asteroidmining.core.Settler;
-import com.github.kozosjavak.asteroidmining.core.Steppable;
 import com.github.kozosjavak.asteroidmining.gfx.view.AsteroidMiningGame;
+import com.github.kozosjavak.asteroidmining.gfx.view.MainMenuScreen;
 
-public class GuiEventHandler implements InputProcessor {
+public class MainMenuEventHandler implements InputProcessor {
+    MainMenuScreen screen;
+    GuiEventHandler guiEventHandler;
     AsteroidMiningGame game;
 
-    public GuiEventHandler(AsteroidMiningGame game) {
+    public MainMenuEventHandler(MainMenuScreen screen, GuiEventHandler guiEventHandler) {
+        super();
+        this.screen = screen;
+        this.guiEventHandler = guiEventHandler;
         this.game = game;
     }
 
@@ -40,16 +44,10 @@ public class GuiEventHandler implements InputProcessor {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        for (Steppable settler : game.getGame().getSettlers()) {
-            Settler currentSettler = (Settler) settler;
-            if (currentSettler.isSelected()) {
-                try {
-                    currentSettler.drill();
-                    currentSettler.setSelectedFalse();
-                } catch (Exception exception) {
-                    System.out.println(exception.getMessage());
-                }
-            }
+        if (screenX >= 1638 && screenX <= 1638 + 476 && screenY >= 831 && screenY <= 831 + 192) {
+            Gdx.input.setInputProcessor(guiEventHandler);
+            System.out.println("Screen valtva");
+            screen.setScreenToGame();
         }
         System.out.println(screenX + " " + screenY);
         return false;

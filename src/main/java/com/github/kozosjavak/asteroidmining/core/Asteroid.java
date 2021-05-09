@@ -7,6 +7,7 @@ import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialExce
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -22,14 +23,16 @@ public class Asteroid extends Orb implements Explodeable {
      * List of SpaceShips on the asteroid
      */
     private final List<Spaceship> residence = new CopyOnWriteArrayList<>();
-    /**
-     * Thickness of the surface of the asteroid
-     */
-    private int surfaceThickness;
+    private final int texture_index;
     /**
      * Material in the core of the asteroid which can be mined
      */
     private Material substance;
+    private final Random rand;
+    /**
+     * Thickness of the surface of the asteroid
+     */
+    private int surfaceThickness;
 
     /**
      * Aszteroida konstruktor
@@ -41,6 +44,12 @@ public class Asteroid extends Orb implements Explodeable {
         super(location);
         this.surfaceThickness = surfaceThickness;
         this.substance = substance;
+        rand = new Random();
+        texture_index = 1 + rand.nextInt(3);
+    }
+
+    public int getTexture_index() {
+        return texture_index;
     }
 
     public Material getSubstance() {
@@ -166,7 +175,7 @@ public class Asteroid extends Orb implements Explodeable {
 
     public Material removeMaterial() throws NotEnoughMaterialException {
         Material temp = asteroidInventory.getList().get(0);
-        asteroidInventory.remove(asteroidInventory.getList().get(0).getClass(),1);
+        asteroidInventory.remove(asteroidInventory.getList().get(0).getClass(), 1);
         return temp;
     }
 

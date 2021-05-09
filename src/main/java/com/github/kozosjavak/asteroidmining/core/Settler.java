@@ -20,6 +20,18 @@ public class Settler extends Spaceship {
      */
     private final Teleport[] teleportInventory = new Teleport[3];
 
+
+    private boolean isCommandCalled = false;
+    private boolean selected = false;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelectedFalse() {
+        selected = false;
+    }
+
     /**
      * Basic constructor
      *
@@ -79,6 +91,7 @@ public class Settler extends Spaceship {
         if (!inventory.isFull()) {
             inventory.add(getCurrentAsteroid().mine());
         }
+        isCommandCalled = true;
     }
 
     /**
@@ -88,6 +101,7 @@ public class Settler extends Spaceship {
      */
     public void drill() throws Exception {
         getCurrentAsteroid().drill();
+        isCommandCalled = true;
     }
 
     /**
@@ -126,6 +140,7 @@ public class Settler extends Spaceship {
         } else {
             System.out.println("Not enough space in teleport inventory");
         }
+        isCommandCalled = true;
     }
 
 
@@ -145,6 +160,7 @@ public class Settler extends Spaceship {
         }
         Bills.BASE.buy(inventoryFromAsteroidAndSettler);
         getCurrentAsteroid().buildBase();
+        isCommandCalled = true;
     }
 
     /**
@@ -155,6 +171,7 @@ public class Settler extends Spaceship {
      */
     public Robot buildRobot() throws NotEnoughMaterialException {
         Bills.ROBOT.buy(inventory);
+        isCommandCalled = true;
         return new Robot(getCurrentAsteroid());
     }
 
@@ -169,6 +186,7 @@ public class Settler extends Spaceship {
             teleportInventory[number].deployTeleport(getCurrentAsteroid().getLocation());
             teleportInventory[number] = null;
         }
+        isCommandCalled = true;
     }
 
     /**
@@ -192,12 +210,14 @@ public class Settler extends Spaceship {
             getCurrentAsteroid().insertMaterial(inventory.getList().get(0));
             inventory.remove(inventory.getList().get(0).getClass(), 1);
         }
+        isCommandCalled = true;
     }
 
     public void removeMaterial() throws NotEnoughMaterialException, InventoryIsFullException {
         if (!inventory.isFull()) {
             inventory.add(getCurrentAsteroid().removeMaterial());
         }
+        isCommandCalled = true;
     }
 
     /**
@@ -205,8 +225,7 @@ public class Settler extends Spaceship {
      */
     @Override
     public void step() {
-        //itt kontrollalsz
-        //hivd meg a drill().
+        selected = true;
     }
 
     /**

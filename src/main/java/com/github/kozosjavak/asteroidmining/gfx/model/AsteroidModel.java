@@ -5,10 +5,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 public class AsteroidModel extends Model {
-    public AsteroidModel(TextureAtlas atlas, Vector2 position) {
+    private final int texture_index;
+
+    public AsteroidModel(TextureAtlas atlas, Vector2 position, int texture_index) {
         super(atlas, position);
         //Itt kene random szam az indexhez, hogy osszevissza kinezetu aszteroidak legyenek
-        texture = atlas.findRegion("spaceMeteors", 1);
+        this.texture_index = texture_index;
+        texture = atlas.findRegion("spaceMeteors", texture_index);
     }
 
     @Override

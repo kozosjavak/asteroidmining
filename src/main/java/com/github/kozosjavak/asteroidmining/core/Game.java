@@ -207,19 +207,34 @@ public class Game {
         }
     }
 
+
     /**
      * Starts the game, generate the world
      */
-    public void startGame(int numberOfAsteroids, int maxCrustThickness, double distanceOfNeighbors) throws Exception {
-        generateWorld(numberOfAsteroids, maxCrustThickness);
+
+    public void startGame(int numberOfAsteroids, int maxCrustThickness, double distanceOfNeighbors, int numberOfSettlers) throws Exception {
+
+        generateWorld(numberOfAsteroids, maxCrustThickness, numberOfSettlers);
         //teszt
-        Robot robot = new Robot((Asteroid) getLocationList().get(3).getCelestialBody());
-        while (running) {
-            for (Location nextStep : locationList) {
-                Thread.sleep(5);
-                nextStep.step(distanceOfNeighbors);
+        // Robot robot = new Robot((Asteroid) getLocationList().get(3).getCelestialBody());
+        new Thread(() -> {
+            while (running) {
+                for (Steppable currentSettler : settlers) {
+                    Settler settler = (Settler) currentSettler;
+                    settler.step();
+                    while (settler.isSelected()) {
+                    }
+                }
+                System.out.println("Round was done!");
+                for (Location nextStep : locationList) {
+                    try {
+                        nextStep.step(distanceOfNeighbors);
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
+                }
             }
-        }
+        }).start();
     }
 
     /**
@@ -258,7 +273,7 @@ public class Game {
         return material;
     }
 
-    private void generateWorld(int numberOfAsteroid, int maximumCrustThickness) throws Exception {
+    private void generateWorld(int numberOfAsteroid, int maximumCrustThickness, int numberOfSettlers) throws Exception {
         if (numberOfAsteroid > 0) {
             Location sunLocation = new Location(this, maxX / 2, maxY / 2);
             double randX, randY;
@@ -278,6 +293,14 @@ public class Game {
                 }
                 Asteroid newAsteroid = new Asteroid(newLocation, random.nextInt(1 + random.nextInt(maximumCrustThickness - 1)), randomMaterial());
                 locationList.add(newLocation);
+            }
+            for (int i = 0; i < numberOfSettlers; i++) {
+                Location location = locationList.get(random.nextInt(locationList.size() - 1));
+                while (location.getCelestialBody().getClass() != Asteroid.class) {
+                    location = locationList.get(random.nextInt(locationList.size() - 1));
+                }
+                Asteroid asteroid = (Asteroid) location.getCelestialBody();
+                Settler settler = new Settler(asteroid);
             }
         }
     }

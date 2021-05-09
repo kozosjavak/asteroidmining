@@ -9,6 +9,12 @@ public class Sun extends Orb {
 
     Random random;
 
+    Boolean isSolarStorm = false;
+
+    public Boolean isSolarStorm() {
+        return isSolarStorm;
+    }
+
     /**
      * Basic constructor
      *
@@ -88,7 +94,10 @@ public class Sun extends Orb {
 
         }
         if (getLocation().game.randomGenerator(30)) {
+            isSolarStorm = true;
             experienceSolarStorm();
+        } else {
+            isSolarStorm = false;
         }
 
     }
