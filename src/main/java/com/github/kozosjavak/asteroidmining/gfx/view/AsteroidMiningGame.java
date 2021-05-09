@@ -26,7 +26,7 @@ public class AsteroidMiningGame extends Game {
 
     @Override
     public void create() {
-        gameScreen = new GameScreen();
+        gameScreen = new GameScreen(this);
         eventHandler = new GuiEventHandler(this);
         mainMenuScreen = new MainMenuScreen(this, gameScreen, eventHandler);
         setScreen(mainMenuScreen);
@@ -73,7 +73,7 @@ public class AsteroidMiningGame extends Game {
                     Asteroid asteroid = (Asteroid) location.getCelestialBody();
                     for (Spaceship sp : asteroid.getResidence()) {
                         if (sp.getClass() == Settler.class) {
-                            modelList.add(new SettlerModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
+                            modelList.add(new SettlerModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), ((Settler) sp).isSelected()));
                         } else if (sp.getClass() == Ufo.class) {
                             modelList.add(new UfoModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
                         } else if (sp.getClass() == Robot.class) {

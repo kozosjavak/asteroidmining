@@ -30,14 +30,16 @@ public class GameScreen implements Screen {
 
     private final TextureAtlas textureAtlas;
 
-    public GameScreen() {
+    AsteroidMiningGame asteroidMiningGame;
+
+    public GameScreen(AsteroidMiningGame asteroidMiningGame) {
         camera = new OrthographicCamera(); //2d kamera, ami kesobb rendeledodik elobb van az jelenik meg, legegyszerubb kamera
         viewport = new StretchViewport(RENDER_WIDTH, RENDER_HEIGHT, camera);
         backGround = new Texture("space_background.jpg");
         settlerMenu = new Texture("settlermenu.png");
         textureAtlas = new TextureAtlas("images.atlas");
         backGroundOffset = 0;
-
+        this.asteroidMiningGame = asteroidMiningGame;
         batch = new SpriteBatch();
     }
 
@@ -60,10 +62,18 @@ public class GameScreen implements Screen {
     public void render(float delta) {   //delta = delta time megmondja hogy mennyi ido telt el a 2 render kort kozott (magyarul orahoz kotott ido, nem orajelhez)
         update();
         batch.begin();
-        batch.draw(backGround, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
-        batch.draw(settlerMenu, 800, 0, 400, 800);
-        for (Model model : modelList) {
-            model.draw(batch);
+        if (asteroidMiningGame.getGame().isRunning()) {
+            batch.draw(backGround, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
+            batch.draw(settlerMenu, 800, 0, 400, 800);
+            for (Model model : modelList) {
+                model.draw(batch);
+            }
+        } else if (asteroidMiningGame.getGame().isWon()) {
+            //win kep
+            batch.draw(backGround, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
+        } else {
+            //loose kep
+            batch.draw(backGround, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
         }
 
 
