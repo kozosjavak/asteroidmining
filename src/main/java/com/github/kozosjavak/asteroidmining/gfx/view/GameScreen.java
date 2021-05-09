@@ -21,6 +21,8 @@ public class GameScreen implements Screen {
     private final SpriteBatch batch;  //megjelnitendo texturak osszegsege
     private final Texture backGround;
     private final Texture settlerMenu;
+    private final Texture gameover;
+    private final Texture gamewon;
 
     //world params meg kell tartani az aranyszamot
     private final int RENDER_WIDTH = 1200; //meterben ertendo
@@ -37,6 +39,8 @@ public class GameScreen implements Screen {
         viewport = new StretchViewport(RENDER_WIDTH, RENDER_HEIGHT, camera);
         backGround = new Texture("space_background.jpg");
         settlerMenu = new Texture("settlermenu.png");
+        gameover = new Texture("gameover.png");
+        gamewon = new Texture("gamewon.png");
         textureAtlas = new TextureAtlas("images.atlas");
         backGroundOffset = 0;
         this.asteroidMiningGame = asteroidMiningGame;
@@ -70,10 +74,10 @@ public class GameScreen implements Screen {
             }
         } else if (asteroidMiningGame.getGame().isWon()) {
             //win kep
-            batch.draw(backGround, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
+            batch.draw(gamewon, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
         } else {
             //loose kep
-            batch.draw(backGround, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
+            batch.draw(gameover, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
         }
 
 
