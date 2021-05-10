@@ -88,3 +88,45 @@ hole
   orig: 32, 23
   offset: 0, 0
   index: -1
+crate
+  rotate: false
+  xy: 447, 44
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+sunStorm
+  rotate: false
+  xy: 3, 64
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+selectedSpaceMeteors
+  rotate: false
+  xy: 223, 72
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: 4
+selectedSpaceMeteors
+  rotate: false
+  xy: 270, 72
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: 1
+selectedSpaceMeteors
+  rotate: false
+  xy: 317, 72
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: 3
+selectedSpaceMeteors
+  rotate: false
+  xy: 364, 72
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: 2
