@@ -154,7 +154,7 @@ public class GuiEventHandler implements InputProcessor {
             }
         }
         //Deploy teleport
-        if (screenX >= 1610 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 495 / game.getDivider() && screenY <= 495 / game.getDivider() + 136 / game.getDivider()) {
+        if (screenX >= 1610 / game.getDivider() && screenX <= 1610 / game.getDivider() + 378 / game.getDivider() && screenY >= 495 / game.getDivider() && screenY <= 495 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
@@ -178,6 +178,7 @@ public class GuiEventHandler implements InputProcessor {
                     currentSettler.teleport();
                     currentSettler.setSelectedFalse();
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
+                    gameScreen.getInformationTable().setText("Upps where am i?");
                 }
             }
         }
