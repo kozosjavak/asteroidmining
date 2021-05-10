@@ -50,8 +50,10 @@ public class MainMenuEventHandler implements InputProcessor {
         if (screenX >= 1638 / divider && screenX <= 1638 / divider + 476 / divider && screenY >= 831 / divider && screenY <= 831 / divider + 192 / divider) {
             Gdx.input.setInputProcessor(guiEventHandler);
             System.out.println("Screen valtva");
+            game.getLoopmusic().stop();
             game.getJanosHegyen().play();
             screen.setScreenToGame();
+
         }
         if ((screenX >= 1638 / 2 && screenX <= 1638 / 2 + 476 / 2 && screenY >= 831 / 2 && screenY <= 831 / 2 + 192 / 2)) {
             game.setDivider(2);
