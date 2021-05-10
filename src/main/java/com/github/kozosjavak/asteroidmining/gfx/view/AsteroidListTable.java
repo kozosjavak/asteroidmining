@@ -118,7 +118,7 @@ public class AsteroidListTable {
         for (int i = 0; i < (Math.min(locations.size(), 10)); i++) {
             if (locations.get(i) == selected)
                 font.setColor(Color.BLUE);
-            font.draw(batch, "Asteroid no.: " + (i + 1), (float) 805, (float) (780 - ((i + 1) * 20)) / game.divider);
+            font.draw(batch, "Asteroid no.: " + (i + 1), (float) 805, (float) (780 - ((i + 1) * 20)));
             font.setColor(Color.BLACK);
         }
 
