@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.github.kozosjavak.asteroidmining.core.Settler;
 import com.github.kozosjavak.asteroidmining.gfx.model.Model;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class GameScreen implements Screen {
     private final Texture gamewon;
     private final InformationTable informationTable;
     private final ResourceTable resourceTable;
+    private final AsteroidListTable asteroidListTable;
     //world params meg kell tartani az aranyszamot
     private final int RENDER_WIDTH = 1200; //meterben ertendo
     private final int RENDER_HEIGHT = 800; //veletlen muve ez nem a felbontas
@@ -34,9 +36,8 @@ public class GameScreen implements Screen {
     private final TextureAtlas textureAtlas;
     AsteroidMiningGame asteroidMiningGame;
     int counter = 1;
-    private List<Model> modelList;
     String[] erzsike;
-
+    private List<Model> modelList;
     public GameScreen(AsteroidMiningGame asteroidMiningGame) {
         camera = new OrthographicCamera(); //2d kamera, ami kesobb rendeledodik elobb van az jelenik meg, legegyszerubb kamera
         viewport = new StretchViewport(RENDER_WIDTH, RENDER_HEIGHT, camera);
@@ -50,9 +51,15 @@ public class GameScreen implements Screen {
         batch = new SpriteBatch();
         this.informationTable = new InformationTable(batch, this);
         this.resourceTable = new ResourceTable(batch);
+        this.asteroidListTable = new AsteroidListTable(batch, this, asteroidMiningGame);
+        this.asteroidListTable.setCurrentSettler((Settler) asteroidMiningGame.getGame().getSettlers().get(0));
         erzsike = new String[6];
 
         informationTable.setText(getRandomErzsike());
+    }
+
+    public AsteroidListTable getAsteroidListTable() {
+        return asteroidListTable;
     }
 
     public String getRandomErzsike() {
@@ -104,8 +111,10 @@ public class GameScreen implements Screen {
             for (Model model : modelList) {
                 model.draw(batch);
             }
+            asteroidListTable.draw();
             informationTable.draw();
             resourceTable.draw();
+
 
         } else if (asteroidMiningGame.getGame().isWon()) {
             //win kep
