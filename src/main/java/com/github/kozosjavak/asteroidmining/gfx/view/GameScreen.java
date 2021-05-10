@@ -25,16 +25,17 @@ public class GameScreen implements Screen {
     private final Texture settlerMenu;
     private final Texture gameover;
     private final Texture gamewon;
-
+    private final InformationTable informationTable;
+    private final ResourceTable resourceTable;
     //world params meg kell tartani az aranyszamot
     private final int RENDER_WIDTH = 1200; //meterben ertendo
     private final int RENDER_HEIGHT = 800; //veletlen muve ez nem a felbontas
     //timing
     private final int backGroundOffset; //kicsit mozgo hatterert
-
     private final TextureAtlas textureAtlas;
-
     AsteroidMiningGame asteroidMiningGame;
+    int counter = 1;
+    private List<Model> modelList;
 
     public GameScreen(AsteroidMiningGame asteroidMiningGame) {
         camera = new OrthographicCamera(); //2d kamera, ami kesobb rendeledodik elobb van az jelenik meg, legegyszerubb kamera
@@ -47,9 +48,18 @@ public class GameScreen implements Screen {
         backGroundOffset = 0;
         this.asteroidMiningGame = asteroidMiningGame;
         batch = new SpriteBatch();
+        this.informationTable = new InformationTable(batch);
+        this.resourceTable = new ResourceTable(batch);
+        informationTable.setText("Erzsike kopenye a szkafandere");
     }
 
-    private List<Model> modelList;
+    public ResourceTable getResourceTable() {
+        return resourceTable;
+    }
+
+    public InformationTable getInformationTable() {
+        return informationTable;
+    }
 
     public TextureAtlas getTextureAtlas() {
         return textureAtlas;
@@ -60,9 +70,13 @@ public class GameScreen implements Screen {
     }
 
     private void update() {
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-            Gdx.app.exit();
+
+        if (asteroidMiningGame.getGame().isWon() || !asteroidMiningGame.getGame().isRunning() && counter != 0) {
+            counter--;
+            asteroidMiningGame.getJanosHegyen().stop();
+            asteroidMiningGame.getLoopmusic().play();
         }
+
 
     }
 
@@ -76,6 +90,9 @@ public class GameScreen implements Screen {
             for (Model model : modelList) {
                 model.draw(batch);
             }
+            informationTable.draw();
+            resourceTable.draw();
+
         } else if (asteroidMiningGame.getGame().isWon()) {
             //win kep
             batch.draw(gamewon, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
