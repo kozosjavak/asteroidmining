@@ -12,6 +12,7 @@ public class Main {
 
     /**
      * Belépési pont
+     *
      * @param args az argumentumok
      */
     public static void main(String[] args) {
@@ -26,18 +27,11 @@ public class Main {
         config.vSyncEnabled = true;
         config.useHDPI = true;
         LwjglApplication application = new LwjglApplication(gameGfx, config);
-
-        // GuiEventHandler inputProcessor = new GuiEventHandler();
-        //Gdx.input.setInputProcessor(inputProcessor);
         try {
             game.startGame(120, 6, 120, 5, 3);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-
-
-        //  ConsoleCommandExecutor cce = new ConsoleCommandExecutor(game);
-        //  cce.attachToConsole(System.in);
     }
 
 }

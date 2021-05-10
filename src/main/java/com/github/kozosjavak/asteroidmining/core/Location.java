@@ -100,7 +100,7 @@ public class Location {
             teleport.getHitByExplosion();
         }
         teleport = null;
-        game.getLocationList().remove(this);
+
         System.gc();
     }
 

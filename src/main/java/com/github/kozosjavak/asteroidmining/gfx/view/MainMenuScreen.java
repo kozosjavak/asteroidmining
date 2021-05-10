@@ -42,10 +42,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void show() {
-        //  playButton = new ImageButton(skin);
-        //   playButton.addListener(new ClickListener(){
-//
-        // });
+
     }
 
     @Override

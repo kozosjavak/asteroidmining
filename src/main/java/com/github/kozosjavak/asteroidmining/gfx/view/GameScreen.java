@@ -116,7 +116,7 @@ public class GameScreen implements Screen {
     }
 
     @Override
-    public void render(float delta) {   //delta = delta time megmondja hogy mennyi ido telt el a 2 render kort kozott (magyarul orahoz kotott ido, nem orajelhez)
+    public void render(float delta) {
         update();
         batch.begin();
         if (asteroidMiningGame.getGame().isRunning()) {
