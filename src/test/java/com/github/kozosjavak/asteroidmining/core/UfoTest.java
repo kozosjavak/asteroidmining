@@ -1,7 +1,6 @@
 package com.github.kozosjavak.asteroidmining.core;
 
 import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullException;
-import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Coal;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Uranium;
 import org.junit.After;
@@ -35,7 +34,7 @@ public class UfoTest {
     }
 
     @Test
-    public void ufo_mine_material() throws AsteroidIsNotMineable, InventoryIsFullException {
+    public void ufo_mine_material() throws AsteroidIsNotMineable, InventoryIsFullException, AsteroidAlreadyMinedException {
         Location location1 = new Location(game, 5.4, 3.2);
         Asteroid asteroid1 = new Asteroid(location1, 0, new Coal());
         Ufo ufo = new Ufo(asteroid1);

@@ -166,6 +166,7 @@ public class GuiEventHandler implements InputProcessor {
                     //ezt itt teljesen ujragondolni
                     currentSettler.setSelectedFalse();
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
+                    System.out.println("Teleport deployed");
                 }
             }
         }

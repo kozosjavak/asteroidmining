@@ -66,7 +66,7 @@ public class Sun extends Orb {
     @Override
     public void experienceSolarStorm() {
         //Solar storm radius!! refresh the sun neighbors list
-        getLocation().refreshNeighborsList(200);
+        getLocation().refreshNeighborsList(100);
         for (Location location : getLocation().getNeighbors()) {
             location.experienceSolarStorm();
         }
@@ -74,6 +74,7 @@ public class Sun extends Orb {
 
     @Override
     public void experienceExtremeHeat() throws Exception {
+        getLocation().refreshNeighborsList(100);
         for (Location location : getLocation().getNeighbors()) {
             location.experienceExtremeHeat();
         }

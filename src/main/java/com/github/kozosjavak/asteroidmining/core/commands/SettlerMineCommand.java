@@ -1,5 +1,6 @@
 package com.github.kozosjavak.asteroidmining.core.commands;
 
+import com.github.kozosjavak.asteroidmining.core.AsteroidAlreadyMinedException;
 import com.github.kozosjavak.asteroidmining.core.AsteroidIsNotMineable;
 import com.github.kozosjavak.asteroidmining.core.Game;
 import com.github.kozosjavak.asteroidmining.core.Settler;
@@ -36,6 +37,8 @@ public class SettlerMineCommand implements Command{
                 System.err.println("Inventory is full!");
             } catch (AsteroidIsNotMineable asteroidIsNotMineable) {
                 System.err.println("Asteroid is not mineable!");
+            } catch (AsteroidAlreadyMinedException e) {
+                System.err.println("Asteroid is already miend");
             }
         }
         else {

@@ -87,8 +87,7 @@ public class Location {
      */
     public void setTeleport(Teleport teleport) {
         this.teleport = teleport;
-        if (teleport != null)
-            getTeleport().setLocation(this);
+        System.out.println("Location setteleport");
     }
 
     /**

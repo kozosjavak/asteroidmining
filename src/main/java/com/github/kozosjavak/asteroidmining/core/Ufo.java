@@ -31,7 +31,7 @@ public class Ufo extends Spaceship {
      * Implementation of the step(), it's randomly moving,steal,mine
      */
     @Override
-    public void step() throws AsteroidIsNotMineable, InventoryIsFullException {
+    public void step() throws AsteroidIsNotMineable, InventoryIsFullException, AsteroidAlreadyMinedException {
         if (getCurrentAsteroid().getSurfaceThickness() == 0 && getCurrentAsteroid().getSubstance() != null) {
             mine();
         } else if (getCurrentAsteroid().getAsteroidInventory().getSize() > 0 && getCurrentAsteroid().getLocation().game.randomGenerator(80)) {
@@ -71,7 +71,7 @@ public class Ufo extends Spaceship {
      * @throws InventoryIsFullException inventory is full
      * @throws AsteroidIsNotMineable    asteroid can't be mined
      */
-    public void mine() throws InventoryIsFullException, AsteroidIsNotMineable {
+    public void mine() throws InventoryIsFullException, AsteroidIsNotMineable, AsteroidAlreadyMinedException {
         inventory.add(getCurrentAsteroid().mine());
     }
 

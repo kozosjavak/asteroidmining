@@ -271,13 +271,11 @@ public class Game {
         if (rand == 0) {
             material = new Uranium();
         } else if (rand == 1) {
-            material = new Waterice();
+            material = new Coal();
         } else if (rand == 2) {
             material = new Iron();
-        } else if (rand == 3) {
-            material = new Coal();
         } else {
-            material = null;
+            material = new Waterice();
         }
         return material;
     }

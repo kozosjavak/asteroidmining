@@ -87,9 +87,11 @@ public class Settler extends Spaceship {
      * @throws InventoryIsFullException inventory is full
      * @throws AsteroidIsNotMineable    Asteroid can't be mined
      */
-    public void mine() throws InventoryIsFullException, AsteroidIsNotMineable {
+    public void mine() throws InventoryIsFullException, AsteroidIsNotMineable, AsteroidAlreadyMinedException {
         if (!inventory.isFull()) {
             inventory.add(getCurrentAsteroid().mine());
+        } else {
+            throw new InventoryIsFullException();
         }
         isCommandCalled = true;
     }
@@ -181,6 +183,7 @@ public class Settler extends Spaceship {
      */
     public void deployTeleport() throws NoTeleportToDeployExecption {
         if (teleportInventory[0] != null) {
+            System.out.println("Elso if");
             teleportInventory[0].deployTeleport(getCurrentAsteroid().getLocation());
             if (teleportInventory[1] != null) {
                 teleportInventory[0] = teleportInventory[1];

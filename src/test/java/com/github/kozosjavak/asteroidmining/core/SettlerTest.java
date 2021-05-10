@@ -48,9 +48,9 @@ public class SettlerTest {
     }
 
     @Test
-    public void settler_mine_material_after_that_check_inventory() throws AsteroidIsNotMineable, InventoryIsFullException {
+    public void settler_mine_material_after_that_check_inventory() throws AsteroidIsNotMineable, InventoryIsFullException, AsteroidAlreadyMinedException {
         Location location1 = new Location(game, 5.4, 3.2);
-        Asteroid asteroid1 = new Asteroid(location1, 0,  new Coal());
+        Asteroid asteroid1 = new Asteroid(location1, 0, new Coal());
         Settler settler = new Settler(asteroid1);
         settler.mine();
         assertEquals("Coal", settler.getInventory().getList().get(0).toString());
@@ -89,7 +89,7 @@ public class SettlerTest {
     }
 
     @Test
-    public void settler_insert_material_to_asteroid() throws AsteroidIsNotMineable, InventoryIsFullException, AsteroidNotMinedException, NotEnoughMaterialException {
+    public void settler_insert_material_to_asteroid() throws AsteroidIsNotMineable, InventoryIsFullException, AsteroidNotMinedException, NotEnoughMaterialException, AsteroidAlreadyMinedException {
         Location location1 = new Location(game, 5.4, 3.2);
         Asteroid asteroid1 = new Asteroid(location1, 0, new Coal());
         Settler settler = new Settler(asteroid1);
@@ -131,7 +131,7 @@ public class SettlerTest {
     }
 
     @Test
-    public void settler_build_base_and_win_the_game() throws AsteroidIsNotMineable, InventoryIsFullException, AsteroidNotMinedException, NotEnoughMaterialException {
+    public void settler_build_base_and_win_the_game() throws AsteroidIsNotMineable, InventoryIsFullException, AsteroidNotMinedException, NotEnoughMaterialException, AsteroidAlreadyMinedException {
         Location location1 = new Location(game, 5.4, 3.2);
         Asteroid asteroid1 = new Asteroid(location1, 0, new Coal());
         Settler settler = new Settler(asteroid1);
