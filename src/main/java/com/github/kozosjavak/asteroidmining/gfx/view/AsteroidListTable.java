@@ -16,9 +16,9 @@ public class AsteroidListTable {
     private final GameScreen gameScreen; //csak erzsike miatt
     private final AsteroidMiningGame game;
     private final List<Location> locations;
-    //private Location selected;
+
     private Settler currentSettler;
-    // private String text;
+
 
     public AsteroidListTable(SpriteBatch batch, GameScreen gameScreen, AsteroidMiningGame game) {
         font = new BitmapFont();
@@ -34,9 +34,6 @@ public class AsteroidListTable {
         this.currentSettler = currentSettler;
     }
 
-    //public Location getSelected() {
-    //   return selected;
-    // }
 
     public Location getListLocation(int x, int y) {
         if (currentSettler == null) {
