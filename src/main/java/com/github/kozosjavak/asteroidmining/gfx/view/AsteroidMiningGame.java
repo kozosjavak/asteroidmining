@@ -19,6 +19,7 @@ public class AsteroidMiningGame extends Game {
     GuiEventHandler eventHandler;
     Music janosHegyen;
     Music loopmusic;
+    private Location selectedLocation;
     int divider = 1;
 
     public AsteroidMiningGame(com.github.kozosjavak.asteroidmining.core.Game game) {
@@ -28,6 +29,15 @@ public class AsteroidMiningGame extends Game {
     public Music getLoopmusic() {
         return loopmusic;
     }
+
+    public Location getSelectedLocation() {
+        return selectedLocation;
+    }
+
+    public void setSelectedLocation(Location selectedLocation) {
+        this.selectedLocation = selectedLocation;
+    }
+
 
     public int getDivider() {
         return divider;
@@ -97,13 +107,17 @@ public class AsteroidMiningGame extends Game {
                     continue;
                 if (location.getCelestialBody().getClass() == Asteroid.class && location.getCelestialBody() != null) {
                     Asteroid as = (Asteroid) location.getCelestialBody();
-                    modelList.add(new AsteroidModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), as.getTexture_index(), as.getSurfaceThickness() == 0));
+                    if (getSelectedLocation() != null && getSelectedLocation() == as.getLocation()) {
+                        modelList.add(new AsteroidModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), as.getTexture_index(), as.getSurfaceThickness() == 0, true));
+                    }
+                    modelList.add(new AsteroidModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), as.getTexture_index(), as.getSurfaceThickness() == 0, false));
                 }
                 if (location.getTeleport() != null) {
                     modelList.add(new TeleportModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));
                 }
                 if (location.getCelestialBody().getClass() == Asteroid.class && location.getCelestialBody() != null) {
                     Asteroid asteroid = (Asteroid) location.getCelestialBody();
+
                     for (Spaceship sp : asteroid.getResidence()) {
                         if (sp.getClass() == Settler.class) {
                             modelList.add(new SettlerModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), ((Settler) sp).isSelected()));

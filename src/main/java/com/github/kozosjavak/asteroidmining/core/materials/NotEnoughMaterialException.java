@@ -5,7 +5,7 @@ package com.github.kozosjavak.asteroidmining.core.materials;
  */
 public class NotEnoughMaterialException extends Exception {
     public NotEnoughMaterialException(Class<? extends Material> material) {
-        super("Not enough material! ");
+        super("Not enough material!");
     }
 
 
