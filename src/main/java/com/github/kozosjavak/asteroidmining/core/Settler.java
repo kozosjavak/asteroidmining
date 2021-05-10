@@ -185,11 +185,14 @@ public class Settler extends Spaceship {
         if (teleportInventory[0] != null) {
             System.out.println("Elso if");
             teleportInventory[0].deployTeleport(getCurrentAsteroid().getLocation());
+            teleportInventory[0] = null;
             if (teleportInventory[1] != null) {
                 teleportInventory[0] = teleportInventory[1];
+                teleportInventory[1] = null;
             }
             if (teleportInventory[2] != null) {
                 teleportInventory[1] = teleportInventory[2];
+                teleportInventory[2] = null;
             }
             isCommandCalled = true;
         } else {

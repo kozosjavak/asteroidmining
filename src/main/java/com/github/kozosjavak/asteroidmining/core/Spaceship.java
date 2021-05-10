@@ -86,7 +86,7 @@ public class Spaceship implements Explodeable {
      */
     public void teleport() {
         Teleport teleport = getCurrentAsteroid().getLocation().teleport;
-        if (teleport != null && teleport.getPair() != null) {
+        if (teleport != null && teleport.getPair().getLocation() != null) {
             move(teleport.getPair().getLocation());
         } else {
             System.out.println("Teleport is not available");
