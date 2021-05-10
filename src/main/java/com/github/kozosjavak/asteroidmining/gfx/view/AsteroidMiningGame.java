@@ -62,7 +62,7 @@ public class AsteroidMiningGame extends Game {
         gameScreen = new GameScreen(this);
         eventHandler = new GuiEventHandler(this, gameScreen);
         mainMenuScreen = new MainMenuScreen(this, gameScreen, eventHandler);
-        getJanosHegyen().setVolume(0.4f);
+        getJanosHegyen().setVolume(0.25f);
         getJanosHegyen().setLooping(true);
         loopmusic.setVolume(0.5f);
         loopmusic.setLooping(true);
@@ -108,9 +108,9 @@ public class AsteroidMiningGame extends Game {
                 if (location.getCelestialBody().getClass() == Asteroid.class && location.getCelestialBody() != null) {
                     Asteroid as = (Asteroid) location.getCelestialBody();
                     if (getSelectedLocation() != null && getSelectedLocation() == as.getLocation()) {
-                        modelList.add(new AsteroidModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), as.getTexture_index(), as.getSurfaceThickness() == 0, true));
+                        modelList.add(new AsteroidModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), as.getTexture_index(), as.getSurfaceThickness() == 0, true, as.getAsteroidInventory().getSize() > 0, as.getResidence().size(), gameScreen.getBatch()));
                     }
-                    modelList.add(new AsteroidModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), as.getTexture_index(), as.getSurfaceThickness() == 0, false));
+                    modelList.add(new AsteroidModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY()), as.getTexture_index(), as.getSurfaceThickness() == 0, false, as.getAsteroidInventory().getSize() > 0, as.getResidence().size(), gameScreen.getBatch()));
                 }
                 if (location.getTeleport() != null) {
                     modelList.add(new TeleportModel(gameScreen.getTextureAtlas(), new Vector2((float) location.getCoordinate().getX(), (float) location.getCoordinate().getY())));

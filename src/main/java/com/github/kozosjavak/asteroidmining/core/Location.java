@@ -95,14 +95,12 @@ public class Location {
      */
     public void fullClearByExplosion() {
 
-        Asteroid asteroid = (Asteroid) celestialBody;
-
-
         celestialBody = null;
         if (teleport != null) {
             teleport.getHitByExplosion();
         }
         teleport = null;
+        game.getLocationList().remove(this);
         System.gc();
     }
 

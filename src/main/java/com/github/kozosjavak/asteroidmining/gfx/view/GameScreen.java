@@ -1,6 +1,7 @@
 package com.github.kozosjavak.asteroidmining.gfx.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -21,6 +22,11 @@ public class GameScreen implements Screen {
     //screen
     private final Camera camera;
     private final Viewport viewport;
+
+    public SpriteBatch getBatch() {
+        return batch;
+    }
+
     //graphics
     private final SpriteBatch batch;  //megjelnitendo texturak osszegsege
     private final Texture backGround;
@@ -137,6 +143,8 @@ public class GameScreen implements Screen {
             //loose kep
             Gdx.input.setInputProcessor(null);
             batch.draw(gameover, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
+            if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE) && Gdx.input.isKeyPressed(Input.Keys.ENTER))
+                Gdx.app.exit();
         }
 
 
