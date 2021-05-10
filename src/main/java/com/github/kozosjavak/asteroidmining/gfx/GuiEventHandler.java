@@ -64,7 +64,7 @@ public class GuiEventHandler implements InputProcessor {
                     }
                     currentSettler.setSelectedFalse();
                     System.out.println(currentSettler.getCurrentAsteroid().getSurfaceThickness());
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
 
             }
@@ -83,7 +83,7 @@ public class GuiEventHandler implements InputProcessor {
                     currentSettler.setSelectedFalse();
                     System.out.println(currentSettler.getCurrentAsteroid().getSubstance());
                     System.out.println(currentSettler.getInventory());
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
         }
@@ -102,7 +102,7 @@ public class GuiEventHandler implements InputProcessor {
                     System.out.println(currentSettler.getCurrentAsteroid().getSurfaceThickness());
                     System.out.println(currentSettler.getInventory());
                     System.out.println(currentSettler.getCurrentAsteroid().getAsteroidInventory());
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
         }
@@ -121,7 +121,7 @@ public class GuiEventHandler implements InputProcessor {
                     System.out.println(currentSettler.getCurrentAsteroid().getSurfaceThickness());
                     System.out.println(currentSettler.getInventory());
                     System.out.println(currentSettler.getCurrentAsteroid().getAsteroidInventory());
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
         }
@@ -132,7 +132,7 @@ public class GuiEventHandler implements InputProcessor {
                 if (currentSettler.isSelected()) {
                     currentSettler.setSelectedFalse();
                     gameScreen.getInformationTable().setText("Lepes feladva!");
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
 
             }
@@ -148,7 +148,7 @@ public class GuiEventHandler implements InputProcessor {
                         gameScreen.getInformationTable().setText(e.getMessage());
                     }
                     currentSettler.setSelectedFalse();
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
 
             }
@@ -161,11 +161,11 @@ public class GuiEventHandler implements InputProcessor {
                     try {
                         currentSettler.deployTeleport();
                     } catch (NoTeleportToDeployExecption noTeleportToDeployExecption) {
-                        noTeleportToDeployExecption.printStackTrace();
+                        gameScreen.getInformationTable().setText(noTeleportToDeployExecption.getMessage());
                     }
                     //ezt itt teljesen ujragondolni
                     currentSettler.setSelectedFalse();
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
         }
@@ -176,7 +176,7 @@ public class GuiEventHandler implements InputProcessor {
                 if (currentSettler.isSelected()) {
                     currentSettler.teleport();
                     currentSettler.setSelectedFalse();
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
         }
@@ -192,7 +192,7 @@ public class GuiEventHandler implements InputProcessor {
                     }
                     currentSettler.setSelectedFalse();
 
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
         }
@@ -207,7 +207,7 @@ public class GuiEventHandler implements InputProcessor {
                         gameScreen.getInformationTable().setText(e.getMessage());
                     }
                     currentSettler.setSelectedFalse();
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
         }
@@ -222,7 +222,7 @@ public class GuiEventHandler implements InputProcessor {
                         gameScreen.getInformationTable().setText(e.getMessage());
                     }
                     currentSettler.setSelectedFalse();
-                    gameScreen.getResourceTable().setInventory(currentSettler.getInventory(), currentSettler.getCurrentAsteroid().getAsteroidInventory());
+                    gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
         }

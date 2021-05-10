@@ -1,7 +1,5 @@
 package com.github.kozosjavak.asteroidmining.gfx.view;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -13,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.github.kozosjavak.asteroidmining.gfx.model.Model;
 
 import java.util.List;
+import java.util.Random;
 
 public class GameScreen implements Screen {
 
@@ -36,6 +35,7 @@ public class GameScreen implements Screen {
     AsteroidMiningGame asteroidMiningGame;
     int counter = 1;
     private List<Model> modelList;
+    String[] erzsike;
 
     public GameScreen(AsteroidMiningGame asteroidMiningGame) {
         camera = new OrthographicCamera(); //2d kamera, ami kesobb rendeledodik elobb van az jelenik meg, legegyszerubb kamera
@@ -48,9 +48,23 @@ public class GameScreen implements Screen {
         backGroundOffset = 0;
         this.asteroidMiningGame = asteroidMiningGame;
         batch = new SpriteBatch();
-        this.informationTable = new InformationTable(batch);
+        this.informationTable = new InformationTable(batch, this);
         this.resourceTable = new ResourceTable(batch);
-        informationTable.setText("Erzsike kopenye a szkafandere");
+        erzsike = new String[6];
+
+        informationTable.setText(getRandomErzsike());
+    }
+
+    public String getRandomErzsike() {
+        Random random = new Random();
+        erzsike[0] = "A mai napig titkolja kollégái elött, hogy felesége földönkivüli.";
+        erzsike[1] = "A volt baratnöjétöl haza költözött, mikor meghallota hogy edesanyját \nidegenek látogatják.";
+        erzsike[2] = "Az E.T. a kedvenc filmje.";
+        erzsike[3] = "A szomszédoknál azzal dicsekszik, hogy idegenek révén tudja,\nmilyen lesz az idö.";
+        erzsike[3] = "A kornyékbeli közértben is mindig földönkivüli nyelven köszön.";
+        erzsike[4] = "Kitagadta a lányát, mert ö nem hitte el, hogy kapcsoltban\náll az idegenekkel";
+        erzsike[5] = "Férje szerint Erzsi köpenye a szkafandere.";
+        return erzsike[random.nextInt(5)];
     }
 
     public ResourceTable getResourceTable() {
