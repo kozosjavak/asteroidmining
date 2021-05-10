@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.github.kozosjavak.asteroidmining.core.NoNeighborException;
+import com.github.kozosjavak.asteroidmining.core.NoTeleportToDeployExecption;
 import com.github.kozosjavak.asteroidmining.core.Settler;
 import com.github.kozosjavak.asteroidmining.core.Steppable;
 import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullException;
@@ -147,7 +148,11 @@ public class GuiEventHandler implements InputProcessor {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
-                    currentSettler.deployTeleport(0);
+                    try {
+                        currentSettler.deployTeleport();
+                    } catch (NoTeleportToDeployExecption noTeleportToDeployExecption) {
+                        noTeleportToDeployExecption.printStackTrace();
+                    }
                     //ezt itt teljesen ujragondolni
                     currentSettler.setSelectedFalse();
                 }
