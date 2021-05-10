@@ -30,7 +30,7 @@ public class Main {
         // GuiEventHandler inputProcessor = new GuiEventHandler();
         //Gdx.input.setInputProcessor(inputProcessor);
         try {
-            game.startGame(160, 5, 80, 1, 3);
+            game.startGame(160, 5, 80, 5, 3);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
