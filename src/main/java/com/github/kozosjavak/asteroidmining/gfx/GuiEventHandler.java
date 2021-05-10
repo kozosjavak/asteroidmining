@@ -79,6 +79,7 @@ public class GuiEventHandler implements InputProcessor {
                 }
 
             }
+            game.setSelectedLocation(null);
         }
         //Mine
         if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 175 / game.getDivider() && screenY <= 175 / game.getDivider() + 136 / game.getDivider()) {
@@ -97,6 +98,7 @@ public class GuiEventHandler implements InputProcessor {
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
+            game.setSelectedLocation(null);
         }
         //InsertMaterial
         if (screenX >= 1610 / game.getDivider() && screenX <= 1610 / game.getDivider() + 378 / game.getDivider() && screenY >= 655 / game.getDivider() && screenY <= 655 / game.getDivider() + 136 / game.getDivider()) {
@@ -116,6 +118,7 @@ public class GuiEventHandler implements InputProcessor {
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
+            game.setSelectedLocation(null);
         }
         //Remove material
         if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 655 / game.getDivider() && screenY <= 655 / game.getDivider() + 136 / game.getDivider()) {
@@ -135,6 +138,7 @@ public class GuiEventHandler implements InputProcessor {
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
             }
+            game.setSelectedLocation(null);
         }
         //Pass
         if (screenX >= 1612 / game.getDivider() && screenX <= 1612 / game.getDivider() + 776 / game.getDivider() && screenY >= 1297 / game.getDivider() && screenY <= 1297 / game.getDivider() + 138 / game.getDivider()) {
@@ -145,8 +149,8 @@ public class GuiEventHandler implements InputProcessor {
                     gameScreen.getInformationTable().setText("Lepes feladva!");
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                 }
-
             }
+            game.setSelectedLocation(null);
         }
         //MOVE
         if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 335 / game.getDivider() && screenY <= 335 / game.getDivider() + 136 / game.getDivider()) {
@@ -161,14 +165,16 @@ public class GuiEventHandler implements InputProcessor {
                         }
                     } else {
                         currentSettler.move(game.getSelectedLocation());
-                        game.setSelectedLocation(null);
+
                     }
 
                     currentSettler.setSelectedFalse();
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
+
                 }
 
             }
+            game.setSelectedLocation(null);
         }
         //Deploy teleport
         if (screenX >= 1610 / game.getDivider() && screenX <= 1610 / game.getDivider() + 378 / game.getDivider() && screenY >= 495 / game.getDivider() && screenY <= 495 / game.getDivider() + 136 / game.getDivider()) {
@@ -184,8 +190,10 @@ public class GuiEventHandler implements InputProcessor {
                     currentSettler.setSelectedFalse();
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                     System.out.println("Teleport deployed");
+
                 }
             }
+            game.setSelectedLocation(null);
         }
         //Use teleport
         if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 495 / game.getDivider() && screenY <= 495 / game.getDivider() + 136 / game.getDivider()) {
@@ -196,8 +204,10 @@ public class GuiEventHandler implements InputProcessor {
                     currentSettler.setSelectedFalse();
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
                     gameScreen.getInformationTable().setText("Upps where am i?");
+
                 }
             }
+            game.setSelectedLocation(null);
         }
         //Build teleport pair
         if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 815 / game.getDivider() && screenY <= 815 / game.getDivider() + 136 / game.getDivider()) {
@@ -212,8 +222,10 @@ public class GuiEventHandler implements InputProcessor {
                     currentSettler.setSelectedFalse();
 
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
+
                 }
             }
+            game.setSelectedLocation(null);
         }
         //Build robot
         if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 977 / game.getDivider() && screenY <= 977 / game.getDivider() + 136 / game.getDivider()) {
@@ -227,8 +239,10 @@ public class GuiEventHandler implements InputProcessor {
                     }
                     currentSettler.setSelectedFalse();
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
+
                 }
             }
+            game.setSelectedLocation(null);
         }
         //Build base
         if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 1137 / game.getDivider() && screenY <= 1137 / game.getDivider() + 136 / game.getDivider()) {
@@ -242,9 +256,12 @@ public class GuiEventHandler implements InputProcessor {
                     }
                     currentSettler.setSelectedFalse();
                     gameScreen.getResourceTable().setInventory(currentSettler.getCurrentAsteroid().getAsteroidInventory(), currentSettler);
+
                 }
             }
+            game.setSelectedLocation(null);
         }
+
         System.out.println(screenX + " " + screenY);
         return false;
     }

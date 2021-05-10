@@ -3,6 +3,7 @@ package com.github.kozosjavak.asteroidmining.gfx.view;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.github.kozosjavak.asteroidmining.core.Asteroid;
 import com.github.kozosjavak.asteroidmining.core.Location;
 import com.github.kozosjavak.asteroidmining.core.Settler;
 
@@ -119,8 +120,12 @@ public class AsteroidListTable {
         for (int i = 0; i < (Math.min(locations.size(), 10)); i++) {
             if (locations.get(i) == game.getSelectedLocation())
                 font.setColor(Color.BLUE);
-            font.draw(batch, "Asteroid no.: " + (i + 1), (float) 805, (float) (780 - ((i + 1) * 20)));
-            font.setColor(Color.BLACK);
+            if (locations.get(i).getCelestialBody().getClass() == Asteroid.class) {
+                Asteroid as = (Asteroid) locations.get(i).getCelestialBody();
+                font.draw(batch, "Asteroid no.: " + (i + 1) + " " + (as.getSurfaceThickness() > 0 ? "Undrilled" : "Drilled"), (float) 805, (float) (780 - ((i + 1) * 20)));
+                font.setColor(Color.BLACK);
+            }
+
         }
 
     }

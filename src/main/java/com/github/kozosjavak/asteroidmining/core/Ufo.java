@@ -34,9 +34,18 @@ public class Ufo extends Spaceship {
     public void step() throws AsteroidIsNotMineable, InventoryIsFullException, AsteroidAlreadyMinedException {
         if (getCurrentAsteroid().getSurfaceThickness() == 0 && getCurrentAsteroid().getSubstance() != null) {
             mine();
-        } else if (getCurrentAsteroid().getAsteroidInventory().getSize() > 0 && getCurrentAsteroid().getLocation().game.randomGenerator(80)) {
+        } else if (getCurrentAsteroid().getAsteroidInventory().getSize() > 0 && getCurrentAsteroid().getLocation().game.randomGenerator(90)) {
             steal();
-        } else if (getCurrentAsteroid().getLocation().game.randomGenerator(30)) {
+        } else if (getCurrentAsteroid().getLocation().game.randomGenerator(80)) {
+            for (Location inventoryAsteroidLocation : getCurrentAsteroid().getLocation().getNeighbors()) {
+                if (inventoryAsteroidLocation.getCelestialBody().getClass() != Sun.class) {
+                    Asteroid inventoryAsteroid = (Asteroid) inventoryAsteroidLocation.getCelestialBody();
+                    if (inventoryAsteroid.getAsteroidInventory().getSize() > 0) {
+                        move(inventoryAsteroidLocation);
+                        return;
+                    }
+                }
+            }
             try {
                 move(getCurrentAsteroid().getLocation().getRandomNeighbor());
             } catch (Exception exception) {
@@ -54,7 +63,7 @@ public class Ufo extends Spaceship {
         Random rand = new Random();
         List<Material> materials = getCurrentAsteroid().getMaterials();
         if (materials.size() != 0) {
-            Material material = materials.get(rand.nextInt(materials.size() - 1));
+            Material material = materials.get(rand.nextInt(1 + materials.size() - 1));
             try {
                 getCurrentAsteroid().removeMaterial(material);
                 inventory.add(material);
