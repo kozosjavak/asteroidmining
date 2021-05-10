@@ -90,7 +90,9 @@ public class Teleport implements Steppable {
      * @param location Location
      */
     public void deployTeleport(Location location) {
+        setLocation(location);
         location.setTeleport(this);
+        //Teleport-deployteleport
     }
 
     /**

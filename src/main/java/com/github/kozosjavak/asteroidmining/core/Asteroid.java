@@ -91,11 +91,13 @@ public class Asteroid extends Orb implements Explodeable {
      *
      * @return kibányászott nyersanyag
      */
-    public Material mine() throws AsteroidIsNotMineable {
+    public Material mine() throws AsteroidIsNotMineable, AsteroidAlreadyMinedException {
         if (surfaceThickness <= 0 && substance != null) {
             Material temp = substance;
             substance = null;
             return temp;
+        } else if (substance == null) {
+            throw new AsteroidAlreadyMinedException();
         } else {
             throw new AsteroidIsNotMineable();
         }
@@ -121,11 +123,7 @@ public class Asteroid extends Orb implements Explodeable {
         } else {
             throw new SurfaceThicknessIsZeroException();
         }
-        if (surfaceThickness == 0) {
-            if (substance != null) {
-                substance.experienceExtremeHeat(this);
-            }
-        }
+
     }
 
     /**
