@@ -160,7 +160,7 @@ public class SettlerTest {
         settler.getInventory().add(new Iron());
         settler.getInventory().add(new Iron());
         settler.buildTeleportPair();
-        settler.deployTeleport(0);
+        settler.deployTeleport();
         assertEquals(location1.getTeleport().getPair(), settler.getTeleportInventory()[1]);
         //deploy teleport módosítva!
     }
