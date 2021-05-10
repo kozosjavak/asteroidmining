@@ -177,15 +177,16 @@ public class Settler extends Spaceship {
 
 
     /**
-     * Place teleport on the location where the currently asteroid is
+     * Place first form teleportInventory on the location where the currently asteroid is
      *
-     * @param number ID of the teleport which will be placed
      */
-    public void deployTeleport(int number) {
-
-        if (teleportInventory[number] != null) {
-            teleportInventory[number].deployTeleport(getCurrentAsteroid().getLocation());
-            teleportInventory[number] = null;
+    public void deployTeleport() {
+        teleportInventory[0].deployTeleport(getCurrentAsteroid().getLocation());
+        if(teleportInventory[1] != null){
+            teleportInventory[0]=teleportInventory[1];
+        }
+        if(teleportInventory[2] != null){
+            teleportInventory[1]=teleportInventory[2];
         }
         isCommandCalled = true;
     }
