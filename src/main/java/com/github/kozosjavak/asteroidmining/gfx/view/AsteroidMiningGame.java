@@ -50,7 +50,7 @@ public class AsteroidMiningGame extends Game {
         janosHegyen = Gdx.audio.newMusic(Gdx.files.internal("Janos_hegyen.mp3"));
         loopmusic = Gdx.audio.newMusic(Gdx.files.internal("loopmusic.mp3"));
         gameScreen = new GameScreen(this);
-        eventHandler = new GuiEventHandler(this);
+        eventHandler = new GuiEventHandler(this, gameScreen);
         mainMenuScreen = new MainMenuScreen(this, gameScreen, eventHandler);
         getJanosHegyen().setVolume(0.4f);
         getJanosHegyen().setLooping(true);
