@@ -13,7 +13,7 @@ Preferred IDE: <b>IntelliJ IDEA Ultimate 2020.3</b>
 
 ## 2. Install dependencies
 
-> JDK 16
+> JDK 11
 
 > JUnit 5.4.2
 
