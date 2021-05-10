@@ -7,6 +7,12 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 public class AsteroidModel extends Model {
+    private static final BitmapFont font = new BitmapFont();
+
+    static {
+        font.setColor(Color.RED);
+    }
+
     private final int texture_index;
     private final TextureAtlas.AtlasRegion selected_texture;
     private final boolean hole;
@@ -15,14 +21,11 @@ public class AsteroidModel extends Model {
     private final boolean crate;
     private final TextureAtlas.AtlasRegion crateTexture;
     private final int residence;
-    private final BitmapFont font;
     private final SpriteBatch batch;
 
 
     public AsteroidModel(TextureAtlas atlas, Vector2 position, int texture_index, boolean hole, boolean selected, boolean crate, int residence, SpriteBatch batch) {
         super(atlas, position);
-        font = new BitmapFont();
-        font.setColor(Color.RED);
         this.batch = batch;
 
         holeTexture = atlas.findRegion("hole");
