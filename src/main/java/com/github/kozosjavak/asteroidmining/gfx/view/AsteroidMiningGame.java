@@ -18,8 +18,16 @@ public class AsteroidMiningGame extends Game {
     MainMenuScreen mainMenuScreen;
     GuiEventHandler eventHandler;
     Music janosHegyen;
-
+    Music loopmusic;
     int divider = 1;
+
+    public AsteroidMiningGame(com.github.kozosjavak.asteroidmining.core.Game game) {
+        this.game = game;
+    }
+
+    public Music getLoopmusic() {
+        return loopmusic;
+    }
 
     public int getDivider() {
         return divider;
@@ -27,11 +35,6 @@ public class AsteroidMiningGame extends Game {
 
     public void setDivider(int divider) {
         this.divider = divider;
-    }
-
-
-    public AsteroidMiningGame(com.github.kozosjavak.asteroidmining.core.Game game) {
-        this.game = game;
     }
 
     public Music getJanosHegyen() {
@@ -45,12 +48,16 @@ public class AsteroidMiningGame extends Game {
     @Override
     public void create() {
         janosHegyen = Gdx.audio.newMusic(Gdx.files.internal("Janos_hegyen.mp3"));
+        loopmusic = Gdx.audio.newMusic(Gdx.files.internal("loopmusic.mp3"));
         gameScreen = new GameScreen(this);
         eventHandler = new GuiEventHandler(this);
         mainMenuScreen = new MainMenuScreen(this, gameScreen, eventHandler);
-        getJanosHegyen().setVolume(0.1f);
+        getJanosHegyen().setVolume(0.4f);
         getJanosHegyen().setLooping(true);
+        loopmusic.setVolume(0.5f);
+        loopmusic.setLooping(true);
         setScreen(mainMenuScreen);
+        loopmusic.play();
 
     }
 
@@ -59,10 +66,13 @@ public class AsteroidMiningGame extends Game {
         gameScreen.dispose();
         mainMenuScreen.dispose();
         janosHegyen.dispose();
+        loopmusic.dispose();
     }
 
     @Override
     public void render() {
+
+
         if (gameScreen.getClass() == GameScreen.class) {
             updateModelList();
         }
