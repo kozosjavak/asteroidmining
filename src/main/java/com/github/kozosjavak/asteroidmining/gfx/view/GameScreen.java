@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.github.kozosjavak.asteroidmining.core.Settler;
+import com.github.kozosjavak.asteroidmining.core.Steppable;
 import com.github.kozosjavak.asteroidmining.gfx.model.Model;
 
 import java.util.List;
@@ -53,9 +54,9 @@ public class GameScreen implements Screen {
         this.resourceTable = new ResourceTable(batch);
         this.asteroidListTable = new AsteroidListTable(batch, this, asteroidMiningGame);
         this.asteroidListTable.setCurrentSettler((Settler) asteroidMiningGame.getGame().getSettlers().get(0));
-        erzsike = new String[6];
+        erzsike = new String[8];
 
-        informationTable.setText(getRandomErzsike());
+        informationTable.setText("Üdvözöl Kozos_javak es Erzsike!");
     }
 
     public AsteroidListTable getAsteroidListTable() {
@@ -65,13 +66,15 @@ public class GameScreen implements Screen {
     public String getRandomErzsike() {
         Random random = new Random();
         erzsike[0] = "A mai napig titkolja kollégái elött, hogy felesége földönkivüli.";
-        erzsike[1] = "A volt baratnöjétöl haza költözött, mikor meghallota hogy edesanyját \nidegenek látogatják.";
+        erzsike[1] = "A volt baratnöjétöl haza költözött, mikor meghallota hogy \nedesanyját idegenek látogatják.";
         erzsike[2] = "Az E.T. a kedvenc filmje.";
         erzsike[3] = "A szomszédoknál azzal dicsekszik, hogy idegenek révén tudja,\nmilyen lesz az idö.";
-        erzsike[3] = "A kornyékbeli közértben is mindig földönkivüli nyelven köszön.";
+        erzsike[3] = "A kornyékbeli közértben is \nmindig földönkivüli nyelven köszön.";
         erzsike[4] = "Kitagadta a lányát, mert ö nem hitte el, hogy kapcsoltban\náll az idegenekkel";
         erzsike[5] = "Férje szerint Erzsi köpenye a szkafandere.";
-        return erzsike[random.nextInt(5)];
+        erzsike[6] = "Egy idegen bolygorol erkeztem!";
+        erzsike[7] = "Az Irisz bolygon más az élet!";
+        return erzsike[random.nextInt(7)];
     }
 
     public ResourceTable getResourceTable() {
@@ -106,6 +109,12 @@ public class GameScreen implements Screen {
         update();
         batch.begin();
         if (asteroidMiningGame.getGame().isRunning()) {
+            for (Steppable settler : asteroidMiningGame.getGame().getSettlers()) {
+                Settler currentSettler = (Settler) settler;
+                if (currentSettler.isSelected()) {
+                    asteroidListTable.setCurrentSettler(currentSettler);
+                }
+            }
             batch.draw(backGround, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
             batch.draw(settlerMenu, 800, 0, 400, 800);
             for (Model model : modelList) {

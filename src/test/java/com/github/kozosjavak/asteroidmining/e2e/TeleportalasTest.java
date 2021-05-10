@@ -3,6 +3,7 @@ package com.github.kozosjavak.asteroidmining.e2e;
 import com.github.kozosjavak.asteroidmining.core.Game;
 import com.github.kozosjavak.asteroidmining.core.Location;
 import com.github.kozosjavak.asteroidmining.core.Settler;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.InputStream;
@@ -10,7 +11,7 @@ import java.io.InputStream;
 import static org.junit.Assert.*;
 
 public class TeleportalasTest {
-
+    @Ignore
     @Test
     public void it_should_run_test() {
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("com/github/kozosjavak/asteroidmining/e2e/input-teleportalas.txt");

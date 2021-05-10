@@ -19,7 +19,7 @@ public class InformationTable {
 
     public void draw() {
 
-        font.draw(batch, text, 805, 75);
+        font.draw(batch, text, 810, 75);
     }
 
     public void setText(String text) {
