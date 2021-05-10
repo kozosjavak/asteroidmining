@@ -3,6 +3,7 @@ package com.github.kozosjavak.asteroidmining.gfx.view;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.github.kozosjavak.asteroidmining.core.Settler;
 import com.github.kozosjavak.asteroidmining.core.materials.Inventory;
 import com.github.kozosjavak.asteroidmining.core.materials.Material;
 import com.github.kozosjavak.asteroidmining.core.materials.types.Coal;
@@ -17,6 +18,7 @@ public class ResourceTable {
     private final int[] asteroidMaterials;
     String settlerText;
     String asteroidText;
+    int teleportCount;
 
 
     public ResourceTable(SpriteBatch batch) {
@@ -33,19 +35,21 @@ public class ResourceTable {
         asteroidMaterials[1] = 0;
         asteroidMaterials[2] = 0;
         asteroidMaterials[3] = 0;
-        settlerText = "Coal: " + settlerMaterials[0] + "\n" + "Iron: " + settlerMaterials[1] + "\n" + "Uranium: " + settlerMaterials[2] + "\n" + "Waterice: " + settlerMaterials[3];
+        teleportCount = 0;
+        settlerText = "Coal: " + settlerMaterials[0] + "\n" + "Iron: " + settlerMaterials[1] + "\n" + "Uranium: " + settlerMaterials[2] + "\n" + "Waterice: " + settlerMaterials[3] + "\n" + "Teleports: " + teleportCount;
         asteroidText = "Coal: " + asteroidMaterials[0] + "\n" + "Iron: " + asteroidMaterials[1] + "\n" + "Uranium: " + asteroidMaterials[2] + "\n" + "Waterice: " + asteroidMaterials[3];
     }
 
     public void draw() {
 
         font.draw(batch, "Settler Inventory\n" + settlerText, 820, 360);
-        font.draw(batch, "Asteroid Inventory\n" + asteroidText, 820, 260);
+        font.draw(batch, "Asteroid Inventory\n" + asteroidText, 820, 250);
 
     }
 
-    public void setInventory(Inventory inventory, Inventory asteroidInventory) {
-        if (inventory != null) {
+    public void setInventory(Inventory asteroidInventory, Settler settler) {
+
+        if (settler.getInventory() != null) {
             settlerMaterials[0] = 0;
             settlerMaterials[1] = 0;
             settlerMaterials[2] = 0;
@@ -54,7 +58,7 @@ public class ResourceTable {
             asteroidMaterials[1] = 0;
             asteroidMaterials[2] = 0;
             asteroidMaterials[3] = 0;
-            for (Material material : inventory.getList()) {
+            for (Material material : settler.getInventory().getList()) {
                 if (material.getClass() == Coal.class) {
                     settlerMaterials[0]++;
                 } else if (material.getClass() == Iron.class) {
@@ -77,7 +81,13 @@ public class ResourceTable {
                 }
             }
         }
-        settlerText = "Coal: " + settlerMaterials[0] + "\n" + "Iron: " + settlerMaterials[1] + "\n" + "Uranium: " + settlerMaterials[2] + "\n" + "Waterice: " + settlerMaterials[3];
+        teleportCount = 0;
+        for (int i = 0; i < settler.getTeleportInventory().length; i++) {
+            if (settler.getTeleportInventory()[i] != null) {
+                teleportCount++;
+            }
+        }
+        settlerText = "Coal: " + settlerMaterials[0] + "\n" + "Iron: " + settlerMaterials[1] + "\n" + "Uranium: " + settlerMaterials[2] + "\n" + "Waterice: " + settlerMaterials[3] + "\n" + "Teleports: " + teleportCount;
         asteroidText = "Coal: " + asteroidMaterials[0] + "\n" + "Iron: " + asteroidMaterials[1] + "\n" + "Uranium: " + asteroidMaterials[2] + "\n" + "Waterice: " + asteroidMaterials[3];
     }
 }

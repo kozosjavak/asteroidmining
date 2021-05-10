@@ -219,7 +219,7 @@ public class Settler extends Spaceship {
     }
 
     public void removeMaterial() throws NotEnoughMaterialException, InventoryIsFullException {
-        if (!inventory.isFull()) {
+        if (!inventory.isFull() && getCurrentAsteroid().getAsteroidInventory().getSize() != 0) {
             inventory.add(getCurrentAsteroid().removeMaterial());
         }
         isCommandCalled = true;
