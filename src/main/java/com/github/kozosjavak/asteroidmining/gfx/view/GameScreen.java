@@ -1,5 +1,6 @@
 package com.github.kozosjavak.asteroidmining.gfx.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -54,7 +55,7 @@ public class GameScreen implements Screen {
         this.resourceTable = new ResourceTable(batch);
         this.asteroidListTable = new AsteroidListTable(batch, this, asteroidMiningGame);
         this.asteroidListTable.setCurrentSettler((Settler) asteroidMiningGame.getGame().getSettlers().get(0));
-        erzsike = new String[8];
+        erzsike = new String[12];
 
         informationTable.setText("Üdvözöl Kozos_javak es Erzsike!");
     }
@@ -69,12 +70,16 @@ public class GameScreen implements Screen {
         erzsike[1] = "A volt baratnöjétöl haza költözött, mikor meghallota hogy \nedesanyját idegenek látogatják.";
         erzsike[2] = "Az E.T. a kedvenc filmje.";
         erzsike[3] = "A szomszédoknál azzal dicsekszik, hogy idegenek révén tudja,\nmilyen lesz az idö.";
-        erzsike[3] = "A kornyékbeli közértben is \nmindig földönkivüli nyelven köszön.";
+        erzsike[3] = "A kornyékbéli közértben is \nmindig földönkivüli nyelven köszön.";
         erzsike[4] = "Kitagadta a lányát, mert ö nem hitte el, hogy kapcsoltban\náll az idegenekkel";
-        erzsike[5] = "Férje szerint Erzsi köpenye a szkafandere.";
-        erzsike[6] = "Egy idegen bolygorol erkeztem!";
+        erzsike[5] = "Erzsi azt mondja, a köténye a szkafandere.";
+        erzsike[6] = "Egy idegen bolygorol érkeztem!";
         erzsike[7] = "Az Irisz bolygon más az élet!";
-        return erzsike[random.nextInt(7)];
+        erzsike[8] = "1994-ben jöttem rá, hogy nem idevalosi az asszony.";
+        erzsike[9] = "Csipsz: mikrochip.";
+        erzsike[10] = "Irisz-Saturmann, a Föld nevü bolygotol\n800ezer fényévnyire van.";
+        erzsike[11] = "Légtérhajlitással közlekedünk.";
+        return erzsike[random.nextInt(11)];
     }
 
     public ResourceTable getResourceTable() {
@@ -130,6 +135,7 @@ public class GameScreen implements Screen {
             batch.draw(gamewon, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
         } else {
             //loose kep
+            Gdx.input.setInputProcessor(null);
             batch.draw(gameover, 0, -backGroundOffset, RENDER_WIDTH, RENDER_HEIGHT);
         }
 

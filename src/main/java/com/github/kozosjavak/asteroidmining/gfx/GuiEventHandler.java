@@ -3,7 +3,10 @@ package com.github.kozosjavak.asteroidmining.gfx;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.github.kozosjavak.asteroidmining.core.*;
+import com.github.kozosjavak.asteroidmining.core.NoNeighborException;
+import com.github.kozosjavak.asteroidmining.core.NoTeleportToDeployExecption;
+import com.github.kozosjavak.asteroidmining.core.Settler;
+import com.github.kozosjavak.asteroidmining.core.Steppable;
 import com.github.kozosjavak.asteroidmining.core.materials.InventoryIsFullException;
 import com.github.kozosjavak.asteroidmining.core.materials.NotEnoughMaterialException;
 import com.github.kozosjavak.asteroidmining.gfx.view.AsteroidListTable;
@@ -17,7 +20,7 @@ public class GuiEventHandler implements InputProcessor {
     private final AsteroidMiningGame game;
     private final GameScreen gameScreen;
     private final AsteroidListTable asteroidListTable;
-    private Location selectedLocation;
+
 
     public GuiEventHandler(AsteroidMiningGame game, GameScreen gameScreen) {
         this.game = game;
@@ -59,7 +62,7 @@ public class GuiEventHandler implements InputProcessor {
                 asteroidListTable.setCurrentSettler(currentSettler);
             }
         }
-        selectedLocation = asteroidListTable.getListLocation(screenX, screenY);
+        game.setSelectedLocation(asteroidListTable.getListLocation(screenX, screenY));
         //Drill
         if (screenX >= 2010 / game.getDivider() && screenX <= 2010 / game.getDivider() + 378 / game.getDivider() && screenY >= 15 / game.getDivider() && screenY <= 15 / game.getDivider() + 136 / game.getDivider()) {
             for (Steppable settler : settlerList) {
@@ -150,14 +153,15 @@ public class GuiEventHandler implements InputProcessor {
             for (Steppable settler : settlerList) {
                 Settler currentSettler = (Settler) settler;
                 if (currentSettler.isSelected()) {
-                    if (selectedLocation == null) {
+                    if (game.getSelectedLocation() == null) {
                         try {
                             currentSettler.move(currentSettler.getCurrentAsteroid().getLocation().getRandomNeighbor());
                         } catch (NoNeighborException e) {
                             gameScreen.getInformationTable().setText(e.getMessage());
                         }
                     } else {
-                        currentSettler.move(selectedLocation);
+                        currentSettler.move(game.getSelectedLocation());
+                        game.setSelectedLocation(null);
                     }
 
                     currentSettler.setSelectedFalse();
